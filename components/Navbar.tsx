@@ -2,119 +2,74 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const links = [
-  { href: "/", label: "Home" },
+const leftLinks = [
+  { href: "https://instagram.com/", label: "Instagram", external: true },
   { href: "/portfolio", label: "Portfolio" },
+];
+
+const rightLinks = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" }
 ];
 
-const leftLinks = links.slice(0, 2);
-const rightLinks = links.slice(2);
+const navLinkClasses =
+  "whitespace-nowrap text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ivory/72 transition-colors duration-300 hover:text-gold sm:text-[0.68rem] sm:tracking-luxe";
 
 export function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    let previousY = window.scrollY;
-
-    function onScroll() {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 24);
-      setHidden(currentY > previousY && currentY > 120 && !open);
-      previousY = currentY;
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [open]);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-40 transition duration-500",
-        hidden ? "-translate-y-full" : "translate-y-0",
-        scrolled || open ? "border-b border-white/10 bg-ink/88 backdrop-blur-xl" : "bg-transparent"
-      )}
-    >
-      <nav className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-        <div className="hidden items-center gap-8 md:flex">
+    <header className="fixed inset-x-0 bottom-0 z-50 border-t border-gold/70 bg-ink/95 shadow-[0_-18px_60px_rgba(0,0,0,0.56)] backdrop-blur-xl">
+      <nav
+        aria-label="Primary navigation"
+        className="relative mx-auto grid h-[4.75rem] max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 pb-[env(safe-area-inset-bottom)] sm:h-20 sm:gap-6 sm:px-8 lg:px-12"
+      >
+        <div className="flex min-w-0 items-center justify-end gap-4 sm:gap-8 lg:gap-12">
           {leftLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "text-[0.68rem] uppercase tracking-luxe transition hover:text-gold",
-                pathname === link.href ? "text-gold" : "text-ivory/76"
-              )}
-            >
-              {link.label}
-            </Link>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className={navLinkClasses}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(navLinkClasses, pathname === link.href && "text-gold")}
+              >
+                {link.label}
+              </Link>
+            )
           ))}
         </div>
         <Link
           href="/"
           aria-label="Hana Brabcová home"
-          className="group absolute left-1/2 flex size-10 -translate-x-1/2 items-center justify-center rounded-full border border-gold transition-all duration-300 hover:bg-gold"
+          className="group relative -mt-10 flex size-14 items-center justify-center rounded-full border border-gold bg-ink shadow-[0_0_0_8px_#0B0B0B] transition-all duration-300 hover:scale-105 hover:bg-gold hover:shadow-[0_0_0_8px_#0B0B0B,0_0_34px_rgba(198,169,105,0.34)] sm:size-16"
         >
-          <span className="text-[10px] font-semibold tracking-luxe text-gold transition-colors duration-300 group-hover:text-black">
+          <span className="pl-[0.18em] text-[0.74rem] font-semibold uppercase tracking-luxe text-gold transition-colors duration-300 group-hover:text-ink">
             HB
           </span>
         </Link>
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="flex min-w-0 items-center justify-start gap-4 sm:gap-8 lg:gap-12">
           {rightLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={cn(
-                "text-[0.68rem] uppercase tracking-luxe transition hover:text-gold",
-                pathname === link.href ? "text-gold" : "text-ivory/76"
-              )}
+              className={cn(navLinkClasses, pathname === link.href && "text-gold")}
             >
               {link.label}
             </Link>
           ))}
         </div>
-        <button
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="inline-flex size-11 items-center justify-center border border-white/10 text-ivory md:hidden"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
       </nav>
-      <div
-        className={cn(
-          "grid overflow-hidden border-t border-white/10 bg-ink/96 transition-all duration-300 md:hidden",
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        )}
-      >
-        <div className="min-h-0">
-          <div className="flex flex-col px-5 py-5">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="border-b border-white/10 py-4 text-sm uppercase tracking-luxe text-ivory"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
     </header>
   );
 }

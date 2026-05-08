@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased">
+      <body className="pb-24 font-sans antialiased sm:pb-28">
         <Navbar />
         {children}
         <Footer />
