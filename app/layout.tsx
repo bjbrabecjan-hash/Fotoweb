@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { MonogramBadge } from "@/components/MonogramBadge";
 import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <Navbar />
         {children}
+        <MonogramBadge />
         <Footer />
       </body>
     </html>
