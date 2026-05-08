@@ -52,7 +52,7 @@ export function Navbar() {
         <Link
           href="/"
           aria-label="Hana Brabcová home"
-          className="group relative -mt-10 flex size-14 items-center justify-center rounded-full border border-gold bg-ink shadow-[0_0_0_8px_#0B0B0B] transition-all duration-300 hover:scale-105 hover:bg-gold hover:shadow-[0_0_0_8px_#0B0B0B,0_0_34px_rgba(198,169,105,0.34)] sm:size-16"
+          className="group relative -mt-16 flex size-14 items-center justify-center rounded-full border border-gold bg-ink shadow-[0_0_0_8px_#0B0B0B] transition-all duration-300 hover:scale-105 hover:bg-gold hover:shadow-[0_0_0_8px_#0B0B0B,0_0_34px_rgba(198,169,105,0.34)] sm:-mt-20 sm:size-16"
         >
           <span className="pl-[0.18em] text-[0.74rem] font-semibold uppercase tracking-luxe text-gold transition-colors duration-300 group-hover:text-ink">
             HB
