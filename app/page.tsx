@@ -1,30 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "@/components/Button";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { Hero } from "@/components/Hero";
 import { Section } from "@/components/Section";
+import { useLanguage } from "@/lib/i18n";
 import { featuredWork } from "@/lib/work";
 
-const services = [
-  {
-    title: "Photo & Video Content",
-    text: "Campaign imagery, launch assets, reels, and refined detail shots shaped for beauty audiences."
-  },
-  {
-    title: "Social Media Visuals",
-    text: "Consistent visual systems for Instagram, TikTok, salon launches, and product-led storytelling."
-  },
-  {
-    title: "Premium Brand Storytelling",
-    text: "Editorial direction that makes hair, skin, fragrance, and service rituals feel cinematic and desirable."
-  }
-];
-
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <>
       <Hero />
-      <Section eyebrow="Featured work" title="Selected beauty stories">
+      <Section eyebrow={t.home.featuredEyebrow} title={t.home.featuredTitle}>
         <GalleryGrid items={featuredWork} featured />
       </Section>
       <Section className="border-y border-white/10 bg-white/[0.02]">
@@ -39,23 +29,22 @@ export default function Home() {
             />
           </div>
           <div className="max-w-2xl lg:pl-10">
-            <p className="mb-4 text-xs uppercase tracking-luxe text-gold">About Hana</p>
+            <p className="mb-4 text-xs uppercase tracking-luxe text-gold">{t.home.aboutEyebrow}</p>
             <h2 className="font-display text-4xl uppercase leading-none tracking-wider text-ivory sm:text-6xl">
-              Beauty visuals with editorial restraint
+              {t.home.aboutTitle}
             </h2>
             <p className="mt-7 text-base leading-8 text-ash">
-              Hana Brabcova creates polished photo and video content for beauty brands that want their online presence to feel
-              elevated, tactile, and unmistakably premium. Her work balances clean composition with soft cinematic light.
+              {t.home.aboutText}
             </p>
             <Button href="/about" variant="ghost" className="mt-9">
-              Meet Hana
+              {t.home.aboutCta}
             </Button>
           </div>
         </div>
       </Section>
-      <Section eyebrow="Services" title="Made for premium beauty">
+      <Section eyebrow={t.home.servicesEyebrow} title={t.home.servicesTitle}>
         <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-3">
-          {services.map((service) => (
+          {t.home.services.map((service) => (
             <article key={service.title} className="bg-ink p-7 sm:p-9">
               <h3 className="font-display text-2xl uppercase tracking-wider text-ivory">{service.title}</h3>
               <p className="mt-5 text-sm leading-7 text-ash">{service.text}</p>
@@ -65,12 +54,12 @@ export default function Home() {
       </Section>
       <Section className="pt-0">
         <div className="border-y border-gold/40 py-16 text-center">
-          <p className="text-xs uppercase tracking-luxe text-gold">Now booking</p>
+          <p className="text-xs uppercase tracking-luxe text-gold">{t.home.ctaEyebrow}</p>
           <h2 className="mx-auto mt-5 max-w-4xl font-display text-4xl uppercase leading-tight tracking-wider text-ivory sm:text-6xl">
-            Create a visual world your clients can feel
+            {t.home.ctaTitle}
           </h2>
           <Button href="/contact" className="mt-9">
-            Start a project
+            {t.home.ctaButton}
           </Button>
         </div>
       </Section>

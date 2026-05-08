@@ -3,8 +3,11 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/Button";
+import { useLanguage } from "@/lib/i18n";
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="grain relative flex min-h-[92svh] items-end overflow-hidden px-5 pb-16 pt-32 sm:px-8 lg:px-12">
       <Image
@@ -23,14 +26,14 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="mb-5 text-xs uppercase tracking-luxe text-gold">Brand content for beauty brands</p>
+        <p className="mb-5 text-xs uppercase tracking-luxe text-gold">{t.hero.eyebrow}</p>
         <h1 className="max-w-5xl font-display text-6xl uppercase leading-[0.86] tracking-wider text-ivory sm:text-8xl lg:text-[9.5rem]">
           Hana Brabcová
         </h1>
         <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center">
-          <Button href="/portfolio">View portfolio</Button>
+          <Button href="/portfolio">{t.hero.cta}</Button>
           <p className="max-w-md text-sm leading-7 text-ivory/72">
-            Cinematic photography, short-form visuals, and polished brand stories for salons, hair artists, and cosmetics labels.
+            {t.hero.text}
           </p>
         </div>
       </motion.div>
