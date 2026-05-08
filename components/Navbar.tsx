@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const leftLinks = [
-  { href: "https://instagram.com/", label: "Instagram", external: true },
+  { href: "https://www.instagram.com/brabcova_content_/", label: "Instagram", external: true },
   { href: "/portfolio", label: "Portfolio" },
 ];
 
