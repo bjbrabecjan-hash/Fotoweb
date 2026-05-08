@@ -13,6 +13,9 @@ const links = [
   { href: "/contact", label: "Contact" }
 ];
 
+const leftLinks = links.slice(0, 2);
+const rightLinks = links.slice(2);
+
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -46,12 +49,32 @@ export function Navbar() {
         scrolled || open ? "border-b border-white/10 bg-ink/88 backdrop-blur-xl" : "bg-transparent"
       )}
     >
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" className="font-display text-xl uppercase tracking-luxe text-ivory">
-          HB
+      <nav className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+        <div className="hidden items-center gap-8 md:flex">
+          {leftLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "text-[0.68rem] uppercase tracking-luxe transition hover:text-gold",
+                pathname === link.href ? "text-gold" : "text-ivory/76"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+        <Link
+          href="/"
+          aria-label="Hana Brabcová home"
+          className="group absolute left-1/2 flex size-10 -translate-x-1/2 items-center justify-center rounded-full border border-gold transition-all duration-300 hover:bg-gold"
+        >
+          <span className="text-[10px] font-semibold tracking-luxe text-gold transition-colors duration-300 group-hover:text-black">
+            HB
+          </span>
         </Link>
         <div className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
+          {rightLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
