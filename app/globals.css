@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: dark;
-  background: #0b0b0b;
+  background: #090a08;
 }
 
 * {
@@ -18,9 +18,10 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 20% 0%, rgba(198, 169, 105, 0.08), transparent 32rem),
-    #0b0b0b;
-  color: #f5f2ed;
+    radial-gradient(circle at 80% 0%, rgba(214, 190, 132, 0.08), transparent 34rem),
+    radial-gradient(circle at 12% 26%, rgba(8, 37, 29, 0.42), transparent 34rem),
+    #090a08;
+  color: #f7f1e6;
   min-height: 100vh;
 }
 
@@ -30,8 +31,8 @@ a {
 }
 
 ::selection {
-  background: rgba(198, 169, 105, 0.38);
-  color: #f5f2ed;
+  background: rgba(214, 190, 132, 0.38);
+  color: #f7f1e6;
 }
 
 .grain::after {

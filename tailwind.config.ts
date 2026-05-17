@@ -13,7 +13,12 @@ const config: Config = {
         ivory: "#F5F2ED",
         ash: "#A3A3A3",
         gold: "#C6A969",
-        charcoal: "#151515"
+        charcoal: "#151515",
+        "emerald-deep": "#08251D",
+        "warm-black": "#090A08",
+        champagne: "#D6BE84",
+        beige: "#D8C7AA",
+        cream: "#F7F1E6"
       },
       fontFamily: {
         display: ["var(--font-cormorant)", "serif"],
