@@ -8,22 +8,21 @@ import type { Locale } from "@/lib/i18n";
 import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-const leftLinks = [
-  { href: "https://www.instagram.com/brabcova_content_/", key: "instagram", external: true },
-  { href: "/portfolio", key: "portfolio", external: false },
-] as const;
-
-const rightLinks = [
-  { href: "/about", key: "about", external: false },
-  { href: "/contact", key: "contact", external: false }
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/#services", label: "Services" },
+  { href: "/#process", label: "Process" },
+  { href: "/#about", label: "About" },
+  { href: "/contact", label: "Contact" }
 ] as const;
 
 const navLinkClasses =
-  "whitespace-nowrap text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-cream/72 transition-colors duration-300 hover:text-champagne sm:text-[0.68rem] sm:tracking-luxe";
+  "whitespace-nowrap text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-cream/66 transition-colors duration-300 hover:text-champagne";
 
 export function Navbar() {
   const pathname = usePathname();
-  const { locale, setLocale, t } = useLanguage();
+  const { locale, setLocale } = useLanguage();
   const { entered } = useExperience();
 
   if (pathname === "/" && !entered) {
@@ -32,60 +31,31 @@ export function Navbar() {
 
   return (
     <motion.header
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-champagne/70 bg-warm-black/92 shadow-[0_-18px_60px_rgba(0,0,0,0.56)] backdrop-blur-xl"
-      initial={pathname === "/" ? { opacity: 0, y: 28 } : false}
+      className="fixed inset-x-0 top-0 z-50 border-b border-champagne/12 bg-warm-black/28 backdrop-blur-2xl"
+      initial={pathname === "/" ? { opacity: 0, y: -18 } : false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
       <nav
         aria-label="Primary navigation"
-        className="relative mx-auto grid h-[4.75rem] max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 pb-[env(safe-area-inset-bottom)] sm:h-20 sm:gap-6 sm:px-8 lg:px-12"
+        className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-5 px-5 sm:px-8 lg:px-12"
       >
-        <div className="flex min-w-0 items-center justify-end gap-3 sm:gap-8 lg:gap-12">
-          {leftLinks.map((link) => (
-            link.external ? (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                className={navLinkClasses}
-              >
-                {t.nav[link.key]}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(navLinkClasses, pathname === link.href && "text-champagne")}
-              >
-                {t.nav[link.key]}
-              </Link>
-            )
-          ))}
-        </div>
-        <Link
-          href="/"
-          aria-label={t.nav.homeLabel}
-          className="group relative -mt-16 flex size-14 items-center justify-center rounded-full border border-champagne bg-warm-black shadow-[0_0_0_8px_#090A08] transition-all duration-300 hover:scale-105 hover:bg-champagne hover:shadow-[0_0_0_8px_#090A08,0_0_34px_rgba(214,190,132,0.34)] sm:-mt-20 sm:size-16"
-        >
-          <span className="pl-[0.18em] text-[0.74rem] font-semibold uppercase tracking-luxe text-champagne transition-colors duration-300 group-hover:text-warm-black">
-            HB
-          </span>
+        <Link href="/" className="font-display text-lg uppercase tracking-[0.24em] text-champagne">
+          Hana Brabcová
         </Link>
-        <div className="flex min-w-0 items-center justify-start gap-3 sm:gap-8 lg:gap-12">
-          {rightLinks.map((link) => (
+        <div className="hidden items-center gap-6 lg:flex">
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={cn(navLinkClasses, pathname === link.href && "text-champagne")}
+              className={cn(navLinkClasses, pathname === link.href && link.href !== "/" && "text-champagne")}
             >
-              {t.nav[link.key]}
+              {link.label}
             </Link>
           ))}
         </div>
-        <div className="absolute -top-12 right-4 sm:-top-14 sm:right-8">
-          <div className="flex items-center border border-champagne/40 bg-warm-black/90 p-0.5 shadow-[0_12px_34px_rgba(0,0,0,0.38)] backdrop-blur-xl">
+        <div className="flex items-center gap-3">
+          <div className="hidden items-center border border-champagne/32 bg-cream/[0.04] p-0.5 backdrop-blur-xl sm:flex">
             {(["en", "cz"] as Locale[]).map((item) => (
               <button
                 key={item}
@@ -101,6 +71,12 @@ export function Navbar() {
               </button>
             ))}
           </div>
+          <Link
+            href="/contact"
+            className="hidden border border-champagne/60 bg-cream/[0.04] px-5 py-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-champagne backdrop-blur-xl transition duration-300 hover:bg-champagne hover:text-warm-black md:inline-flex"
+          >
+            Book a Session
+          </Link>
         </div>
       </nav>
     </motion.header>

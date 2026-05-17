@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Camera, Diamond, Play, UserRound } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { heroSlides } from "@/lib/heroSlides";
 import { portfolioCategories, type PortfolioItem } from "@/lib/portfolioData";
@@ -24,7 +24,32 @@ const processSteps = [
   "Polished social-ready delivery"
 ];
 
-const serviceCards = ["Beauty Content", "Portrait Sessions", "Reels & Social Content", "Brand Story"];
+const heroCards = [
+  {
+    title: "Beauty Content",
+    text: "Skincare, makeup,\ntreatments & beauty brands",
+    icon: UserRound,
+    offset: "lg:translate-y-4"
+  },
+  {
+    title: "Portrait\nSessions",
+    text: "Personal branding\n& professional portraits",
+    icon: Camera,
+    offset: "lg:-translate-y-8"
+  },
+  {
+    title: "Reels &\nSocial Content",
+    text: "Short videos\n& engaging content for social media",
+    icon: Play,
+    offset: "lg:translate-y-10"
+  },
+  {
+    title: "Brand\nStory",
+    text: "Visual identity\n& content for your brand",
+    icon: Diamond,
+    offset: "lg:-translate-y-2"
+  }
+];
 
 const categoryLabels: Record<(typeof portfolioCategories)[number], string> = {
   All: "All",
@@ -38,6 +63,7 @@ const categoryLabels: Record<(typeof portfolioCategories)[number], string> = {
 
 export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const [activeCategory, setActiveCategory] = useState<(typeof portfolioCategories)[number]>("All");
+  const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const { entered, enterExperience } = useExperience();
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
@@ -58,9 +84,25 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     };
   }, [entered]);
 
+  const handleHeroPointer = (event: React.PointerEvent<HTMLElement>) => {
+    if (reducedMotion) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    setPointer({
+      x: (event.clientX - rect.left) / rect.width - 0.5,
+      y: (event.clientY - rect.top) / rect.height - 0.5
+    });
+  };
+
   return (
     <>
-      <section className="grain relative min-h-screen overflow-hidden bg-emerald-deep">
+      <section
+        className="grain relative min-h-screen overflow-hidden bg-emerald-deep"
+        onPointerMove={handleHeroPointer}
+        onPointerLeave={() => setPointer({ x: 0, y: 0 })}
+      >
         <motion.div
           className="absolute inset-0"
           initial={false}
@@ -77,11 +119,11 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[43%_center]"
+            className="object-cover object-[26%_center]"
           />
         </motion.div>
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(5,20,16,0.78),rgba(7,36,28,0.28)_44%,rgba(10,10,8,0.9))]" />
-        <div className="absolute inset-y-0 right-0 w-[42vw] bg-warm-black/44 backdrop-blur-2xl [mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,0.36)_18%,#000_58%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(5,20,16,0.84),rgba(7,36,28,0.22)_42%,rgba(10,10,8,0.92)_73%,rgba(9,10,8,0.98))]" />
+        <div className="absolute inset-y-0 right-0 w-[54vw] bg-warm-black/52 backdrop-blur-2xl [mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,0.22)_8%,rgba(0,0,0,0.82)_42%,#000_72%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(214,190,132,0.2),transparent_28rem),radial-gradient(circle_at_20%_72%,rgba(20,88,68,0.28),transparent_34rem)]" />
         <AmbientParticles active={entered} />
 
@@ -118,16 +160,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
         </AnimatePresence>
 
         <motion.div
-          className="absolute left-5 top-5 z-20 font-display text-sm uppercase tracking-[0.3em] text-cream sm:left-8 sm:top-8"
-          initial={false}
-          animate={entered ? { opacity: 1, scale: 1, x: 0, y: 0 } : { opacity: 0, scale: 1.28, x: "42vw", y: "42vh" }}
-          transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
-        >
-          Hana Brabcová
-        </motion.div>
-
-        <motion.div
-          className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-end px-5 pb-36 pt-32 sm:px-8 lg:px-12"
+          className="relative z-10 mx-auto flex min-h-screen max-w-[92rem] items-center px-5 pb-28 pt-32 sm:px-8 lg:px-12"
           initial={false}
           animate={entered ? "show" : "hide"}
           variants={{
@@ -136,14 +169,20 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           }}
           transition={{ duration: 0.85, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="grid w-full items-end gap-12 lg:grid-cols-[1.02fr_0.98fr]">
-            <div>
-              <p className="mb-5 text-xs uppercase tracking-[0.34em] text-champagne">Cinematic beauty direction</p>
-              <h2 className="max-w-5xl font-display text-5xl uppercase leading-[0.92] tracking-[0.08em] text-cream sm:text-7xl lg:text-8xl">
-                Visual content that makes your brand unforgettable.
-              </h2>
-              <p className="mt-7 max-w-xl text-base leading-8 text-cream/76">
-                Photography, reels and premium visuals for beauty brands, salons and businesses.
+          <div className="grid w-full translate-y-24 items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-12 2xl:translate-y-14">
+            <div className="max-w-[470px]">
+              <p className="mb-5 text-xs uppercase tracking-[0.42em] text-champagne drop-shadow-[0_0_18px_rgba(214,190,132,0.22)]">
+                Visual content that
+              </p>
+              <h1 className="font-display text-5xl uppercase leading-[0.86] tracking-[0.08em] text-cream drop-shadow-[0_0_36px_rgba(247,241,230,0.08)] sm:text-6xl lg:text-[4rem] xl:text-[4.45rem] 2xl:text-[5.6rem]">
+                <span className="block whitespace-nowrap">Makes your</span>
+                <span className="block">Brand</span>
+              </h1>
+              <p className="-mt-2 pl-1 font-script text-5xl leading-none text-champagne drop-shadow-[0_0_26px_rgba(214,190,132,0.34)] sm:text-6xl lg:-mt-3 lg:text-6xl 2xl:text-7xl">
+                Unforgettable.
+              </p>
+              <p className="mt-8 max-w-md whitespace-pre-line text-base leading-8 tracking-[0.02em] text-cream/76">
+                {"Photography, reels and premium visuals\nfor beauty brands, salons and businesses\nthat want to stand out."}
               </p>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
                 <LuxuryButton href="#portfolio">View Portfolio</LuxuryButton>
@@ -152,19 +191,52 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                 </LuxuryButton>
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:pb-10">
-              {serviceCards.map((card, index) => (
+            <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:items-center lg:justify-start lg:gap-3 xl:gap-4 2xl:gap-5">
+              {heroCards.map((card, index) => {
+                const Icon = card.icon;
+                return (
                 <motion.div
-                  key={card}
-                  className="group border border-champagne/24 bg-cream/[0.075] p-6 shadow-[0_22px_80px_rgba(0,0,0,0.26)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:border-champagne/58 hover:bg-cream/[0.11]"
-                  animate={entered && !reducedMotion ? { y: [0, index % 2 ? 8 : -8, 0] } : undefined}
-                  transition={{ duration: 6 + index, repeat: Infinity, ease: "easeInOut" }}
+                  key={card.title}
+                  className={cn(
+                    "group min-h-56 border border-champagne/24 bg-cream/[0.075] p-5 shadow-[0_28px_100px_rgba(0,0,0,0.34)] backdrop-blur-2xl transition-colors duration-300 hover:border-champagne/64 hover:bg-cream/[0.12] sm:p-6 lg:w-36 lg:p-4 xl:w-40 2xl:w-52 2xl:p-6",
+                    card.offset
+                  )}
+                  style={{
+                    x: reducedMotion ? 0 : pointer.x * (10 + index * 4),
+                    y: reducedMotion ? 0 : pointer.y * (8 + index * 3)
+                  }}
+                  animate={entered && !reducedMotion ? { translateY: [0, index % 2 ? 9 : -9, 0] } : undefined}
+                  whileHover={reducedMotion ? undefined : { scale: 1.025, translateY: -10 }}
+                  transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <span className="text-[0.64rem] uppercase tracking-[0.28em] text-champagne">0{index + 1}</span>
-                  <h3 className="mt-5 font-display text-2xl uppercase tracking-[0.1em] text-cream">{card}</h3>
+                  <div className="flex size-12 items-center justify-center rounded-full border border-champagne/42 bg-warm-black/22 text-champagne shadow-[0_0_34px_rgba(214,190,132,0.14)] transition duration-300 group-hover:shadow-[0_0_46px_rgba(214,190,132,0.26)]">
+                    <Icon size={20} strokeWidth={1.35} fill={card.title.startsWith("Reels") ? "currentColor" : "none"} />
+                  </div>
+                  <h3 className="mt-7 whitespace-pre-line font-display text-xl uppercase leading-[0.92] tracking-[0.11em] text-cream 2xl:text-2xl">
+                    {card.title}
+                  </h3>
+                  <p className="mt-5 whitespace-pre-line text-[0.72rem] leading-6 text-cream/62 2xl:text-[0.8rem]">{card.text}</p>
                 </motion.div>
-              ))}
+              )})}
             </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="pointer-events-none absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 text-center md:block"
+          initial={false}
+          animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="text-[0.58rem] uppercase tracking-[0.34em] text-cream/44">
+            Elegant visuals. Real emotions. Lasting impact.
+          </p>
+          <div className="mx-auto mt-4 h-10 w-px overflow-hidden bg-cream/12">
+            <motion.div
+              className="h-5 w-px bg-champagne/70"
+              animate={reducedMotion ? undefined : { y: [-22, 42] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            />
           </div>
         </motion.div>
       </section>
@@ -198,7 +270,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           </div>
         </section>
 
-        <SectionBand eyebrow="Services" title="Created for premium beauty brands">
+        <SectionBand id="services" eyebrow="Services" title="Created for premium beauty brands">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service) => (
               <article key={service.title} className="border border-champagne/18 bg-cream/[0.055] p-7 backdrop-blur-xl">
@@ -209,7 +281,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           </div>
         </SectionBand>
 
-        <SectionBand eyebrow="Process" title="A calm production rhythm">
+        <SectionBand id="process" eyebrow="Process" title="A calm production rhythm">
           <div className="grid gap-px overflow-hidden border border-champagne/14 bg-champagne/14 md:grid-cols-4">
             {processSteps.map((step, index) => (
               <div key={step} className="bg-warm-black p-7">
@@ -238,7 +310,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           </div>
         </section>
 
-        <SectionBand eyebrow="About" title="Beauty content with editorial sensitivity">
+        <SectionBand id="about" eyebrow="About" title="Beauty content with editorial sensitivity">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
             <p className="text-lg leading-9 text-cream/72">
               Hana creates visual systems for beauty brands that need more than documentation. The work is built around feeling, texture and the quiet confidence of premium presentation.

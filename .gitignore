@@ -6,3 +6,4 @@ dist
 !.env.example
 vercel.json
 npm-debug.log*
+.vercel

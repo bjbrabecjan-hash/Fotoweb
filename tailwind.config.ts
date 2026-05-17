@@ -22,6 +22,7 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-cormorant)", "serif"],
+        script: ["var(--font-script)", "cursive"],
         sans: ["var(--font-inter)", "sans-serif"]
       },
       letterSpacing: {

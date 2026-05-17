@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Parisienne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { ExperienceProvider } from "@/lib/experience";
@@ -15,6 +15,13 @@ const cormorant = Cormorant_Garamond({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap"
+});
+
+const parisienne = Parisienne({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
   display: "swap"
 });
 
@@ -36,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="pb-24 font-sans antialiased sm:pb-28">
+    <html lang="en" className={`${cormorant.variable} ${inter.variable} ${parisienne.variable}`}>
+      <body className="font-sans antialiased">
         <ExperienceProvider>
           <LanguageProvider>
             <Navbar />
