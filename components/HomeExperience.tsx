@@ -29,25 +29,25 @@ const heroCards = [
     title: "Beauty Content",
     text: "Skincare, makeup,\ntreatments & beauty brands",
     icon: UserRound,
-    offset: "lg:translate-y-4"
+    offset: "xl:translate-y-3"
   },
   {
     title: "Portrait\nSessions",
     text: "Personal branding\n& professional portraits",
     icon: Camera,
-    offset: "lg:-translate-y-8"
+    offset: "xl:-translate-y-5"
   },
   {
     title: "Reels &\nSocial Content",
     text: "Short videos\n& engaging content for social media",
     icon: Play,
-    offset: "lg:translate-y-10"
+    offset: "xl:translate-y-6"
   },
   {
     title: "Brand\nStory",
     text: "Visual identity\n& content for your brand",
     icon: Diamond,
-    offset: "lg:-translate-y-2"
+    offset: "xl:-translate-y-2"
   }
 ];
 
@@ -99,7 +99,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   return (
     <>
       <section
-        className="grain relative min-h-screen overflow-hidden bg-emerald-deep"
+        className="grain relative min-h-[100svh] overflow-hidden bg-emerald-deep"
         onPointerMove={handleHeroPointer}
         onPointerLeave={() => setPointer({ x: 0, y: 0 })}
       >
@@ -119,11 +119,11 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[26%_center]"
+            className="object-cover object-[38%_center] sm:object-[32%_center] xl:object-[26%_center]"
           />
         </motion.div>
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(5,20,16,0.84),rgba(7,36,28,0.22)_42%,rgba(10,10,8,0.92)_73%,rgba(9,10,8,0.98))]" />
-        <div className="absolute inset-y-0 right-0 w-[54vw] bg-warm-black/52 backdrop-blur-2xl [mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,0.22)_8%,rgba(0,0,0,0.82)_42%,#000_72%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(5,20,16,0.88),rgba(7,36,28,0.42)_34%,rgba(10,10,8,0.76)_70%,rgba(9,10,8,0.95))]" />
+        <div className="absolute inset-y-0 right-0 hidden w-[52vw] bg-warm-black/48 backdrop-blur-2xl [mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,0.2)_8%,rgba(0,0,0,0.82)_44%,#000_76%)] lg:block" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(214,190,132,0.2),transparent_28rem),radial-gradient(circle_at_20%_72%,rgba(20,88,68,0.28),transparent_34rem)]" />
         <AmbientParticles active={entered} />
 
@@ -160,7 +160,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
         </AnimatePresence>
 
         <motion.div
-          className="relative z-10 mx-auto flex min-h-screen max-w-[92rem] items-center px-5 pb-28 pt-32 sm:px-8 lg:px-12"
+          className="relative z-10 mx-auto flex min-h-[100svh] max-w-[92rem] items-center px-5 pb-36 pt-28 sm:px-8 sm:pb-32 lg:px-12 lg:pb-24 lg:pt-32"
           initial={false}
           animate={entered ? "show" : "hide"}
           variants={{
@@ -169,16 +169,16 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           }}
           transition={{ duration: 0.85, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="grid w-full translate-y-24 items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-12 2xl:translate-y-14">
-            <div className="max-w-[470px]">
+          <div className="grid w-full items-center gap-9 lg:gap-10 xl:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] xl:gap-12 2xl:grid-cols-[minmax(0,33rem)_minmax(0,1fr)]">
+            <div className="max-w-[30rem] xl:max-w-none">
               <p className="mb-5 text-xs uppercase tracking-[0.42em] text-champagne drop-shadow-[0_0_18px_rgba(214,190,132,0.22)]">
                 Visual content that
               </p>
-              <h1 className="font-display text-5xl uppercase leading-[0.86] tracking-[0.08em] text-cream drop-shadow-[0_0_36px_rgba(247,241,230,0.08)] sm:text-6xl lg:text-[4rem] xl:text-[4.45rem] 2xl:text-[5.6rem]">
+              <h1 className="font-display text-[clamp(2.8rem,13vw,4.4rem)] uppercase leading-[0.86] tracking-[0.045em] text-cream drop-shadow-[0_0_36px_rgba(247,241,230,0.08)] sm:text-[clamp(4rem,9vw,5.9rem)] sm:tracking-[0.07em] xl:text-[clamp(4.15rem,5.15vw,5.25rem)] 2xl:text-[5.9rem]">
                 <span className="block whitespace-nowrap">Makes your</span>
                 <span className="block">Brand</span>
               </h1>
-              <p className="-mt-2 pl-1 font-script text-5xl leading-none text-champagne drop-shadow-[0_0_26px_rgba(214,190,132,0.34)] sm:text-6xl lg:-mt-3 lg:text-6xl 2xl:text-7xl">
+              <p className="-mt-1 pl-1 font-script text-[clamp(3rem,13vw,4.4rem)] leading-none text-champagne drop-shadow-[0_0_26px_rgba(214,190,132,0.34)] sm:text-[clamp(4rem,8vw,5rem)] xl:-mt-3 xl:text-[4.9rem] 2xl:text-[5.6rem]">
                 Unforgettable.
               </p>
               <p className="mt-8 max-w-md whitespace-pre-line text-base leading-8 tracking-[0.02em] text-cream/76">
@@ -191,33 +191,36 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                 </LuxuryButton>
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:items-center lg:justify-start lg:gap-3 xl:gap-4 2xl:gap-5">
+            <div className="grid w-full max-w-[34rem] grid-cols-2 gap-3 sm:gap-4 lg:max-w-3xl lg:grid-cols-4 xl:ml-auto xl:max-w-[36rem] xl:grid-cols-2 xl:gap-5 2xl:max-w-[40rem]">
               {heroCards.map((card, index) => {
                 const Icon = card.icon;
                 return (
-                <motion.div
-                  key={card.title}
-                  className={cn(
-                    "group min-h-56 border border-champagne/24 bg-cream/[0.075] p-5 shadow-[0_28px_100px_rgba(0,0,0,0.34)] backdrop-blur-2xl transition-colors duration-300 hover:border-champagne/64 hover:bg-cream/[0.12] sm:p-6 lg:w-36 lg:p-4 xl:w-40 2xl:w-52 2xl:p-6",
-                    card.offset
-                  )}
-                  style={{
-                    x: reducedMotion ? 0 : pointer.x * (10 + index * 4),
-                    y: reducedMotion ? 0 : pointer.y * (8 + index * 3)
-                  }}
-                  animate={entered && !reducedMotion ? { translateY: [0, index % 2 ? 9 : -9, 0] } : undefined}
-                  whileHover={reducedMotion ? undefined : { scale: 1.025, translateY: -10 }}
-                  transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <div className="flex size-12 items-center justify-center rounded-full border border-champagne/42 bg-warm-black/22 text-champagne shadow-[0_0_34px_rgba(214,190,132,0.14)] transition duration-300 group-hover:shadow-[0_0_46px_rgba(214,190,132,0.26)]">
-                    <Icon size={20} strokeWidth={1.35} fill={card.title.startsWith("Reels") ? "currentColor" : "none"} />
-                  </div>
-                  <h3 className="mt-7 whitespace-pre-line font-display text-xl uppercase leading-[0.92] tracking-[0.11em] text-cream 2xl:text-2xl">
-                    {card.title}
-                  </h3>
-                  <p className="mt-5 whitespace-pre-line text-[0.72rem] leading-6 text-cream/62 2xl:text-[0.8rem]">{card.text}</p>
-                </motion.div>
-              )})}
+                  <motion.div
+                    key={card.title}
+                    className={cn(
+                      "group min-h-40 border border-champagne/24 bg-cream/[0.075] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.34)] backdrop-blur-2xl transition-colors duration-300 hover:border-champagne/64 hover:bg-cream/[0.12] sm:min-h-48 sm:p-5 lg:min-h-52 xl:min-h-56 xl:p-6",
+                      card.offset
+                    )}
+                    style={{
+                      x: reducedMotion ? 0 : pointer.x * (4 + index * 2),
+                      y: reducedMotion ? 0 : pointer.y * (3 + index * 2)
+                    }}
+                    animate={entered && !reducedMotion ? { translateY: [0, index % 2 ? 5 : -5, 0] } : undefined}
+                    whileHover={reducedMotion ? undefined : { scale: 1.02, translateY: -6 }}
+                    transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <div className="flex size-10 items-center justify-center rounded-full border border-champagne/42 bg-warm-black/22 text-champagne shadow-[0_0_34px_rgba(214,190,132,0.14)] transition duration-300 group-hover:shadow-[0_0_46px_rgba(214,190,132,0.26)] sm:size-12">
+                      <Icon size={18} strokeWidth={1.35} fill={card.title.startsWith("Reels") ? "currentColor" : "none"} />
+                    </div>
+                    <h3 className="mt-5 whitespace-pre-line font-display text-lg uppercase leading-[0.92] tracking-[0.1em] text-cream sm:mt-7 sm:text-xl 2xl:text-2xl">
+                      {card.title}
+                    </h3>
+                    <p className="mt-4 whitespace-pre-line text-[0.68rem] leading-5 text-cream/62 sm:mt-5 sm:text-[0.72rem] sm:leading-6 2xl:text-[0.8rem]">
+                      {card.text}
+                    </p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </motion.div>
