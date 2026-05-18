@@ -8,7 +8,7 @@ export type HeroSlide = {
 export const heroSlides: HeroSlide[] = [
   {
     id: "gold-mask-skincare",
-    src: "/images/hero-hana-hair.jpg",
+    src: "/Users/honzabrabec/Documents/Fotoweb/public/asset/hero-hana-hair.jpg",
     alt: "Luxury skincare portrait with golden facial mask",
     focalPoint: "26% center"
   }
