@@ -25,7 +25,7 @@ export default function AboutPage() {
           </div>
           <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
             <Image
-              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1300&q=86"
+              src="/assets/portfolio/hair/brunette-curls-final-look.jpg"
               alt="Elegant portrait for Hana Brabcova"
               fill
               sizes="(min-width: 1024px) 38vw, 100vw"

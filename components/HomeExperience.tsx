@@ -64,12 +64,8 @@ const heroCards = [
 const categoryLabels: Record<(typeof portfolioCategories)[number], string> = {
   All: "All",
   Beauty: "Beauty",
-  Portraits: "Portraits",
   Hair: "Hair",
-  Salon: "Salon",
-  Branding: "Branding",
-  Editorial: "Editorial",
-  Reels: "Reels"
+  Salon: "Salon"
 };
 
 export function HomeExperience({ portfolioItems }: HomeExperienceProps) {

@@ -21,7 +21,7 @@ export default function Home() {
         <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
             <Image
-              src="https://images.unsplash.com/photo-1496440737103-cd596325d314?auto=format&fit=crop&w=1300&q=86"
+              src="/assets/portfolio/hair/brunette-curls-final-look.jpg"
               alt="Portrait of a beauty content creator"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"

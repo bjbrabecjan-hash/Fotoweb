@@ -112,12 +112,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       categories: {
         All: "All",
         Beauty: "Beauty",
-        Portraits: "Portraits",
         Hair: "Hair",
         Salon: "Salon",
         Cosmetics: "Cosmetics",
-        Branding: "Branding",
-        Reels: "Reels",
         Editorial: "Editorial"
       }
     },
@@ -195,12 +192,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       categories: {
         All: "Vše",
         Beauty: "Beauty",
-        Portraits: "Portréty",
         Hair: "Vlasy",
         Salon: "Salon",
         Cosmetics: "Kosmetika",
-        Branding: "Branding",
-        Reels: "Reels",
         Editorial: "Editorial"
       }
     },

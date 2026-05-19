@@ -5,11 +5,7 @@ import { fallbackPortfolioItems, type PortfolioCategory, type PortfolioItem } fr
 const categoryFolders: Array<{ folder: string; category: PortfolioCategory; ratio: PortfolioItem["ratio"] }> = [
   { folder: "beauty", category: "Beauty", ratio: "portrait" },
   { folder: "hair", category: "Hair", ratio: "landscape" },
-  { folder: "salon", category: "Salon", ratio: "landscape" },
-  { folder: "portraits", category: "Portraits", ratio: "portrait" },
-  { folder: "branding", category: "Branding", ratio: "square" },
-  { folder: "editorial", category: "Editorial", ratio: "portrait" },
-  { folder: "reels", category: "Reels", ratio: "portrait" }
+  { folder: "salon", category: "Salon", ratio: "landscape" }
 ];
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);

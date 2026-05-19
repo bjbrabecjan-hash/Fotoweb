@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section className="grain relative flex min-h-[92svh] items-end overflow-hidden px-5 pb-24 pt-32 sm:px-8 lg:px-12">
       <Image
-        src="/images/hero-hana-hair.jpg"
+        src="/assets/hero/hana-hair-cinematic.jpg"
         alt="Luxury brunette hair styling portrait"
         fill
         priority
