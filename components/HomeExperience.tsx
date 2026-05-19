@@ -61,6 +61,24 @@ const heroCards = [
   }
 ];
 
+const signatureTiles = [
+  {
+    title: "Skin-like warmth",
+    src: "/assets/signature/skin-like-warmth.png",
+    alt: "Glossy serum treatment detail with warm skin-like light"
+  },
+  {
+    title: "Editorial restraint",
+    src: "/assets/signature/editorial-restraint.png",
+    alt: "Minimal luxury beauty still life with gold tools and cream textures"
+  },
+  {
+    title: "Beauty-first atmosphere",
+    src: "/assets/signature/beauty-first-atmosphere.png",
+    alt: "Cinematic beauty studio detail with emerald, ivory and champagne tones"
+  }
+];
+
 const categoryLabels: Record<(typeof portfolioCategories)[number], string> = {
   All: "All",
   Beauty: "Beauty",
@@ -257,10 +275,20 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               </h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
-              {["Skin-like warmth", "Editorial restraint", "Beauty-first atmosphere"].map((item) => (
-                <div key={item} className="border border-cream/10 bg-cream/[0.055] p-6 backdrop-blur-xl">
-                  <p className="font-display text-2xl uppercase tracking-[0.08em] text-cream">{item}</p>
-                </div>
+              {signatureTiles.map((item) => (
+                <article key={item.title} className="group relative aspect-[4/5] overflow-hidden border border-cream/10 bg-emerald-deep">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(min-width: 1024px) 24vw, (min-width: 640px) 33vw, 100vw"
+                    className="object-cover transition duration-[1400ms] group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-warm-black/88 via-warm-black/18 to-transparent" />
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <p className="font-display text-2xl uppercase leading-tight tracking-[0.08em] text-cream">{item.title}</p>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
