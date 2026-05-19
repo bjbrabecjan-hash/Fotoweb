@@ -8,29 +8,29 @@ import type { Locale } from "@/lib/i18n";
 import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/#services", label: "Services" },
-  { href: "/#process", label: "Process" },
-  { href: "/#about", label: "About" },
-  { href: "/contact", label: "Contact" }
-] as const;
-
-const mobileNavLinks = [
-  { href: "https://www.instagram.com/brabcova_content_/", label: "Instagram", external: true },
-  { href: "/portfolio", label: "Portfolio", external: false },
-  { href: "/#about", label: "About", external: false },
-  { href: "/contact", label: "Contact", external: false }
-] as const;
+const instagramUrl = "https://www.instagram.com/brabcovahana_content_/";
 
 const navLinkClasses =
   "whitespace-nowrap text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-cream/66 transition-colors duration-300 hover:text-champagne";
 
 export function Navbar() {
   const pathname = usePathname();
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale, t } = useLanguage();
   const { entered } = useExperience();
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/portfolio", label: t.nav.portfolio },
+    { href: "/#services", label: t.nav.services },
+    { href: "/#process", label: t.nav.process },
+    { href: "/#about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact }
+  ] as const;
+  const mobileNavLinks = [
+    { href: instagramUrl, label: t.nav.instagram, external: true },
+    { href: "/portfolio", label: t.nav.portfolio, external: false },
+    { href: "/#about", label: t.nav.about, external: false },
+    { href: "/contact", label: t.nav.contact, external: false }
+  ] as const;
 
   if (pathname === "/" && !entered) {
     return null;
@@ -83,7 +83,7 @@ export function Navbar() {
               href="/contact"
               className="hidden border border-champagne/60 bg-cream/[0.04] px-5 py-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-champagne backdrop-blur-xl transition duration-300 hover:bg-champagne hover:text-warm-black md:inline-flex"
             >
-              Book a Session
+              {t.nav.bookSession}
             </Link>
           </div>
         </nav>
@@ -120,7 +120,7 @@ function MobileNavLink({
   link,
   pathname
 }: {
-  link: (typeof mobileNavLinks)[number];
+  link: { href: string; label: string; external: boolean };
   pathname: string;
 }) {
   const isActive = !link.external && pathname === link.href;

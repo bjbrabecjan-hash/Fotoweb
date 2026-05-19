@@ -1,12 +1,16 @@
 "use client";
 
-import { Instagram, Mail, MapPin } from "lucide-react";
+import { ExternalLink, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/Button";
 import { Section } from "@/components/Section";
 import { useLanguage } from "@/lib/i18n";
 
 export function ContactContent() {
   const { t } = useLanguage();
+  const email = "fotohanabrabcova@gmail.com";
+  const phone = "734 548 996";
+  const instagramUrl = "https://www.instagram.com/brabcovahana_content_/";
+  const facebookUrl = "https://www.facebook.com/profile.php?id=61579648302684";
 
   return (
     <Section className="min-h-screen pt-32 lg:pt-40">
@@ -18,18 +22,31 @@ export function ContactContent() {
           </h1>
           <p className="mt-8 max-w-xl text-base leading-8 text-ash">{t.contact.text}</p>
           <div className="mt-10 space-y-5 text-sm text-ash">
-            <a className="flex items-center gap-4 transition hover:text-gold" href="mailto:hello@hanabrabcova.com">
+            <a className="flex items-center gap-4 transition hover:text-gold" href={`mailto:${email}`}>
               <Mail size={18} />
-              hello@hanabrabcova.com
+              {email}
+            </a>
+            <a className="flex items-center gap-4 transition hover:text-gold" href="tel:+420734548996">
+              <Phone size={18} />
+              {phone}
             </a>
             <a
               className="flex items-center gap-4 transition hover:text-gold"
-              href="https://www.instagram.com/brabcova_content_/"
+              href={instagramUrl}
               target="_blank"
               rel="noreferrer"
             >
               <Instagram size={18} />
-              @brabcova_content_
+              @brabcovahana_content_
+            </a>
+            <a
+              className="flex items-center gap-4 transition hover:text-gold"
+              href={facebookUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <ExternalLink size={18} />
+              Facebook
             </a>
             <p className="flex items-center gap-4">
               <MapPin size={18} />
@@ -37,7 +54,12 @@ export function ContactContent() {
             </p>
           </div>
         </div>
-        <form className="border border-white/10 bg-white/[0.025] p-6 sm:p-8">
+        <form
+          action={`mailto:${email}?subject=Poptavka%20z%20webu%20Hana%20Brabcova`}
+          method="post"
+          encType="text/plain"
+          className="border border-white/10 bg-white/[0.025] p-6 sm:p-8"
+        >
           <div className="grid gap-6">
             <label className="grid gap-3 text-xs uppercase tracking-luxe text-gold">
               {t.contact.name}

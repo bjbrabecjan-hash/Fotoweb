@@ -6,10 +6,15 @@ export type Locale = "en" | "cz";
 
 type Dictionary = {
   nav: {
+    home: string;
     instagram: string;
+    facebook: string;
     portfolio: string;
+    services: string;
+    process: string;
     about: string;
     contact: string;
+    bookSession: string;
     homeLabel: string;
   };
   hero: {
@@ -67,10 +72,15 @@ type Dictionary = {
 export const dictionaries: Record<Locale, Dictionary> = {
   en: {
     nav: {
+      home: "Home",
       instagram: "Instagram",
+      facebook: "Facebook",
       portfolio: "Portfolio",
+      services: "Services",
+      process: "Process",
       about: "About",
       contact: "Contact",
+      bookSession: "Book a Session",
       homeLabel: "Hana Brabcová home"
     },
     hero: {
@@ -134,11 +144,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     contact: {
       eyebrow: "Contact",
       title: "Start a beauty story",
-      text: "Share the brand, campaign, salon, or launch you are shaping. Hana will respond with availability, direction, and the right content format for your goals.",
-      location: "Prague and destination shoots",
+      text: "Share the brand, salon, content shoot, or launch you are shaping. Hana will respond with availability and the right visual format for your goals.",
+      location: "Pilsen, Prague and destination shoots",
       name: "Name",
       email: "Email",
-      project: "Project",
+      project: "Project / message",
       submit: "Send inquiry"
     },
     footer: {
@@ -148,10 +158,15 @@ export const dictionaries: Record<Locale, Dictionary> = {
   },
   cz: {
     nav: {
+      home: "Domů",
       instagram: "Instagram",
+      facebook: "Facebook",
       portfolio: "Portfolio",
+      services: "Služby",
+      process: "Proces",
       about: "O mně",
       contact: "Kontakt",
+      bookSession: "Rezervovat focení",
       homeLabel: "Domů Hana Brabcová"
     },
     hero: {
@@ -215,11 +230,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     contact: {
       eyebrow: "Kontakt",
       title: "Začněme beauty příběh",
-      text: "Napište značku, kampaň, salon nebo launch, který připravujete. Hana se ozve s dostupností, směrem a vhodným formátem obsahu pro vaše cíle.",
-      location: "Praha a destination focení",
+      text: "Napište značku, salon, focení obsahu nebo launch, který připravujete. Hana se ozve s dostupností a vhodným vizuálním formátem pro vaše cíle.",
+      location: "Plzeň, Praha a focení po domluvě",
       name: "Jméno",
       email: "Email",
-      project: "Projekt",
+      project: "Projekt / zpráva",
       submit: "Odeslat poptávku"
     },
     footer: {
@@ -238,7 +253,7 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>("cz");
 
   useEffect(() => {
     const stored = window.localStorage.getItem("hana-locale");

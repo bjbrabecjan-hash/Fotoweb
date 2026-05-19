@@ -17,8 +17,8 @@ import type { CSSProperties } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { heroSlides } from "@/lib/heroSlides";
 import { portfolioCategories, type PortfolioItem } from "@/lib/portfolioData";
-import { services } from "@/lib/services";
 import { useExperience } from "@/lib/experience";
+import { type Locale, useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 type HomeExperienceProps = {
@@ -27,35 +27,52 @@ type HomeExperienceProps = {
 
 const hero = heroSlides[0];
 
-const processSteps = [
-  "Mood and brand atmosphere",
-  "Creative direction and shot list",
-  "Cinematic production day",
-  "Polished social-ready delivery"
-];
-
 const heroCards = [
   {
-    title: "Beauty Content",
-    text: "Skincare, makeup,\ntreatments & beauty brands",
+    title: {
+      en: "Beauty Content",
+      cz: "Beauty\nContent"
+    },
+    text: {
+      en: "Skincare, makeup,\ntreatments & beauty brands",
+      cz: "Kosmetika, péče,\nošetření & salony"
+    },
     icon: UserRound,
     offset: "xl:translate-y-3"
   },
   {
-    title: "Portrait\nSessions",
-    text: "Personal branding\n& professional portraits",
+    title: {
+      en: "Portrait\nSessions",
+      cz: "Portrétní\nfocení"
+    },
+    text: {
+      en: "Personal branding\n& professional portraits",
+      cz: "Osobní brand\n& profesionální portréty"
+    },
     icon: Camera,
     offset: "xl:-translate-y-5"
   },
   {
-    title: "Reels &\nSocial Content",
-    text: "Short videos\n& engaging content for social media",
+    title: {
+      en: "Reels &\nSocial Content",
+      cz: "Reels &\nobsah na sítě"
+    },
+    text: {
+      en: "Short videos\n& engaging content for social media",
+      cz: "Krátká videa\n& obsah pro sociální sítě"
+    },
     icon: Play,
     offset: "xl:translate-y-6"
   },
   {
-    title: "Brand\nStory",
-    text: "Visual identity\n& content for your brand",
+    title: {
+      en: "Brand\nStory",
+      cz: "Brand\nStory"
+    },
+    text: {
+      en: "Visual identity\n& content for your brand",
+      cz: "Vizuální identita\n& obsah pro značku"
+    },
     icon: Diamond,
     offset: "xl:-translate-y-2"
   }
@@ -79,14 +96,136 @@ const signatureTiles = [
   }
 ];
 
-const categoryLabels: Record<(typeof portfolioCategories)[number], string> = {
-  All: "All",
-  Beauty: "Beauty",
-  Hair: "Hair",
-  Salon: "Salon"
+const homeExperienceCopy: Record<
+  Locale,
+  {
+    introKicker: string;
+    introTitleTop: string;
+    introTitleMiddle: string;
+    introScript: string;
+    introText: string;
+    viewPortfolio: string;
+    bookSession: string;
+    footerLine: string;
+    portfolioEyebrow: string;
+    portfolioTitle: string;
+    signatureEyebrow: string;
+    signatureTitle: string;
+    servicesEyebrow: string;
+    servicesTitle: string;
+    processEyebrow: string;
+    processTitle: string;
+    processSteps: string[];
+    featuredEyebrow: string;
+    featuredTitle: string;
+    featuredText: string;
+    aboutEyebrow: string;
+    aboutTitle: string;
+    aboutText: string;
+    aboutQuote: string;
+    bookingEyebrow: string;
+    bookingTitle: string;
+    services: Array<{ title: string; description: string }>;
+  }
+> = {
+  en: {
+    introKicker: "Visual content that",
+    introTitleTop: "Makes your",
+    introTitleMiddle: "Brand",
+    introScript: "Unforgettable.",
+    introText: "Photography, reels and premium visuals\nfor beauty brands, salons and businesses\nthat want to stand out.",
+    viewPortfolio: "View Portfolio",
+    bookSession: "Book a Session",
+    footerLine: "Elegant visuals. Real emotions. Lasting impact.",
+    portfolioEyebrow: "Portfolio",
+    portfolioTitle: "Editorial stories in motion",
+    signatureEyebrow: "Signature style",
+    signatureTitle: "Soft luxury. Cinematic texture. Emotional light.",
+    servicesEyebrow: "Services",
+    servicesTitle: "Created for premium beauty brands",
+    processEyebrow: "Process",
+    processTitle: "A calm production rhythm",
+    processSteps: ["Mood and brand atmosphere", "Creative direction and shot list", "Cinematic production day", "Polished social-ready delivery"],
+    featuredEyebrow: "Featured story",
+    featuredTitle: "Hair as atmosphere, not decoration.",
+    featuredText: "A visual direction built around movement, warm shadows and tactile detail. The image becomes a brand mood before it becomes a post.",
+    aboutEyebrow: "About",
+    aboutTitle: "Beauty content with editorial sensitivity",
+    aboutText:
+      "Hana creates visual systems for beauty brands that need more than documentation. The work is built around feeling, texture and the quiet confidence of premium presentation.",
+    aboutQuote: "Each frame should make the brand feel considered before a client reads a single word.",
+    bookingEyebrow: "Booking",
+    bookingTitle: "Build a beauty world your clients can feel.",
+    services: [
+      {
+        title: "Beauty Content",
+        description: "Campaign imagery and detail-led visuals for beauty launches, skincare rituals and salon identities."
+      },
+      {
+        title: "Portrait Sessions",
+        description: "Soft, editorial portraits for founders, artists and personal beauty brands."
+      },
+      {
+        title: "Reels & Social Content",
+        description: "Short-form movement, process moments and premium vertical assets shaped for social platforms."
+      },
+      {
+        title: "Brand Story",
+        description: "Visual direction that turns atmosphere, texture and tone into a coherent beauty narrative."
+      }
+    ]
+  },
+  cz: {
+    introKicker: "Vizuální obsah, který",
+    introTitleTop: "zviditelní",
+    introTitleMiddle: "značku",
+    introScript: "Nezapomenutelně.",
+    introText: "Fotografie, reels a prémiové vizuály\npro beauty značky, salony a podnikání,\nkteré má působit profesionálně.",
+    viewPortfolio: "Zobrazit portfolio",
+    bookSession: "Rezervovat focení",
+    footerLine: "Elegantní vizuály. Reálné emoce. Trvalý dojem.",
+    portfolioEyebrow: "Portfolio",
+    portfolioTitle: "Editorial příběhy v pohybu",
+    signatureEyebrow: "Signature style",
+    signatureTitle: "Jemný luxus. Cinematická textura. Emoční světlo.",
+    servicesEyebrow: "Služby",
+    servicesTitle: "Tvořeno pro prémiové beauty značky",
+    processEyebrow: "Proces",
+    processTitle: "Klidný produkční rytmus",
+    processSteps: ["Mood a atmosféra značky", "Kreativní směr a shot list", "Cinematický produkční den", "Vyladěné výstupy pro sítě"],
+    featuredEyebrow: "Vybraný příběh",
+    featuredTitle: "Vlasy jako atmosféra, ne dekorace.",
+    featuredText: "Vizuální směr postavený na pohybu, teplých stínech a hmatatelném detailu. Fotka se stává náladou značky dřív, než je z ní post.",
+    aboutEyebrow: "O Haně",
+    aboutTitle: "Beauty obsah s editorial citlivostí",
+    aboutText:
+      "Hana tvoří vizuální systémy pro beauty značky, které potřebují víc než dokumentaci. Její práce stojí na pocitu, textuře a tiché jistotě prémiové prezentace.",
+    aboutQuote: "Každý záběr má působit promyšleně ještě předtím, než klient přečte první větu.",
+    bookingEyebrow: "Rezervace",
+    bookingTitle: "Vytvořte beauty svět, který klienti ucítí.",
+    services: [
+      {
+        title: "Beauty Content",
+        description: "Kampaňové fotografie a detailní vizuály pro beauty launch, salonní identitu a rituály péče."
+      },
+      {
+        title: "Portrétní focení",
+        description: "Jemné editorial portréty pro zakladatelky, tvůrce, specialistky a osobní beauty brandy."
+      },
+      {
+        title: "Reels & obsah na sítě",
+        description: "Krátká videa, procesní momenty a prémiové vertikální výstupy pro sociální platformy."
+      },
+      {
+        title: "Brand Story",
+        description: "Vizuální směr, který propojí atmosféru, texturu a tón do jednotného beauty příběhu."
+      }
+    ]
+  }
 };
 
 export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
+  const { locale, t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<(typeof portfolioCategories)[number]>("All");
   const { entered, enterExperience } = useExperience();
   const reducedMotion = useReducedMotion();
@@ -96,6 +235,18 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const featuredImageScale = useTransform(scrollYProgress, [0.42, 0.86], reducedMotion ? [1, 1] : [1.035, 1]);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
+  const copy = homeExperienceCopy[locale];
+  const localizedHeroCards = heroCards.map((card) => ({
+    ...card,
+    title: card.title[locale],
+    text: card.text[locale]
+  }));
+  const localizedCategoryLabels: Record<(typeof portfolioCategories)[number], string> = {
+    All: t.portfolio.categories.All,
+    Beauty: t.portfolio.categories.Beauty,
+    Hair: t.portfolio.categories.Hair,
+    Salon: t.portfolio.categories.Salon
+  };
 
   const visibleItems = useMemo(
     () =>
@@ -173,14 +324,14 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                   Hana Brabcová
                 </h1>
                 <p className="mt-6 text-sm uppercase tracking-[0.34em] text-champagne/82">
-                  Visual storytelling for beauty brands.
+                  {locale === "cz" ? "Vizuální storytelling pro beauty značky." : "Visual storytelling for beauty brands."}
                 </p>
                 <button
                   type="button"
                   onClick={enterExperience}
                   className="mt-12 inline-flex min-h-14 items-center gap-3 border border-champagne/70 bg-cream/8 px-7 text-xs font-semibold uppercase tracking-[0.24em] text-cream shadow-[0_0_42px_rgba(214,190,132,0.16)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:bg-champagne hover:text-warm-black hover:shadow-[0_0_56px_rgba(214,190,132,0.28)]"
                 >
-                  Enter Experience
+                  {locale === "cz" ? "Vstoupit" : "Enter Experience"}
                   <ArrowRight size={16} />
                 </button>
               </motion.div>
@@ -201,27 +352,27 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           <div className="grid w-full items-center gap-9 lg:gap-10 xl:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] xl:gap-12 2xl:grid-cols-[minmax(0,33rem)_minmax(0,1fr)]">
             <div className="max-w-[30rem] xl:max-w-none">
               <p className="mb-5 text-xs uppercase tracking-[0.42em] text-champagne drop-shadow-[0_0_18px_rgba(214,190,132,0.22)]">
-                Visual content that
+                {copy.introKicker}
               </p>
               <h1 className="font-display text-[clamp(2.8rem,13vw,4.4rem)] uppercase leading-[0.86] tracking-[0.045em] text-cream drop-shadow-[0_0_36px_rgba(247,241,230,0.08)] sm:text-[clamp(4rem,9vw,5.9rem)] sm:tracking-[0.07em] xl:text-[clamp(4.15rem,5.15vw,5.25rem)] 2xl:text-[5.9rem]">
-                <span className="block whitespace-nowrap">Makes your</span>
-                <span className="block">Brand</span>
+                <span className="block whitespace-nowrap">{copy.introTitleTop}</span>
+                <span className="block">{copy.introTitleMiddle}</span>
               </h1>
               <p className="-mt-1 pl-1 font-script text-[clamp(3rem,13vw,4.4rem)] leading-none text-champagne drop-shadow-[0_0_26px_rgba(214,190,132,0.34)] sm:text-[clamp(4rem,8vw,5rem)] xl:-mt-3 xl:text-[4.9rem] 2xl:text-[5.6rem]">
-                Unforgettable.
+                {copy.introScript}
               </p>
               <p className="mt-8 max-w-md whitespace-pre-line text-base leading-8 tracking-[0.02em] text-cream/76">
-                {"Photography, reels and premium visuals\nfor beauty brands, salons and businesses\nthat want to stand out."}
+                {copy.introText}
               </p>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                <LuxuryButton href="#portfolio">View Portfolio</LuxuryButton>
+                <LuxuryButton href="#portfolio">{copy.viewPortfolio}</LuxuryButton>
                 <LuxuryButton href="/contact" variant="ghost">
-                  Book a Session
+                  {copy.bookSession}
                 </LuxuryButton>
               </div>
             </div>
             <div className="grid w-full max-w-[34rem] grid-cols-2 gap-3 sm:gap-4 lg:max-w-3xl lg:grid-cols-4 xl:ml-auto xl:max-w-[36rem] xl:grid-cols-2 xl:gap-5 2xl:max-w-[40rem]">
-              {heroCards.map((card, index) => {
+              {localizedHeroCards.map((card, index) => {
                 return (
                   <HeroFeatureCard
                     key={card.title}
@@ -245,7 +396,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-[0.58rem] uppercase tracking-[0.34em] text-cream/44">
-            Elegant visuals. Real emotions. Lasting impact.
+            {copy.footerLine}
           </p>
           <div className="mx-auto mt-4 h-10 w-px overflow-hidden bg-cream/12">
             <motion.div
@@ -258,8 +409,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
       </section>
 
       <main className="relative overflow-hidden bg-warm-black">
-        <SectionBand id="portfolio" eyebrow="Portfolio" title="Editorial stories in motion">
-          <CategoryFilter activeCategory={activeCategory} onChange={setActiveCategory} />
+        <SectionBand id="portfolio" eyebrow={copy.portfolioEyebrow} title={copy.portfolioTitle}>
+          <CategoryFilter activeCategory={activeCategory} onChange={setActiveCategory} categoryLabels={localizedCategoryLabels} />
           <div className="masonry mt-10">
             {visibleItems.map((item, index) => (
               <PortfolioCard key={item.id} item={item} index={index} />
@@ -271,9 +422,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(12,64,48,0.4),transparent_32rem)]" />
           <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
             <div>
-              <p className="text-xs uppercase tracking-[0.32em] text-champagne">Signature style</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.signatureEyebrow}</p>
               <h2 className="mt-5 font-display text-5xl uppercase leading-none tracking-[0.1em] text-cream sm:text-7xl">
-                Soft luxury. Cinematic texture. Emotional light.
+                {copy.signatureTitle}
               </h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -304,9 +455,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           </div>
         </section>
 
-        <SectionBand id="services" eyebrow="Services" title="Created for premium beauty brands">
+        <SectionBand id="services" eyebrow={copy.servicesEyebrow} title={copy.servicesTitle}>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => (
+            {copy.services.map((service) => (
               <article key={service.title} className="border border-champagne/18 bg-cream/[0.055] p-7 backdrop-blur-xl">
                 <h3 className="font-display text-2xl uppercase tracking-[0.1em] text-cream">{service.title}</h3>
                 <p className="mt-5 text-sm leading-7 text-cream/66">{service.description}</p>
@@ -315,9 +466,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           </div>
         </SectionBand>
 
-        <SectionBand id="process" eyebrow="Process" title="A calm production rhythm">
+        <SectionBand id="process" eyebrow={copy.processEyebrow} title={copy.processTitle}>
           <div className="grid gap-px overflow-hidden border border-champagne/14 bg-champagne/14 md:grid-cols-4">
-            {processSteps.map((step, index) => (
+            {copy.processSteps.map((step, index) => (
               <div key={step} className="bg-warm-black p-7">
                 <span className="text-xs uppercase tracking-[0.28em] text-champagne">0{index + 1}</span>
                 <p className="mt-8 font-display text-2xl uppercase tracking-[0.1em] text-cream">{step}</p>
@@ -341,25 +492,43 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-warm-black/70 to-transparent" />
             </motion.div>
             <div>
-              <p className="text-xs uppercase tracking-[0.32em] text-champagne">Featured story</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.featuredEyebrow}</p>
               <h2 className="mt-5 font-display text-5xl uppercase leading-none tracking-[0.1em] text-cream sm:text-7xl">
-                Hair as atmosphere, not decoration.
+                {copy.featuredTitle}
               </h2>
               <p className="mt-7 text-base leading-8 text-cream/70">
-                A visual direction built around movement, warm shadows and tactile detail. The image becomes a brand mood before it becomes a post.
+                {copy.featuredText}
               </p>
             </div>
           </div>
         </section>
 
-        <SectionBand id="about" eyebrow="About" title="Beauty content with editorial sensitivity">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
-            <p className="text-lg leading-9 text-cream/72">
-              Hana creates visual systems for beauty brands that need more than documentation. The work is built around feeling, texture and the quiet confidence of premium presentation.
-            </p>
+        <SectionBand id="about" eyebrow={copy.aboutEyebrow} title={copy.aboutTitle}>
+          <div className="grid items-end gap-10 lg:grid-cols-[0.72fr_0.58fr_1fr]">
+            <p className="text-lg leading-9 text-cream/72">{copy.aboutText}</p>
+            <motion.article
+              className="group relative aspect-[4/5] overflow-hidden border border-champagne/26 bg-emerald-deep shadow-[0_26px_90px_rgba(0,0,0,0.34)]"
+              initial={reducedMotion ? false : { opacity: 0, y: 24, scale: 0.985 }}
+              whileInView={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image
+                src="/assets/about/hana-owner-portrait.png"
+                alt="Hana Brabcova owner portrait"
+                fill
+                sizes="(min-width: 1024px) 24vw, 100vw"
+                className="object-cover object-[50%_24%] transition duration-[1400ms] group-hover:scale-[1.035]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-warm-black/92 via-warm-black/16 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="text-[0.58rem] uppercase tracking-[0.28em] text-champagne drop-shadow-[0_2px_12px_rgba(0,0,0,0.72)]">{t.about.ownerRole}</p>
+                <h3 className="mt-2 font-display text-2xl uppercase tracking-[0.1em] text-cream drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">Hana Brabcová</h3>
+              </div>
+            </motion.article>
             <div className="border border-champagne/18 bg-cream/[0.055] p-8 backdrop-blur-xl">
               <p className="font-display text-4xl uppercase leading-tight tracking-[0.1em] text-cream">
-                Each frame should make the brand feel considered before a client reads a single word.
+                {copy.aboutQuote}
               </p>
             </div>
           </div>
@@ -367,12 +536,12 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
 
         <section className="px-5 py-24 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-5xl border-y border-champagne/40 py-16 text-center">
-            <p className="text-xs uppercase tracking-[0.32em] text-champagne">Booking</p>
+            <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.bookingEyebrow}</p>
             <h2 className="mt-5 font-display text-5xl uppercase leading-none tracking-[0.1em] text-cream sm:text-7xl">
-              Build a beauty world your clients can feel.
+              {copy.bookingTitle}
             </h2>
             <div className="mt-9">
-              <LuxuryButton href="/contact">Book a Session</LuxuryButton>
+              <LuxuryButton href="/contact">{copy.bookSession}</LuxuryButton>
             </div>
           </div>
         </section>
@@ -382,7 +551,12 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
 }
 
 type HeroFeatureCardProps = {
-  card: (typeof heroCards)[number];
+  card: {
+    title: string;
+    text: string;
+    icon: (typeof heroCards)[number]["icon"];
+    offset: string;
+  };
   index: number;
   entered: boolean;
   reducedMotion: boolean | null;
@@ -490,10 +664,12 @@ function SectionBand({ id, eyebrow, title, children }: { id?: string; eyebrow: s
 
 function CategoryFilter({
   activeCategory,
-  onChange
+  onChange,
+  categoryLabels
 }: {
   activeCategory: (typeof portfolioCategories)[number];
   onChange: (category: (typeof portfolioCategories)[number]) => void;
+  categoryLabels: Record<(typeof portfolioCategories)[number], string>;
 }) {
   return (
     <div className="flex gap-2 overflow-x-auto pb-2">

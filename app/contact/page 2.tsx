@@ -1,9 +1,9 @@
-import { Instagram, Mail, MapPin } from "lucide-react";
+import { ExternalLink, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/Button";
 import { Section } from "@/components/Section";
 
 export const metadata = {
-  title: "Contact | Hana Brabcová"
+  title: "Kontakt | Hana Brabcová"
 };
 
 export default function ContactPage() {
@@ -13,31 +13,44 @@ export default function ContactPage() {
         <div>
           <p className="mb-5 text-xs uppercase tracking-luxe text-gold">Contact</p>
           <h1 className="font-display text-5xl uppercase leading-none tracking-wider text-ivory sm:text-7xl lg:text-8xl">
-            Start a beauty story
+            Začněme beauty příběh
           </h1>
           <p className="mt-8 max-w-xl text-base leading-8 text-ash">
-            Share the brand, campaign, salon, or launch you are shaping. Hana will respond with availability, direction, and the
-            right content format for your goals.
+            Napište značku, salon, focení obsahu nebo launch, který připravujete. Hana se ozve s dostupností a vhodným
+            vizuálním formátem pro vaše cíle.
           </p>
           <div className="mt-10 space-y-5 text-sm text-ash">
-            <a className="flex items-center gap-4 transition hover:text-gold" href="mailto:hello@hanabrabcova.com">
+            <a className="flex items-center gap-4 transition hover:text-gold" href="mailto:fotohanabrabcova@gmail.com">
               <Mail size={18} />
-              hello@hanabrabcova.com
+              fotohanabrabcova@gmail.com
             </a>
-            <a className="flex items-center gap-4 transition hover:text-gold" href="https://instagram.com/" target="_blank">
+            <a className="flex items-center gap-4 transition hover:text-gold" href="tel:+420734548996">
+              <Phone size={18} />
+              734 548 996
+            </a>
+            <a className="flex items-center gap-4 transition hover:text-gold" href="https://www.instagram.com/brabcovahana_content_/" target="_blank">
               <Instagram size={18} />
-              @hanabrabcova
+              @brabcovahana_content_
+            </a>
+            <a className="flex items-center gap-4 transition hover:text-gold" href="https://www.facebook.com/profile.php?id=61579648302684" target="_blank">
+              <ExternalLink size={18} />
+              Facebook
             </a>
             <p className="flex items-center gap-4">
               <MapPin size={18} />
-              Prague and destination shoots
+              Plzeň, Praha a focení po domluvě
             </p>
           </div>
         </div>
-        <form className="border border-white/10 bg-white/[0.025] p-6 sm:p-8">
+        <form
+          action="mailto:fotohanabrabcova@gmail.com?subject=Poptavka%20z%20webu%20Hana%20Brabcova"
+          method="post"
+          encType="text/plain"
+          className="border border-white/10 bg-white/[0.025] p-6 sm:p-8"
+        >
           <div className="grid gap-6">
             <label className="grid gap-3 text-xs uppercase tracking-luxe text-gold">
-              Name
+              Jméno
               <input
                 className="h-12 border border-white/10 bg-ink px-4 text-sm normal-case tracking-normal text-ivory outline-none transition focus:border-gold"
                 name="name"
@@ -54,14 +67,14 @@ export default function ContactPage() {
               />
             </label>
             <label className="grid gap-3 text-xs uppercase tracking-luxe text-gold">
-              Project
+              Projekt / zpráva
               <textarea
                 className="min-h-36 resize-y border border-white/10 bg-ink px-4 py-3 text-sm normal-case tracking-normal text-ivory outline-none transition focus:border-gold"
                 name="message"
               />
             </label>
             <Button type="submit" className="w-full">
-              Send inquiry
+              Odeslat poptávku
             </Button>
           </div>
         </form>
