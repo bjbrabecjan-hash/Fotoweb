@@ -76,12 +76,12 @@ export function GalleryGrid({ items, categories: categoryOptions = categories, f
               sizes={featured ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 1024px) 33vw, 100vw"}
               className="object-cover transition duration-700 group-hover:scale-105"
             />
-            <span className="absolute inset-0 bg-gradient-to-t from-black/76 via-black/10 to-transparent opacity-70 transition group-hover:opacity-100" />
+            <span className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/24 to-transparent opacity-[0.82] transition group-hover:opacity-100" />
             <span className="absolute bottom-5 left-5 right-5 translate-y-3 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              <span className="block text-[0.65rem] uppercase tracking-luxe text-gold">
+              <span className="block text-[0.65rem] uppercase tracking-luxe text-gold drop-shadow-[0_2px_12px_rgba(0,0,0,0.78)]">
                 {t.portfolio.categories[item.category] ?? item.category}
               </span>
-              <span className="mt-1 block font-display text-2xl uppercase tracking-wider text-ivory">{item.title}</span>
+              <span className="mt-1 block font-display text-2xl uppercase tracking-wider text-ivory drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">{item.title}</span>
             </span>
           </motion.button>
         ))}

@@ -92,6 +92,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.45], reducedMotion ? [0, 0] : [0, -80]);
+  const featuredImageY = useTransform(scrollYProgress, [0.42, 0.86], reducedMotion ? [0, 0] : [24, -24]);
+  const featuredImageScale = useTransform(scrollYProgress, [0.42, 0.86], reducedMotion ? [1, 1] : [1.035, 1]);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
 
@@ -275,8 +277,16 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               </h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
-              {signatureTiles.map((item) => (
-                <article key={item.title} className="group relative aspect-[4/5] overflow-hidden border border-cream/10 bg-emerald-deep">
+              {signatureTiles.map((item, index) => (
+                <motion.article
+                  key={item.title}
+                  className="group relative aspect-[4/5] overflow-hidden border border-cream/10 bg-emerald-deep"
+                  initial={reducedMotion ? false : { opacity: 0, y: 24, scale: 0.985 }}
+                  whileInView={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.7, delay: Math.min(index * 0.09, 0.18), ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={reducedMotion ? undefined : { y: -4 }}
+                >
                   <Image
                     src={item.src}
                     alt={item.alt}
@@ -286,9 +296,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-warm-black/88 via-warm-black/18 to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5">
-                    <p className="font-display text-2xl uppercase leading-tight tracking-[0.08em] text-cream">{item.title}</p>
+                    <p className="font-display text-2xl uppercase leading-tight tracking-[0.08em] text-cream drop-shadow-[0_3px_18px_rgba(0,0,0,0.7)]">{item.title}</p>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
           </div>
@@ -318,10 +328,18 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
 
         <section className="px-5 py-24 sm:px-8 lg:px-12">
           <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <Image src={hero.src} alt={hero.alt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+            <motion.div
+              className="relative aspect-[16/10] overflow-hidden"
+              initial={reducedMotion ? false : { opacity: 0, y: 26 }}
+              whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-90px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.div className="absolute inset-0" style={{ y: featuredImageY, scale: featuredImageScale }}>
+                <Image src={hero.src} alt={hero.alt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+              </motion.div>
               <div className="absolute inset-0 bg-gradient-to-t from-warm-black/70 to-transparent" />
-            </div>
+            </motion.div>
             <div>
               <p className="text-xs uppercase tracking-[0.32em] text-champagne">Featured story</p>
               <h2 className="mt-5 font-display text-5xl uppercase leading-none tracking-[0.1em] text-cream sm:text-7xl">
@@ -519,10 +537,10 @@ function PortfolioCard({ item, index }: { item: PortfolioItem; index: number }) 
       ) : (
         <Image src={item.src} alt={item.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-[1400ms] group-hover:scale-105 group-hover:blur-[1px]" />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-warm-black/88 via-warm-black/12 to-transparent opacity-70 transition duration-500 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-t from-warm-black/94 via-warm-black/32 to-transparent opacity-[0.82] transition duration-500 group-hover:opacity-100" />
       <div className="absolute bottom-6 left-6 right-6 translate-y-3 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-        <p className="text-[0.64rem] uppercase tracking-[0.28em] text-champagne">{item.category}</p>
-        <h3 className="mt-2 font-display text-3xl uppercase tracking-[0.1em] text-cream">{item.title}</h3>
+        <p className="text-[0.64rem] uppercase tracking-[0.28em] text-champagne drop-shadow-[0_2px_12px_rgba(0,0,0,0.78)]">{item.category}</p>
+        <h3 className="mt-2 font-display text-3xl uppercase tracking-[0.1em] text-cream drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">{item.title}</h3>
       </div>
     </motion.article>
   );

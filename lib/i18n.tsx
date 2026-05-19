@@ -40,6 +40,7 @@ type Dictionary = {
   about: {
     eyebrow: string;
     text: string;
+    ownerRole: string;
     directionEyebrow: string;
     directionTitle: string;
     directionText: string;
@@ -121,6 +122,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     about: {
       eyebrow: "About",
       text: "Hana builds visual identities for beauty brands through polished photography, short-form video, and precise art direction. Her approach is minimal, elegant, and built for brands that understand the value of atmosphere.",
+      ownerRole: "Owner & visual director",
       directionEyebrow: "Direction",
       directionTitle: "Luxury without noise",
       directionText:
@@ -201,6 +203,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     about: {
       eyebrow: "O mně",
       text: "Hana tvoří vizuální identity pro beauty značky skrze prémiovou fotografii, krátké video a přesný art direction. Její přístup je minimalistický, elegantní a určený pro značky, které rozumí síle atmosféry.",
+      ownerRole: "Majitelka webu",
       directionEyebrow: "Směr",
       directionTitle: "Luxus bez zbytečného hluku",
       directionText:

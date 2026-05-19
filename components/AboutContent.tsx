@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/Button";
 import { Section } from "@/components/Section";
 import { useLanguage } from "@/lib/i18n";
 
 export function AboutContent() {
   const { t } = useLanguage();
+  const reducedMotion = useReducedMotion();
 
   return (
     <>
@@ -19,16 +21,29 @@ export function AboutContent() {
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-9 text-ash">{t.about.text}</p>
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
+          <motion.article
+            className="group relative aspect-[4/5] overflow-hidden border border-gold/30 bg-charcoal shadow-[0_28px_100px_rgba(0,0,0,0.36)]"
+            initial={reducedMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
             <Image
-              src="/assets/portfolio/hair/brunette-curls-final-look.jpg"
-              alt="Elegant portrait for Hana Brabcova"
+              src="/assets/about/hana-owner-portrait.png"
+              alt="Portrait medallion of Hana Brabcova, owner of the studio"
               fill
               sizes="(min-width: 1024px) 38vw, 100vw"
-              className="object-cover"
+              className="object-cover object-[50%_24%] transition duration-[1400ms] group-hover:scale-[1.035]"
               priority
             />
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/16 to-transparent" />
+            <div className="absolute inset-x-5 bottom-5 border border-white/12 bg-ink/42 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.32)] backdrop-blur-xl">
+              <p className="text-[0.62rem] uppercase tracking-luxe text-gold drop-shadow-[0_2px_12px_rgba(0,0,0,0.62)]">{t.about.ownerRole}</p>
+              <h2 className="mt-2 font-display text-3xl uppercase tracking-wider text-ivory drop-shadow-[0_3px_18px_rgba(0,0,0,0.72)]">
+                Hana Brabcová
+              </h2>
+            </div>
+          </motion.article>
         </div>
       </Section>
       <Section className="border-y border-white/10 bg-white/[0.02]" eyebrow={t.about.directionEyebrow} title={t.about.directionTitle}>
