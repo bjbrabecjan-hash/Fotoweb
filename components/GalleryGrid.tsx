@@ -8,8 +8,14 @@ import { useLanguage } from "@/lib/i18n";
 import { categories, type WorkItem } from "@/lib/work";
 import { cn } from "@/lib/utils";
 
+export type GalleryCategory = string;
+export type GalleryItem = Omit<WorkItem, "category"> & {
+  category: GalleryCategory;
+};
+
 type GalleryGridProps = {
-  items: WorkItem[];
+  items: GalleryItem[];
+  categories?: readonly GalleryCategory[];
   filterable?: boolean;
   featured?: boolean;
 };
@@ -20,9 +26,9 @@ const ratioClasses = {
   square: "aspect-square"
 };
 
-export function GalleryGrid({ items, filterable = false, featured = false }: GalleryGridProps) {
+export function GalleryGrid({ items, categories: categoryOptions = categories, filterable = false, featured = false }: GalleryGridProps) {
   const { t } = useLanguage();
-  const [category, setCategory] = useState<(typeof categories)[number]>("All");
+  const [category, setCategory] = useState<GalleryCategory>("All");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const visibleItems = useMemo(
@@ -34,7 +40,7 @@ export function GalleryGrid({ items, filterable = false, featured = false }: Gal
     <>
       {filterable && (
         <div className="mb-10 flex gap-2 overflow-x-auto pb-2">
-          {categories.map((item) => (
+          {categoryOptions.map((item) => (
             <button
               key={item}
               className={cn(
@@ -43,7 +49,7 @@ export function GalleryGrid({ items, filterable = false, featured = false }: Gal
               )}
               onClick={() => setCategory(item)}
             >
-              {t.portfolio.categories[item]}
+              {t.portfolio.categories[item] ?? item}
             </button>
           ))}
         </div>
@@ -73,7 +79,7 @@ export function GalleryGrid({ items, filterable = false, featured = false }: Gal
             <span className="absolute inset-0 bg-gradient-to-t from-black/76 via-black/10 to-transparent opacity-70 transition group-hover:opacity-100" />
             <span className="absolute bottom-5 left-5 right-5 translate-y-3 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
               <span className="block text-[0.65rem] uppercase tracking-luxe text-gold">
-                {t.portfolio.categories[item.category]}
+                {t.portfolio.categories[item.category] ?? item.category}
               </span>
               <span className="mt-1 block font-display text-2xl uppercase tracking-wider text-ivory">{item.title}</span>
             </span>

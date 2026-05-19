@@ -2,8 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue
+} from "framer-motion";
 import { ArrowRight, Camera, Diamond, Play, UserRound } from "lucide-react";
+import type { CSSProperties } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { heroSlides } from "@/lib/heroSlides";
 import { portfolioCategories, type PortfolioItem } from "@/lib/portfolioData";
@@ -56,6 +66,7 @@ const categoryLabels: Record<(typeof portfolioCategories)[number], string> = {
   Beauty: "Beauty",
   Portraits: "Portraits",
   Hair: "Hair",
+  Salon: "Salon",
   Branding: "Branding",
   Editorial: "Editorial",
   Reels: "Reels"
@@ -63,11 +74,12 @@ const categoryLabels: Record<(typeof portfolioCategories)[number], string> = {
 
 export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const [activeCategory, setActiveCategory] = useState<(typeof portfolioCategories)[number]>("All");
-  const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const { entered, enterExperience } = useExperience();
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.45], reducedMotion ? [0, 0] : [0, -80]);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
 
   const visibleItems = useMemo(
     () =>
@@ -90,10 +102,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     }
 
     const rect = event.currentTarget.getBoundingClientRect();
-    setPointer({
-      x: (event.clientX - rect.left) / rect.width - 0.5,
-      y: (event.clientY - rect.top) / rect.height - 0.5
-    });
+    pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
+    pointerY.set((event.clientY - rect.top) / rect.height - 0.5);
   };
 
   return (
@@ -101,7 +111,10 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
       <section
         className="grain relative min-h-[100svh] overflow-hidden bg-emerald-deep"
         onPointerMove={handleHeroPointer}
-        onPointerLeave={() => setPointer({ x: 0, y: 0 })}
+        onPointerLeave={() => {
+          pointerX.set(0);
+          pointerY.set(0);
+        }}
       >
         <motion.div
           className="absolute inset-0"
@@ -193,32 +206,16 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
             </div>
             <div className="grid w-full max-w-[34rem] grid-cols-2 gap-3 sm:gap-4 lg:max-w-3xl lg:grid-cols-4 xl:ml-auto xl:max-w-[36rem] xl:grid-cols-2 xl:gap-5 2xl:max-w-[40rem]">
               {heroCards.map((card, index) => {
-                const Icon = card.icon;
                 return (
-                  <motion.div
+                  <HeroFeatureCard
                     key={card.title}
-                    className={cn(
-                      "group min-h-40 border border-champagne/24 bg-cream/[0.075] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.34)] backdrop-blur-2xl transition-colors duration-300 hover:border-champagne/64 hover:bg-cream/[0.12] sm:min-h-48 sm:p-5 lg:min-h-52 xl:min-h-56 xl:p-6",
-                      card.offset
-                    )}
-                    style={{
-                      x: reducedMotion ? 0 : pointer.x * (4 + index * 2),
-                      y: reducedMotion ? 0 : pointer.y * (3 + index * 2)
-                    }}
-                    animate={entered && !reducedMotion ? { translateY: [0, index % 2 ? 5 : -5, 0] } : undefined}
-                    whileHover={reducedMotion ? undefined : { scale: 1.02, translateY: -6 }}
-                    transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <div className="flex size-10 items-center justify-center rounded-full border border-champagne/42 bg-warm-black/22 text-champagne shadow-[0_0_34px_rgba(214,190,132,0.14)] transition duration-300 group-hover:shadow-[0_0_46px_rgba(214,190,132,0.26)] sm:size-12">
-                      <Icon size={18} strokeWidth={1.35} fill={card.title.startsWith("Reels") ? "currentColor" : "none"} />
-                    </div>
-                    <h3 className="mt-5 whitespace-pre-line font-display text-lg uppercase leading-[0.92] tracking-[0.1em] text-cream sm:mt-7 sm:text-xl 2xl:text-2xl">
-                      {card.title}
-                    </h3>
-                    <p className="mt-4 whitespace-pre-line text-[0.68rem] leading-5 text-cream/62 sm:mt-5 sm:text-[0.72rem] sm:leading-6 2xl:text-[0.8rem]">
-                      {card.text}
-                    </p>
-                  </motion.div>
+                    card={card}
+                    index={index}
+                    entered={entered}
+                    reducedMotion={reducedMotion}
+                    pointerX={pointerX}
+                    pointerY={pointerY}
+                  />
                 );
               })}
             </div>
@@ -339,6 +336,63 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
         </section>
       </main>
     </>
+  );
+}
+
+type HeroFeatureCardProps = {
+  card: (typeof heroCards)[number];
+  index: number;
+  entered: boolean;
+  reducedMotion: boolean | null;
+  pointerX: MotionValue<number>;
+  pointerY: MotionValue<number>;
+};
+
+function HeroFeatureCard({ card, index, entered, reducedMotion, pointerX, pointerY }: HeroFeatureCardProps) {
+  const Icon = card.icon;
+  const parallaxX = useSpring(useTransform(pointerX, (value) => value * (4 + index * 2)), {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.45
+  });
+  const parallaxY = useSpring(useTransform(pointerY, (value) => value * (3 + index * 2)), {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.45
+  });
+  const floatDistance = index % 2 ? "5px" : "-5px";
+
+  return (
+    <motion.div
+      className={cn("hero-card-parallax", card.offset)}
+      style={{
+        x: reducedMotion ? 0 : parallaxX,
+        y: reducedMotion ? 0 : parallaxY
+      }}
+    >
+      <div
+        className={cn("hero-card-float", entered && !reducedMotion && "is-floating")}
+        style={
+          {
+            "--hero-card-float-y": floatDistance,
+            animationDuration: `${7 + index}s`,
+            animationDelay: `${index * -1.2}s`
+          } as CSSProperties
+        }
+      >
+        <article className="hero-card group min-h-40 border border-champagne/24 bg-cream/[0.075] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.34)] backdrop-blur-2xl transition-[background-color,border-color,transform] duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-champagne/64 hover:bg-cream/[0.12] sm:min-h-48 sm:p-5 lg:min-h-52 xl:min-h-56 xl:p-6">
+          <div className="flex size-10 items-center justify-center rounded-full border border-champagne/42 bg-warm-black/22 text-champagne shadow-[0_0_34px_rgba(214,190,132,0.14)] transition duration-300 group-hover:shadow-[0_0_46px_rgba(214,190,132,0.26)] sm:size-12">
+            <Icon size={18} strokeWidth={1.35} fill={card.title.startsWith("Reels") ? "currentColor" : "none"} />
+          </div>
+          <h3 className="mt-5 whitespace-pre-line font-display text-lg uppercase leading-[0.92] tracking-[0.1em] text-cream sm:mt-7 sm:text-xl 2xl:text-2xl">
+            {card.title}
+          </h3>
+          <p className="mt-4 whitespace-pre-line text-[0.68rem] leading-5 text-cream/62 sm:mt-5 sm:text-[0.72rem] sm:leading-6 2xl:text-[0.8rem]">
+            {card.text}
+          </p>
+        </article>
+      </div>
+    </motion.div>
   );
 }
 

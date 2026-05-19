@@ -111,9 +111,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       text: "A focused selection of cinematic content for beauty campaigns, social launches, salon identities, and editorial moments.",
       categories: {
         All: "All",
+        Beauty: "Beauty",
+        Portraits: "Portraits",
         Hair: "Hair",
-        Cosmetics: "Cosmetics",
         Salon: "Salon",
+        Cosmetics: "Cosmetics",
+        Branding: "Branding",
+        Reels: "Reels",
         Editorial: "Editorial"
       }
     },
@@ -190,9 +194,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       text: "Výběr cinematického obsahu pro beauty kampaně, sociální sítě, salonní identity a editorial momenty.",
       categories: {
         All: "Vše",
+        Beauty: "Beauty",
+        Portraits: "Portréty",
         Hair: "Vlasy",
-        Cosmetics: "Kosmetika",
         Salon: "Salon",
+        Cosmetics: "Kosmetika",
+        Branding: "Branding",
+        Reels: "Reels",
         Editorial: "Editorial"
       }
     },

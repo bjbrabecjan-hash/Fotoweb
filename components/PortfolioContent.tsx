@@ -3,8 +3,7 @@
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { Section } from "@/components/Section";
 import { useLanguage } from "@/lib/i18n";
-import type { PortfolioItem } from "@/lib/portfolioData";
-import { workItems } from "@/lib/work";
+import { portfolioCategories, type PortfolioItem } from "@/lib/portfolioData";
 
 export function PortfolioContent({ portfolioItems }: { portfolioItems?: PortfolioItem[] }) {
   const { t } = useLanguage();
@@ -17,7 +16,7 @@ export function PortfolioContent({ portfolioItems }: { portfolioItems?: Portfoli
           Auto-loaded assets: {portfolioItems.length}
         </p>
       )}
-      <GalleryGrid items={workItems} filterable />
+      <GalleryGrid items={portfolioItems ?? []} categories={portfolioCategories} filterable />
     </Section>
   );
 }

@@ -5,10 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
-import type { WorkItem } from "@/lib/work";
+import type { GalleryItem } from "@/components/GalleryGrid";
 
 type LightboxProps = {
-  items: WorkItem[];
+  items: GalleryItem[];
   index: number | null;
   onClose: () => void;
   onChange: (index: number) => void;
@@ -113,7 +113,7 @@ export function Lightbox({ items, index, onClose, onChange }: LightboxProps) {
             <Image src={active.src} alt={active.alt} fill sizes="100vw" className="object-contain" priority />
           </motion.div>
           <div className="absolute bottom-7 left-1/2 w-full max-w-5xl -translate-x-1/2 px-5 text-center">
-            <p className="text-xs uppercase tracking-luxe text-gold">{t.portfolio.categories[active.category]}</p>
+            <p className="text-xs uppercase tracking-luxe text-gold">{t.portfolio.categories[active.category] ?? active.category}</p>
             <h2 className="mt-2 font-display text-2xl uppercase tracking-wider text-ivory">{active.title}</h2>
           </div>
         </motion.div>
