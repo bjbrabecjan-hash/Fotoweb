@@ -1,4 +1,4 @@
-export type PortfolioCategory = "Beauty" | "Hair" | "Salon";
+export type PortfolioCategory = "Beauty" | "Hair" | "Salon" | "Family";
 
 export type PortfolioItem = {
   id: string;
@@ -14,7 +14,8 @@ export const portfolioCategories: Array<"All" | PortfolioCategory> = [
   "All",
   "Beauty",
   "Hair",
-  "Salon"
+  "Salon",
+  "Family"
 ];
 
 export const fallbackPortfolioItems: PortfolioItem[] = [

@@ -118,13 +118,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Hair, cosmetics, salons",
-      text: "A focused selection of cinematic content for beauty campaigns, social launches, salon identities, and editorial moments.",
+      title: "Hair, cosmetics, salons, families",
+      text: "A focused selection of cinematic content for beauty campaigns, social launches, salon identities, family portraits, and editorial moments.",
       categories: {
         All: "All",
         Beauty: "Beauty",
         Hair: "Hair",
         Salon: "Salon",
+        Family: "Family",
         Cosmetics: "Cosmetics",
         Editorial: "Editorial"
       }
@@ -204,13 +205,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Vlasy, kosmetika, salony",
-      text: "Výběr cinematického obsahu pro beauty kampaně, sociální sítě, salonní identity a editorial momenty.",
+      title: "Vlasy, kosmetika, salony, rodiny",
+      text: "Výběr cinematického obsahu pro beauty kampaně, sociální sítě, salonní identity, rodinné portréty a editorial momenty.",
       categories: {
         All: "Vše",
         Beauty: "Beauty",
         Hair: "Vlasy",
         Salon: "Salon",
+        Family: "Rodina",
         Cosmetics: "Kosmetika",
         Editorial: "Editorial"
       }

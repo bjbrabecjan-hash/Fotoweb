@@ -245,7 +245,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     All: t.portfolio.categories.All,
     Beauty: t.portfolio.categories.Beauty,
     Hair: t.portfolio.categories.Hair,
-    Salon: t.portfolio.categories.Salon
+    Salon: t.portfolio.categories.Salon,
+    Family: t.portfolio.categories.Family
   };
 
   const visibleItems = useMemo(

@@ -11,11 +11,6 @@ export function PortfolioContent({ portfolioItems }: { portfolioItems?: Portfoli
   return (
     <Section className="pt-32 lg:pt-40" eyebrow={t.portfolio.eyebrow} title={t.portfolio.title}>
       <p className="mb-12 max-w-2xl text-base leading-8 text-ash">{t.portfolio.text}</p>
-      {portfolioItems && portfolioItems.length > 0 && (
-        <p className="mb-6 text-xs uppercase tracking-luxe text-gold">
-          Auto-loaded assets: {portfolioItems.length}
-        </p>
-      )}
       <GalleryGrid items={portfolioItems ?? []} categories={portfolioCategories} filterable />
     </Section>
   );

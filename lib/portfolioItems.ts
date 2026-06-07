@@ -5,7 +5,8 @@ import { fallbackPortfolioItems, type PortfolioCategory, type PortfolioItem } fr
 const categoryFolders: Array<{ folder: string; category: PortfolioCategory; ratio: PortfolioItem["ratio"] }> = [
   { folder: "beauty", category: "Beauty", ratio: "portrait" },
   { folder: "hair", category: "Hair", ratio: "landscape" },
-  { folder: "salon", category: "Salon", ratio: "landscape" }
+  { folder: "salon", category: "Salon", ratio: "landscape" },
+  { folder: "family", category: "Family", ratio: "portrait" }
 ];
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
@@ -15,7 +16,26 @@ function titleFromFile(fileName: string) {
   return path
     .basename(fileName, path.extname(fileName))
     .replace(/[-_]+/g, " ")
+    .replace(/^\d+\s+/, "")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function ratioFromFile(fileName: string, fallback: PortfolioItem["ratio"]) {
+  const normalized = fileName.toLowerCase();
+
+  if (normalized.includes("landscape")) {
+    return "landscape";
+  }
+
+  if (normalized.includes("square")) {
+    return "square";
+  }
+
+  if (normalized.includes("portrait")) {
+    return "portrait";
+  }
+
+  return fallback;
 }
 
 export function getPortfolioItems(): PortfolioItem[] {
@@ -43,7 +63,7 @@ export function getPortfolioItems(): PortfolioItem[] {
           type: videoExtensions.has(extension) ? "video" : "image",
           src: `/assets/portfolio/${folder}/${fileName}`,
           alt: `${category} visual story by Hana Brabcová`,
-          ratio
+          ratio: ratioFromFile(fileName, ratio)
         } satisfies PortfolioItem;
       });
   });
