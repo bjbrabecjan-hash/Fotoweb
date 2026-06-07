@@ -12,7 +12,7 @@ import {
   useTransform,
   type MotionValue
 } from "framer-motion";
-import { ArrowRight, Camera, Heart, Sparkles, UserRound } from "lucide-react";
+import { ArrowRight, Camera, Heart, Play, Sparkles, UserRound } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { heroSlides } from "@/lib/heroSlides";
