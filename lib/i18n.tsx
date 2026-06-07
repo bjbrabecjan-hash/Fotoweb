@@ -84,32 +84,32 @@ export const dictionaries: Record<Locale, Dictionary> = {
       homeLabel: "Hana Brabcová home"
     },
     hero: {
-      eyebrow: "Brand content for beauty brands",
+      eyebrow: "Photography for brands, portraits and families",
       cta: "View portfolio",
-      text: "Cinematic photography, short-form visuals, and polished brand stories for salons, hair artists, and cosmetics labels."
+      text: "Cinematic photography, short-form visuals, polished brand stories, natural portraits, and family sessions with feeling."
     },
     home: {
       featuredEyebrow: "Featured work",
-      featuredTitle: "Selected beauty stories",
+      featuredTitle: "Selected visual stories",
       aboutEyebrow: "About Hana",
-      aboutTitle: "Beauty visuals with editorial restraint",
+      aboutTitle: "Photography with editorial restraint",
       aboutText:
-        "Hana Brabcová creates polished photo and video content for beauty brands that want their online presence to feel elevated, tactile, and unmistakably premium. Her work balances clean composition with soft cinematic light.",
+        "Hana Brabcová creates polished photo and video content for beauty brands, entrepreneurs and families who want images to feel elevated, tactile and honest. Her work balances clean composition with soft cinematic light.",
       aboutCta: "Meet Hana",
       servicesEyebrow: "Services",
-      servicesTitle: "Made for premium beauty",
+      servicesTitle: "Made for brands, portraits and families",
       services: [
         {
           title: "Photo & Video Content",
-          text: "Campaign imagery, launch assets, reels, and refined detail shots shaped for beauty audiences."
+          text: "Campaign imagery, launch assets, reels, portraits and refined details shaped for a polished presence."
         },
         {
-          title: "Social Media Visuals",
-          text: "Consistent visual systems for Instagram, TikTok, salon launches, and product-led storytelling."
+          title: "Family Photography",
+          text: "Natural outdoor and lifestyle sessions for families, children and moments that should stay close."
         },
         {
-          title: "Premium Brand Storytelling",
-          text: "Editorial direction that makes hair, skin, fragrance, and service rituals feel cinematic and desirable."
+          title: "Brand & Personal Storytelling",
+          text: "Editorial direction that makes products, services and people feel cinematic, clear and memorable."
         }
       ],
       ctaEyebrow: "Now booking",
@@ -132,20 +132,20 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     about: {
       eyebrow: "About",
-      text: "Hana builds visual identities for beauty brands through polished photography, short-form video, and precise art direction. Her approach is minimal, elegant, and built for brands that understand the value of atmosphere.",
+      text: "Hana builds visual stories through polished photography, short-form video, and precise direction. Her approach is minimal, elegant, and equally attentive to beauty brands, portraits and family moments.",
       ownerRole: "Owner & visual director",
       directionEyebrow: "Direction",
-      directionTitle: "Luxury without noise",
+      directionTitle: "Emotion without noise",
       directionText:
-        "Every frame is planned around texture, touch, and the quiet confidence that makes a salon, product, or artist feel high-end before a client reads a single caption.",
-      values: ["Quiet luxury", "Soft cinematic light", "Beauty-first composition", "Social-ready delivery"],
-      ctaTitle: "Let the brand feel considered from the first glance",
+        "Every frame is planned around light, texture, touch and expression, so a salon, product, portrait or family story feels considered before a viewer reads a single caption.",
+      values: ["Quiet emotion", "Soft cinematic light", "Human-first composition", "Social-ready delivery"],
+      ctaTitle: "Let the story feel considered from the first glance",
       ctaButton: "Contact"
     },
     contact: {
       eyebrow: "Contact",
-      title: "Start a beauty story",
-      text: "Share the brand, salon, content shoot, or launch you are shaping. Hana will respond with availability and the right visual format for your goals.",
+      title: "Start a visual story",
+      text: "Share the brand, salon, portrait session, family shoot or launch you are shaping. Hana will respond with availability and the right visual format for your goals.",
       location: "Pilsen, Prague and destination shoots",
       name: "Name",
       email: "Email",
@@ -171,32 +171,32 @@ export const dictionaries: Record<Locale, Dictionary> = {
       homeLabel: "Domů Hana Brabcová"
     },
     hero: {
-      eyebrow: "Brand content pro beauty značky",
+      eyebrow: "Fotografie pro značky, portréty a rodiny",
       cta: "Zobrazit portfolio",
-      text: "Cinematická fotografie, krátká videa a prémiový vizuální storytelling pro salony, vlasové stylisty a kosmetické značky."
+      text: "Cinematická fotografie, krátká videa, promyšlené brand příběhy, přirozené portréty a rodinné focení s atmosférou."
     },
     home: {
       featuredEyebrow: "Vybrané práce",
-      featuredTitle: "Beauty příběhy",
+      featuredTitle: "Vybrané vizuální příběhy",
       aboutEyebrow: "O Haně",
-      aboutTitle: "Beauty vizuály s elegancí a klidem",
+      aboutTitle: "Fotografie s elegancí a klidem",
       aboutText:
-        "Hana Brabcová tvoří prémiový foto a video obsah pro beauty značky, které chtějí působit elegantně, hmatatelně a sebevědomě. Její práce propojuje čistou kompozici s jemným cinematickým světlem.",
+        "Hana Brabcová tvoří promyšlený foto a video obsah pro beauty značky, podnikatele i rodiny, které chtějí snímky s atmosférou, citem a profesionálním dojmem.",
       aboutCta: "Poznat Hanu",
       servicesEyebrow: "Služby",
-      servicesTitle: "Tvořeno pro premium beauty",
+      servicesTitle: "Tvořeno pro značky, portréty a rodiny",
       services: [
         {
           title: "Foto & Video Content",
-          text: "Kampaňové vizuály, launch obsah, reels a detailní záběry navržené pro beauty publikum."
+          text: "Kampaňové vizuály, launch obsah, reels, portréty a detaily navržené pro kultivovanou prezentaci."
         },
         {
-          title: "Vizuály pro sociální sítě",
-          text: "Konzistentní obsah pro Instagram, TikTok, salonní prezentace a produktový storytelling."
+          title: "Rodinné focení",
+          text: "Přirozené venkovní a lifestyle focení pro rodiny, děti a momenty, které mají zůstat blízko."
         },
         {
-          title: "Prémiový brand storytelling",
-          text: "Editorial direction, díky kterému vlasy, pleť, vůně i salonní služby působí žádoucím a luxusním dojmem."
+          title: "Brand & osobní storytelling",
+          text: "Editorial direction, díky kterému produkty, služby i lidé působí cinematicky, jasně a zapamatovatelně."
         }
       ],
       ctaEyebrow: "Volné termíny",
@@ -219,20 +219,20 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     about: {
       eyebrow: "O mně",
-      text: "Hana tvoří vizuální identity pro beauty značky skrze prémiovou fotografii, krátké video a přesný art direction. Její přístup je minimalistický, elegantní a určený pro značky, které rozumí síle atmosféry.",
+      text: "Hana tvoří vizuální příběhy skrze prémiovou fotografii, krátké video a přesné vedení focení. Její přístup je minimalistický, elegantní a stejně citlivý k beauty značkám, portrétům i rodinným momentům.",
       ownerRole: "Majitelka webu",
       directionEyebrow: "Směr",
-      directionTitle: "Luxus bez zbytečného hluku",
+      directionTitle: "Emoce bez zbytečného hluku",
       directionText:
-        "Každý záběr vzniká s důrazem na texturu, dotek a tichou jistotu, díky které salon, produkt nebo tvůrce působí prémiově ještě před první přečtenou větou.",
-      values: ["Tichý luxus", "Jemné cinematické světlo", "Beauty-first kompozice", "Obsah připravený pro sítě"],
-      ctaTitle: "Ať značka působí promyšleně od prvního pohledu",
+        "Každý záběr vzniká s důrazem na světlo, texturu, dotek a výraz, aby salon, produkt, portrét nebo rodinný příběh působil promyšleně ještě před první přečtenou větou.",
+      values: ["Tichá emoce", "Jemné cinematické světlo", "Kompozice zaměřená na člověka", "Obsah připravený pro sítě"],
+      ctaTitle: "Ať příběh působí promyšleně od prvního pohledu",
       ctaButton: "Kontakt"
     },
     contact: {
       eyebrow: "Kontakt",
-      title: "Začněme beauty příběh",
-      text: "Napište značku, salon, focení obsahu nebo launch, který připravujete. Hana se ozve s dostupností a vhodným vizuálním formátem pro vaše cíle.",
+      title: "Začněme vizuální příběh",
+      text: "Napište značku, salon, portrét, rodinné focení nebo launch, který připravujete. Hana se ozve s dostupností a vhodným vizuálním formátem pro vaše cíle.",
       location: "Plzeň, Praha a focení po domluvě",
       name: "Jméno",
       email: "Email",

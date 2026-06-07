@@ -9,15 +9,15 @@ export const services: Service[] = [
     description: "Campaign imagery and detail-led visuals for beauty launches, skincare rituals and salon identities."
   },
   {
+    title: "Family Photography",
+    description: "Natural outdoor and lifestyle sessions for families, children and moments that should stay close."
+  },
+  {
     title: "Portrait Sessions",
-    description: "Soft, editorial portraits for founders, artists and personal beauty brands."
+    description: "Soft, editorial portraits for founders, artists, personal brands and people who want a refined presence."
   },
   {
     title: "Reels & Social Content",
     description: "Short-form movement, process moments and premium vertical assets shaped for social platforms."
-  },
-  {
-    title: "Brand Story",
-    description: "Visual direction that turns atmosphere, texture and tone into a coherent beauty narrative."
   }
 ];

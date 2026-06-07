@@ -29,7 +29,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Hana Brabcová",
-  description: "Beauty fotografie, brand content, reels a vizuální storytelling pro salony, kosmetické značky a osobní brandy.",
+  description: "Beauty fotografie, rodinné focení, portréty, brand content, reels a vizuální storytelling.",
   url: "https://hana-brabcova.vercel.app",
   image: "https://hana-brabcova.vercel.app/assets/about/hana-owner-portrait.png",
   email: "fotohanabrabcova@gmail.com",
@@ -43,21 +43,24 @@ const structuredData = {
     "@type": "Person",
     name: "Hana Brabcová"
   },
-  serviceType: ["Beauty fotografie", "Brand content", "Reels", "Salonní fotografie", "Portrétní fotografie"]
+  serviceType: ["Beauty fotografie", "Rodinné focení", "Portrétní fotografie", "Brand content", "Reels", "Salonní fotografie"]
 };
 
 export const metadata: Metadata = {
   title: {
-    default: "Hana Brabcová | Beauty fotografie a brand content",
+    default: "Hana Brabcová | Fotografie pro značky, portréty a rodiny",
     template: "%s | Hana Brabcová"
   },
   description:
-    "Hana Brabcová tvoří prémiovou beauty fotografii, brand content, reels a vizuální storytelling pro salony, kosmetické značky a osobní brandy.",
+    "Hana Brabcová tvoří beauty fotografii, rodinné focení, portréty, brand content, reels a vizuální storytelling v Plzni, Praze a po domluvě.",
   metadataBase: new URL("https://hana-brabcova.vercel.app"),
   applicationName: "Hana Brabcová",
   keywords: [
     "Hana Brabcová",
     "beauty fotografie",
+    "rodinné focení",
+    "rodinná fotografka",
+    "portrétní focení",
     "brand content",
     "fotografka Plzeň",
     "fotografka Praha",
@@ -73,8 +76,8 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Hana Brabcová | Beauty fotografie a brand content",
-    description: "Prémiová beauty fotografie, reels a vizuální obsah pro salony, značky a osobní brandy.",
+    title: "Hana Brabcová | Fotografie pro značky, portréty a rodiny",
+    description: "Beauty fotografie, rodinné focení, portréty, reels a vizuální obsah pro značky i osobní příběhy.",
     url: "/",
     siteName: "Hana Brabcová",
     images: [
@@ -90,8 +93,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hana Brabcová | Beauty fotografie a brand content",
-    description: "Prémiová beauty fotografie, reels a vizuální storytelling pro salony a značky.",
+    title: "Hana Brabcová | Fotografie pro značky, portréty a rodiny",
+    description: "Beauty fotografie, rodinné focení, portréty, reels a vizuální storytelling.",
     images: ["/assets/about/hana-owner-portrait.png"]
   },
   robots: {

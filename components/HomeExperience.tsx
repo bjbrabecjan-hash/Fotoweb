@@ -12,7 +12,7 @@ import {
   useTransform,
   type MotionValue
 } from "framer-motion";
-import { ArrowRight, Camera, Diamond, Play, UserRound } from "lucide-react";
+import { ArrowRight, Camera, Heart, Sparkles, UserRound } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { heroSlides } from "@/lib/heroSlides";
@@ -42,6 +42,18 @@ const heroCards = [
   },
   {
     title: {
+      en: "Family\nSessions",
+      cz: "Rodinné\nfocení"
+    },
+    text: {
+      en: "Natural moments,\nchildren & family stories",
+      cz: "Přirozené momenty,\nděti & rodinné příběhy"
+    },
+    icon: Heart,
+    offset: "xl:-translate-y-5"
+  },
+  {
+    title: {
       en: "Portrait\nSessions",
       cz: "Portrétní\nfocení"
     },
@@ -50,51 +62,51 @@ const heroCards = [
       cz: "Osobní brand\n& profesionální portréty"
     },
     icon: Camera,
-    offset: "xl:-translate-y-5"
-  },
-  {
-    title: {
-      en: "Reels &\nSocial Content",
-      cz: "Reels &\nobsah na sítě"
-    },
-    text: {
-      en: "Short videos\n& engaging content for social media",
-      cz: "Krátká videa\n& obsah pro sociální sítě"
-    },
-    icon: Play,
     offset: "xl:translate-y-6"
   },
   {
     title: {
-      en: "Brand\nStory",
-      cz: "Brand\nStory"
+      en: "Brand &\nSocial Story",
+      cz: "Brand &\nobsah na sítě"
     },
     text: {
-      en: "Visual identity\n& content for your brand",
-      cz: "Vizuální identita\n& obsah pro značku"
+      en: "Short videos,\nvisual identity & campaigns",
+      cz: "Krátká videa,\nvizuální identita & kampaně"
     },
-    icon: Diamond,
+    icon: Sparkles,
     offset: "xl:-translate-y-2"
   }
 ];
 
 const signatureTiles = [
   {
-    title: "Skin-like warmth",
-    src: "/assets/signature/skin-like-warmth.png",
-    alt: "Glossy serum treatment detail with warm skin-like light"
+    title: {
+      en: "Warm human light",
+      cz: "Teplé lidské světlo"
+    },
+    src: "/assets/portfolio/family/02-family-kiss-landscape.jpg",
+    alt: "Warm family portrait in natural light"
   },
   {
-    title: "Editorial restraint",
-    src: "/assets/signature/editorial-restraint.png",
-    alt: "Minimal luxury beauty still life with gold tools and cream textures"
+    title: {
+      en: "Quiet detail",
+      cz: "Tichý detail"
+    },
+    src: "/assets/portfolio/family/05-baby-hands-bw-landscape.jpg",
+    alt: "Black and white baby detail with soft emotion"
   },
   {
-    title: "Beauty-first atmosphere",
+    title: {
+      en: "Beauty atmosphere",
+      cz: "Beauty atmosféra"
+    },
     src: "/assets/signature/beauty-first-atmosphere.png",
     alt: "Cinematic beauty studio detail with emerald, ivory and champagne tones"
   }
 ];
+
+const featuredStoryImage = "/assets/portfolio/family/03-family-path-landscape.jpg";
+const featuredStoryAlt = "Natural family portrait outdoors by Hana Brabcová";
 
 const homeExperienceCopy: Record<
   Locale,
@@ -129,96 +141,96 @@ const homeExperienceCopy: Record<
   }
 > = {
   en: {
-    introKicker: "Visual content that",
-    introTitleTop: "Makes your",
-    introTitleMiddle: "Brand",
-    introScript: "Unforgettable.",
-    introText: "Photography, reels and premium visuals\nfor beauty brands, salons and businesses\nthat want to stand out.",
+    introKicker: "Photography that",
+    introTitleTop: "keeps your",
+    introTitleMiddle: "story",
+    introScript: "Alive.",
+    introText: "Cinematic photography, portraits and visual content\nfor beauty brands, salons, families and people\nwho want images with feeling.",
     viewPortfolio: "View Portfolio",
     bookSession: "Book a Session",
     footerLine: "Elegant visuals. Real emotions. Lasting impact.",
     portfolioEyebrow: "Portfolio",
-    portfolioTitle: "Editorial stories in motion",
+    portfolioTitle: "Beauty, portraits and family stories",
     signatureEyebrow: "Signature style",
-    signatureTitle: "Soft luxury. Cinematic texture. Emotional light.",
+    signatureTitle: "Soft light. Real emotion. Editorial calm.",
     servicesEyebrow: "Services",
-    servicesTitle: "Created for premium beauty brands",
+    servicesTitle: "Created for brands, portraits and families",
     processEyebrow: "Process",
-    processTitle: "A calm production rhythm",
-    processSteps: ["Mood and brand atmosphere", "Creative direction and shot list", "Cinematic production day", "Polished social-ready delivery"],
+    processTitle: "A calm rhythm before, during and after the shoot",
+    processSteps: ["Mood, place and intention", "Creative direction or simple family plan", "Calm production day", "Polished gallery and social-ready delivery"],
     featuredEyebrow: "Featured story",
-    featuredTitle: "Hair as atmosphere, not decoration.",
-    featuredText: "A visual direction built around movement, warm shadows and tactile detail. The image becomes a brand mood before it becomes a post.",
+    featuredTitle: "Family moments with the same editorial care.",
+    featuredText: "Natural family photography can feel refined without losing warmth. The direction stays gentle, the light stays cinematic, and the final images keep real emotion intact.",
     aboutEyebrow: "About",
-    aboutTitle: "Beauty content with editorial sensitivity",
+    aboutTitle: "Visual stories with editorial sensitivity",
     aboutText:
-      "Hana creates visual systems for beauty brands that need more than documentation. The work is built around feeling, texture and the quiet confidence of premium presentation.",
-    aboutQuote: "Each frame should make the brand feel considered before a client reads a single word.",
+      "Hana creates polished visuals for beauty brands, entrepreneurs and families. Her work is built around feeling, texture and quiet confidence, whether the subject is a salon ritual, a portrait session or a family afternoon outside.",
+    aboutQuote: "Each frame should feel considered, but still honest to the person or story in front of the camera.",
     bookingEyebrow: "Booking",
-    bookingTitle: "Build a beauty world your clients can feel.",
+    bookingTitle: "Book a shoot that feels personal and polished.",
     services: [
       {
         title: "Beauty Content",
         description: "Campaign imagery and detail-led visuals for beauty launches, skincare rituals and salon identities."
       },
       {
+        title: "Family Photography",
+        description: "Natural outdoor and lifestyle sessions for families, children and moments that should stay close."
+      },
+      {
         title: "Portrait Sessions",
-        description: "Soft, editorial portraits for founders, artists and personal beauty brands."
+        description: "Soft, editorial portraits for founders, artists, personal brands and anyone who needs a refined presence."
       },
       {
         title: "Reels & Social Content",
         description: "Short-form movement, process moments and premium vertical assets shaped for social platforms."
-      },
-      {
-        title: "Brand Story",
-        description: "Visual direction that turns atmosphere, texture and tone into a coherent beauty narrative."
       }
     ]
   },
   cz: {
-    introKicker: "Vizuální obsah, který",
-    introTitleTop: "zviditelní",
-    introTitleMiddle: "značku",
-    introScript: "Nezapomenutelně.",
-    introText: "Fotografie, reels a prémiové vizuály\npro beauty značky, salony a podnikání,\nkteré má působit profesionálně.",
+    introKicker: "Fotografie, které",
+    introTitleTop: "uchovají",
+    introTitleMiddle: "příběh",
+    introScript: "Naživu.",
+    introText: "Cinematické fotografie, portréty a vizuální obsah\npro beauty značky, salony, rodiny i jednotlivce,\nkteří chtějí snímky s atmosférou.",
     viewPortfolio: "Zobrazit portfolio",
     bookSession: "Rezervovat focení",
     footerLine: "Elegantní vizuály. Reálné emoce. Trvalý dojem.",
     portfolioEyebrow: "Portfolio",
-    portfolioTitle: "Editorial příběhy v pohybu",
+    portfolioTitle: "Beauty, portréty a rodinné příběhy",
     signatureEyebrow: "Signature style",
-    signatureTitle: "Jemný luxus. Cinematická textura. Emoční světlo.",
+    signatureTitle: "Jemné světlo. Reálné emoce. Editorial klid.",
     servicesEyebrow: "Služby",
-    servicesTitle: "Tvořeno pro prémiové beauty značky",
+    servicesTitle: "Tvořeno pro značky, portréty i rodiny",
     processEyebrow: "Proces",
-    processTitle: "Klidný produkční rytmus",
-    processSteps: ["Mood a atmosféra značky", "Kreativní směr a shot list", "Cinematický produkční den", "Vyladěné výstupy pro sítě"],
+    processTitle: "Klidný rytmus před focením, během něj i po něm",
+    processSteps: ["Nálada, místo a záměr", "Kreativní směr nebo jednoduchý rodinný plán", "Klidný den focení", "Vyladěná galerie a výstupy pro sítě"],
     featuredEyebrow: "Vybraný příběh",
-    featuredTitle: "Vlasy jako atmosféra, ne dekorace.",
-    featuredText: "Vizuální směr postavený na pohybu, teplých stínech a hmatatelném detailu. Fotka se stává náladou značky dřív, než je z ní post.",
+    featuredTitle: "Rodinné momenty se stejnou editorial péčí.",
+    featuredText: "Rodinné focení může být přirozené a zároveň kultivované. Směr zůstává jemný, světlo cinematické a výsledné snímky drží opravdovou emoci.",
     aboutEyebrow: "O Haně",
-    aboutTitle: "Beauty obsah s editorial citlivostí",
+    aboutTitle: "Vizuální příběhy s editorial citlivostí",
     aboutText:
-      "Hana tvoří vizuální systémy pro beauty značky, které potřebují víc než dokumentaci. Její práce stojí na pocitu, textuře a tiché jistotě prémiové prezentace.",
-    aboutQuote: "Každý záběr má působit promyšleně ještě předtím, než klient přečte první větu.",
+      "Hana tvoří promyšlené vizuály pro beauty značky, podnikatele i rodiny. Její práce stojí na pocitu, textuře a tiché jistotě, ať jde o salonní rituál, portrét nebo rodinné odpoledne venku.",
+    aboutQuote: "Každý záběr má působit promyšleně, ale pořád pravdivě k člověku nebo příběhu před objektivem.",
     bookingEyebrow: "Rezervace",
-    bookingTitle: "Vytvořte beauty svět, který klienti ucítí.",
+    bookingTitle: "Rezervujte focení, které bude osobní a vyladěné.",
     services: [
       {
         title: "Beauty Content",
         description: "Kampaňové fotografie a detailní vizuály pro beauty launch, salonní identitu a rituály péče."
       },
       {
+        title: "Rodinné focení",
+        description: "Přirozené venkovní a lifestyle focení pro rodiny, děti a momenty, které mají zůstat blízko."
+      },
+      {
         title: "Portrétní focení",
-        description: "Jemné editorial portréty pro zakladatelky, tvůrce, specialistky a osobní beauty brandy."
+        description: "Jemné editorial portréty pro zakladatelky, tvůrce, osobní značky i kohokoliv, kdo potřebuje kultivovanou prezentaci."
       },
       {
         title: "Reels & obsah na sítě",
         description: "Krátká videa, procesní momenty a prémiové vertikální výstupy pro sociální platformy."
-      },
-      {
-        title: "Brand Story",
-        description: "Vizuální směr, který propojí atmosféru, texturu a tón do jednotného beauty příběhu."
       }
     ]
   }
@@ -240,6 +252,10 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     ...card,
     title: card.title[locale],
     text: card.text[locale]
+  }));
+  const localizedSignatureTiles = signatureTiles.map((tile) => ({
+    ...tile,
+    title: tile.title[locale]
   }));
   const localizedCategoryLabels: Record<(typeof portfolioCategories)[number], string> = {
     All: t.portfolio.categories.All,
@@ -325,7 +341,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                   Hana Brabcová
                 </h1>
                 <p className="mt-6 text-sm uppercase tracking-[0.34em] text-champagne/82">
-                  {locale === "cz" ? "Vizuální storytelling pro beauty značky." : "Visual storytelling for beauty brands."}
+                  {locale === "cz" ? "Fotografie pro značky, portréty a rodiny." : "Photography for brands, portraits and families."}
                 </p>
                 <button
                   type="button"
@@ -429,7 +445,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               </h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
-              {signatureTiles.map((item, index) => (
+              {localizedSignatureTiles.map((item, index) => (
                 <motion.article
                   key={item.title}
                   className="group relative aspect-[4/5] overflow-hidden border border-cream/10 bg-emerald-deep"
@@ -488,7 +504,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.div className="absolute inset-0" style={{ y: featuredImageY, scale: featuredImageScale }}>
-                <Image src={hero.src} alt={hero.alt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+                <Image src={featuredStoryImage} alt={featuredStoryAlt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
               </motion.div>
               <div className="absolute inset-0 bg-gradient-to-t from-warm-black/70 to-transparent" />
             </motion.div>

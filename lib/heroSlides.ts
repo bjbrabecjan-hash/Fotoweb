@@ -7,9 +7,9 @@ export type HeroSlide = {
 
 export const heroSlides: HeroSlide[] = [
   {
-    id: "hana-hair-cinematic",
-    src: "/assets/hero/hana-hair-cinematic.jpg",
-    alt: "Cinematic hair portrait by Hana Brabcová",
-    focalPoint: "38% center"
+    id: "hana-family-cinematic",
+    src: "/assets/portfolio/family/02-family-kiss-landscape.jpg",
+    alt: "Cinematic family portrait by Hana Brabcová",
+    focalPoint: "48% center"
   }
 ];
