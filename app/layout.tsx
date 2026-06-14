@@ -34,7 +34,7 @@ const structuredData = {
   image: "https://hana-brabcova.vercel.app/assets/about/hana-owner-portrait.png",
   email: "fotohanabrabcova@gmail.com",
   telephone: "+420734548996",
-  areaServed: ["Plzeň", "Praha", "Česká republika"],
+  areaServed: ["Moravskoslezský kraj", "Ostrava", "Česká republika"],
   sameAs: [
     "https://www.instagram.com/brabcovahana_content_/",
     "https://www.facebook.com/profile.php?id=61579648302684"
@@ -43,7 +43,7 @@ const structuredData = {
     "@type": "Person",
     name: "Hana Brabcová"
   },
-  serviceType: ["Beauty fotografie", "Rodinné focení", "Portrétní fotografie", "Brand content", "Reels", "Salonní fotografie"]
+  serviceType: ["Beauty fotografie", "Rodinné focení", "Těhotenské focení", "Newborn focení", "Portrétní fotografie", "Brand content", "Reels", "Salonní fotografie"]
 };
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     template: "%s | Hana Brabcová"
   },
   description:
-    "Hana Brabcová tvoří beauty fotografii, rodinné focení, portréty, brand content, reels a vizuální storytelling v Plzni, Praze a po domluvě.",
+    "Hana Brabcová tvoří beauty fotografii, rodinné focení, těhotenské a newborn focení, portréty, brand content, reels a vizuální storytelling v Moravskoslezském kraji a okolí.",
   metadataBase: new URL("https://hana-brabcova.vercel.app"),
   applicationName: "Hana Brabcová",
   keywords: [
@@ -60,10 +60,12 @@ export const metadata: Metadata = {
     "beauty fotografie",
     "rodinné focení",
     "rodinná fotografka",
+    "těhotenské focení",
+    "newborn focení",
     "portrétní focení",
     "brand content",
-    "fotografka Plzeň",
-    "fotografka Praha",
+    "fotografka Ostrava",
+    "fotografka Moravskoslezský kraj",
     "salon fotografie",
     "reels pro salony",
     "kosmetické značky",

@@ -8,8 +8,8 @@ export type HeroSlide = {
 export const heroSlides: HeroSlide[] = [
   {
     id: "hana-family-cinematic",
-    src: "/assets/portfolio/family/02-family-kiss-landscape.jpg",
-    alt: "Cinematic family portrait by Hana Brabcová",
+    src: "/assets/portfolio/family/13-father-daughter-field-landscape.jpg",
+    alt: "Emotional family portrait in a field by Hana Brabcová",
     focalPoint: "48% center"
   }
 ];

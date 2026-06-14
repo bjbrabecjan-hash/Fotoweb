@@ -81,32 +81,36 @@ const heroCards = [
 const signatureTiles = [
   {
     title: {
-      en: "Warm human light",
-      cz: "Teplé lidské světlo"
+      en: "Family closeness",
+      cz: "Rodinná blízkost"
     },
-    src: "/assets/portfolio/family/02-family-kiss-landscape.jpg",
-    alt: "Warm family portrait in natural light"
+    src: "/assets/portfolio/family/13-father-daughter-field-landscape.jpg",
+    alt: "Father and daughter in a warm field portrait"
   },
   {
     title: {
-      en: "Quiet detail",
-      cz: "Tichý detail"
+      en: "Maternity story",
+      cz: "Těhotenský příběh"
     },
-    src: "/assets/portfolio/family/05-baby-hands-bw-landscape.jpg",
-    alt: "Black and white baby detail with soft emotion"
+    src: "/assets/portfolio/family/17-maternity-water-couple-landscape.jpg",
+    alt: "Maternity couple portrait in water"
   },
   {
     title: {
-      en: "Beauty atmosphere",
-      cz: "Beauty atmosféra"
+      en: "Children naturally",
+      cz: "Děti přirozeně"
     },
-    src: "/assets/signature/beauty-first-atmosphere.png",
-    alt: "Cinematic beauty studio detail with emerald, ivory and champagne tones"
+    src: "/assets/portfolio/family/20-siblings-green-landscape.jpg",
+    alt: "Children photographed naturally in greenery"
   }
 ];
 
-const featuredStoryImage = "/assets/portfolio/family/03-family-path-landscape.jpg";
-const featuredStoryAlt = "Natural family portrait outdoors by Hana Brabcová";
+const familyStoryImage = "/assets/portfolio/family/14-father-children-field-landscape.jpg";
+const familyStoryAlt = "Father with children in a field photographed by Hana Brabcová";
+const continuityImage = "/assets/portfolio/family/18-maternity-dog-river-landscape.jpg";
+const continuityAlt = "Maternity session by a river with family dog";
+const featuredStoryImage = "/assets/portfolio/family/24-maternity-water-solo-landscape.jpg";
+const featuredStoryAlt = "Natural maternity portrait outdoors by Hana Brabcová";
 
 const homeExperienceCopy: Record<
   Locale,
@@ -138,6 +142,41 @@ const homeExperienceCopy: Record<
     bookingEyebrow: string;
     bookingTitle: string;
     services: Array<{ title: string; description: string }>;
+    family: {
+      eyebrow: string;
+      title: string;
+      lead: string;
+      paragraphs: string[];
+      audienceTitle: string;
+      audienceItems: string[];
+    };
+    continuity: {
+      eyebrow: string;
+      title: string;
+      paragraphs: string[];
+      benefits: string[];
+      closing: string;
+    };
+    pricing: {
+      eyebrow: string;
+      title: string;
+      plans: Array<{
+        name: string;
+        price: string;
+        description: string;
+        features: string[];
+        ideal: string;
+      }>;
+      storyTitle: string;
+      storyOptions: string[];
+      storyNote: string;
+    };
+    naturalProcess: {
+      eyebrow: string;
+      title: string;
+      paragraphs: string[];
+      reservation: string;
+    };
   }
 > = {
   en: {
@@ -185,7 +224,70 @@ const homeExperienceCopy: Record<
         title: "Reels & Social Content",
         description: "Short-form movement, process moments and premium vertical assets shaped for social platforms."
       }
-    ]
+    ],
+    family: {
+      eyebrow: "Family photography",
+      title: "I photograph emotions that stay",
+      lead: "Family sessions that capture your story naturally, without stiff posing.",
+      paragraphs: [
+        "Pregnancy. The first kicks. A baby in your arms. Laughing children. Hugs you will come back to one day.",
+        "I do not believe in perfect poses. I believe in real moments.",
+        "Laughter, restless children, gentle touches, glances and ordinary moments that become the most precious ones over time.",
+        "I photograph families, maternity, babies and shared family moments so the images feel honest, soft and timeless."
+      ],
+      audienceTitle: "Who is it for?",
+      audienceItems: ["Maternity sessions", "Newborns and babies", "Family sessions at home or outside", "Children and siblings", "Family stages throughout the year"]
+    },
+    continuity: {
+      eyebrow: "New",
+      title: "Your story from the beginning",
+      paragraphs: [
+        "No more searching for a new photographer for every life stage.",
+        "We photograph your story together, from pregnancy through the first months with your baby to shared family moments."
+      ],
+      benefits: [
+        "One photographer for every stage",
+        "A consistent visual style across the whole story",
+        "Children get used to me, so emotions become more natural",
+        "Priority dates during the year",
+        "Better value than separate sessions",
+        "A complete story of your family"
+      ],
+      closing: "The most beautiful memories do not happen in one hour. They grow over time."
+    },
+    pricing: {
+      eyebrow: "Pricing",
+      title: "Family session options",
+      plans: [
+        {
+          name: "Mini",
+          price: "5 900 Kč",
+          description: "For quickly capturing a beautiful season.",
+          features: ["45-60 min session", "20 edited photographs", "Online gallery", "1 short memory video"],
+          ideal: "Ideal for maternity, children or smaller family sessions."
+        },
+        {
+          name: "Full",
+          price: "8 500 Kč",
+          description: "More emotion, more space, more story.",
+          features: ["60-90 min session", "40 edited photographs", "Online gallery", "3 short videos"],
+          ideal: "Ideal for larger families, more combinations and a fuller story."
+        }
+      ],
+      storyTitle: "Family Story - the whole year together",
+      storyOptions: ["3 sessions from 15 900 Kč, for example pregnancy + baby + family", "5 sessions from 24 900 Kč, a full story of your baby's first year"],
+      storyNote: "Better value, secure dates, one visual style and one photographer who already knows your family."
+    },
+    naturalProcess: {
+      eyebrow: "How it works",
+      title: "You do not need to know how to pose",
+      paragraphs: [
+        "I guide the session naturally and gently. We talk, laugh, children play and I photograph the real moments between you.",
+        "No pressure. No awkward stress.",
+        "Just your family as it truly is."
+      ],
+      reservation: "Send me a message and we will choose the session that fits your family. I photograph in the Moravian-Silesian Region and nearby areas."
+    }
   },
   cz: {
     introKicker: "Fotografie, které",
@@ -232,7 +334,70 @@ const homeExperienceCopy: Record<
         title: "Reels & obsah na sítě",
         description: "Krátká videa, procesní momenty a prémiové vertikální výstupy pro sociální platformy."
       }
-    ]
+    ],
+    family: {
+      eyebrow: "Rodinné focení",
+      title: "Fotím emoce, které zůstanou",
+      lead: "Rodinné focení, které zachytí váš příběh přirozeně a bez strojených póz.",
+      paragraphs: [
+        "Těhotenství. První kopnutí. Miminko v náručí. Rozesmáté děti. Obejmutí, na která jednou budete vzpomínat.",
+        "Nevěřím na dokonalé pózy. Věřím na skutečné momenty.",
+        "Na smích, neposedné děti, pohlazení, pohledy a obyčejné chvíle, které se časem stanou těmi nejvzácnějšími.",
+        "Fotím rodiny, těhotenské období, miminka i společné rodinné momenty tak, aby fotky působily opravdově, jemně a nadčasově."
+      ],
+      audienceTitle: "Pro koho je focení?",
+      audienceItems: ["Těhotenské focení", "Newborn a miminka", "Rodinné focení venku i doma", "Děti a sourozenci", "Rodinné etapy během roku"]
+    },
+    continuity: {
+      eyebrow: "Nově",
+      title: "Fotíme váš příběh od začátku",
+      paragraphs: [
+        "Už žádné znovu hledání fotografa na každou životní etapu.",
+        "Váš příběh fotíme spolu. Od těhotenství přes první měsíce miminka až po společné rodinné chvíle."
+      ],
+      benefits: [
+        "Nemusíte pokaždé hledat nového fotografa",
+        "Fotky mají jednotný styl a krásně na sebe navazují",
+        "Děti si na mě zvyknou, takže emoce jsou přirozenější",
+        "Přednostní termíny během roku",
+        "Výhodnější cena než jednotlivá focení",
+        "Vznikne ucelený příběh vaší rodiny"
+      ],
+      closing: "Protože ty nejkrásnější vzpomínky nevzniknou během jedné hodiny. Vznikají časem."
+    },
+    pricing: {
+      eyebrow: "Ceník",
+      title: "Rodinné focení a návazná spolupráce",
+      plans: [
+        {
+          name: "Mini",
+          price: "5 900 Kč",
+          description: "Pro rychlé zachycení krásného období.",
+          features: ["Focení cca 45-60 min", "20 upravených fotografií", "Online galerie", "1 krátké video na památku"],
+          ideal: "Ideální pro těhotenské, děti a menší rodinné focení."
+        },
+        {
+          name: "Full",
+          price: "8 500 Kč",
+          description: "Více emocí, více prostoru, více příběhu.",
+          features: ["Focení cca 60-90 min", "40 upravených fotografií", "Online galerie", "3 krátká videa"],
+          ideal: "Ideální pro větší rodiny, více kombinací a kompletní příběh."
+        }
+      ],
+      storyTitle: "Rodinný příběh - fotíme spolu celý rok",
+      storyOptions: ["3 focení od 15 900 Kč, například těhotenství + miminko + rodina", "5 focení od 24 900 Kč, kompletní příběh prvního roku dítěte"],
+      storyNote: "Výhodnější cena, jistota termínů, jeden styl a jeden fotograf, který už vaši rodinu zná."
+    },
+    naturalProcess: {
+      eyebrow: "Jak focení probíhá",
+      title: "Nemusíte umět pózovat",
+      paragraphs: [
+        "Focení vedu přirozeně a citlivě. Povídáme si, smějeme se, děti si hrají a já zachycuji skutečné momenty mezi vámi.",
+        "Bez tlaku. Bez nepříjemného stresu.",
+        "Jen vaše rodina taková, jaká opravdu je."
+      ],
+      reservation: "Napište mi zprávu a společně vybereme focení, které bude sedět právě vaší rodině. Fotím v Moravskoslezském kraji a okolí."
+    }
   }
 };
 
@@ -468,6 +633,140 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                   </div>
                 </motion.article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="family" className="relative px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(247,241,230,0.035),transparent_44%,rgba(214,190,132,0.035))]" />
+          <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+            <motion.div
+              className="relative aspect-[4/5] overflow-hidden border border-champagne/18 bg-emerald-deep shadow-[0_28px_90px_rgba(0,0,0,0.3)] sm:aspect-[5/4] lg:aspect-[4/5]"
+              initial={reducedMotion ? false : { opacity: 0, y: 26 }}
+              whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-90px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image src={familyStoryImage} alt={familyStoryAlt} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-warm-black/72 via-transparent to-transparent" />
+            </motion.div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.family.eyebrow}</p>
+              <h2 className="mt-5 font-display text-5xl uppercase leading-none tracking-[0.1em] text-cream sm:text-7xl">
+                {copy.family.title}
+              </h2>
+              <p className="mt-7 max-w-2xl text-xl leading-9 text-cream/82">{copy.family.lead}</p>
+              <div className="mt-8 space-y-5 text-base leading-8 text-cream/68">
+                {copy.family.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <div className="mt-10 border-y border-champagne/22 py-7">
+                <h3 className="font-display text-2xl uppercase tracking-[0.1em] text-cream">{copy.family.audienceTitle}</h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {copy.family.audienceItems.map((item) => (
+                    <span key={item} className="border border-cream/14 bg-cream/[0.045] px-4 py-2 text-[0.66rem] uppercase tracking-[0.18em] text-cream/72">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative border-y border-champagne/10 px-5 py-24 sm:px-8 lg:px-12">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_26%,rgba(214,190,132,0.12),transparent_30rem)]" />
+          <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.9fr]">
+            <div>
+              <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.continuity.eyebrow}</p>
+              <h2 className="mt-5 max-w-4xl font-display text-5xl uppercase leading-none tracking-[0.1em] text-cream sm:text-7xl">
+                {copy.continuity.title}
+              </h2>
+              <div className="mt-7 max-w-2xl space-y-4 text-base leading-8 text-cream/70">
+                {copy.continuity.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <div className="mt-10 grid gap-px overflow-hidden border border-champagne/14 bg-champagne/14 sm:grid-cols-2">
+                {copy.continuity.benefits.map((benefit) => (
+                  <div key={benefit} className="bg-warm-black p-5 text-sm leading-7 text-cream/74">
+                    <span className="mr-3 text-champagne">+</span>
+                    {benefit}
+                  </div>
+                ))}
+              </div>
+              <p className="mt-8 max-w-2xl font-display text-3xl uppercase leading-tight tracking-[0.1em] text-cream">
+                {copy.continuity.closing}
+              </p>
+            </div>
+            <motion.div
+              className="relative min-h-[32rem] overflow-hidden border border-champagne/18 bg-emerald-deep"
+              initial={reducedMotion ? false : { opacity: 0, y: 26 }}
+              whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-90px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image src={continuityImage} alt={continuityAlt} fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover object-center" />
+              <div className="absolute inset-0 bg-gradient-to-t from-warm-black/80 via-warm-black/10 to-transparent" />
+            </motion.div>
+          </div>
+        </section>
+
+        <SectionBand id="pricing" eyebrow={copy.pricing.eyebrow} title={copy.pricing.title}>
+          <div className="grid gap-5 lg:grid-cols-[1fr_1fr_1.18fr]">
+            {copy.pricing.plans.map((plan) => (
+              <article key={plan.name} className="border border-champagne/18 bg-cream/[0.055] p-7 backdrop-blur-xl">
+                <p className="text-xs uppercase tracking-[0.28em] text-champagne">{plan.name}</p>
+                <h3 className="mt-5 font-display text-4xl uppercase tracking-[0.08em] text-cream">{plan.price}</h3>
+                <p className="mt-5 text-sm leading-7 text-cream/66">{plan.description}</p>
+                <ul className="mt-7 space-y-3 text-sm leading-6 text-cream/78">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex gap-3">
+                      <span className="mt-1 text-champagne">+</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-7 border-t border-cream/12 pt-5 text-sm leading-7 text-cream/58">{plan.ideal}</p>
+              </article>
+            ))}
+            <article className="border border-champagne/36 bg-champagne/[0.09] p-7 backdrop-blur-xl">
+              <p className="text-xs uppercase tracking-[0.28em] text-champagne">{locale === "cz" ? "Předplacená spolupráce" : "Ongoing collaboration"}</p>
+              <h3 className="mt-5 font-display text-3xl uppercase leading-tight tracking-[0.08em] text-cream">
+                {copy.pricing.storyTitle}
+              </h3>
+              <ul className="mt-7 space-y-4 text-sm leading-7 text-cream/78">
+                {copy.pricing.storyOptions.map((option) => (
+                  <li key={option} className="flex gap-3">
+                    <span className="mt-1 text-champagne">+</span>
+                    <span>{option}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-7 border-t border-cream/12 pt-5 text-sm leading-7 text-cream/66">{copy.pricing.storyNote}</p>
+            </article>
+          </div>
+        </SectionBand>
+
+        <section className="px-5 py-24 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-7xl gap-10 border-y border-champagne/22 py-16 lg:grid-cols-[0.7fr_1fr]">
+            <div>
+              <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.naturalProcess.eyebrow}</p>
+              <h2 className="mt-5 font-display text-5xl uppercase leading-none tracking-[0.1em] text-cream sm:text-7xl">
+                {copy.naturalProcess.title}
+              </h2>
+            </div>
+            <div>
+              <div className="space-y-5 text-base leading-8 text-cream/72">
+                {copy.naturalProcess.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <p className="mt-9 text-lg leading-9 text-cream/82">{copy.naturalProcess.reservation}</p>
+              <div className="mt-8">
+                <LuxuryButton href="/contact">{copy.bookSession}</LuxuryButton>
+              </div>
             </div>
           </div>
         </section>
