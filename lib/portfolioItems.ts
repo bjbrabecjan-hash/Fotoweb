@@ -8,8 +8,22 @@ const categoryFolders: Array<{ folder: string; category: PortfolioCategory; rati
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const videoExtensions = new Set([".mp4", ".webm", ".mov"]);
+const portfolioTitles: Record<string, string> = {
+  "25-child-heart-color-portrait.jpg": "Srdce v dlaních",
+  "26-child-paint-play-bw-portrait.jpg": "Hra bez pravidel",
+  "27-child-cake-bw-portrait.jpg": "Narozeninový okamžik",
+  "28-child-painted-face-portrait.jpg": "Barvy dětství",
+  "29-child-birthday-portrait.jpg": "Jedno malé přání",
+  "30-woman-water-warm-landscape.jpg": "V teplém světle",
+  "31-woman-water-reflection-portrait.jpg": "Tiché zrcadlení",
+  "32-water-splash-portrait.jpg": "Radost v pohybu"
+};
 
 function titleFromFile(fileName: string) {
+  if (portfolioTitles[fileName]) {
+    return portfolioTitles[fileName];
+  }
+
   return path
     .basename(fileName, path.extname(fileName))
     .replace(/[-_]+/g, " ")

@@ -5,16 +5,12 @@ import Link from "next/link";
 import {
   AnimatePresence,
   motion,
-  useMotionValue,
   useReducedMotion,
   useScroll,
-  useSpring,
-  useTransform,
-  type MotionValue
+  useTransform
 } from "framer-motion";
-import { ArrowRight, Baby, Heart, Home, Play, Users } from "lucide-react";
-import type { CSSProperties } from "react";
-import { useEffect, useState } from "react";
+import { ArrowRight, Play } from "lucide-react";
+import { useEffect } from "react";
 import { heroSlides } from "@/lib/heroSlides";
 import type { PortfolioItem } from "@/lib/portfolioData";
 import { useExperience } from "@/lib/experience";
@@ -26,57 +22,6 @@ type HomeExperienceProps = {
 };
 
 const hero = heroSlides[0];
-
-const heroCards = [
-  {
-    title: {
-      en: "Family\nStories",
-      cz: "Rodinné\npříběhy"
-    },
-    text: {
-      en: "Natural moments,\ntogetherness & emotion",
-      cz: "Přirozené momenty,\nblízkost & emoce"
-    },
-    icon: Heart,
-    offset: "xl:translate-y-3"
-  },
-  {
-    title: {
-      en: "Maternity\nSessions",
-      cz: "Těhotenské\nfocení"
-    },
-    text: {
-      en: "A quiet record of\nthe very beginning",
-      cz: "Jemná vzpomínka\nna úplný začátek"
-    },
-    icon: Users,
-    offset: "xl:-translate-y-5"
-  },
-  {
-    title: {
-      en: "Babies &\nNewborns",
-      cz: "Miminka &\nnewborn"
-    },
-    text: {
-      en: "First months,\ntouch and closeness",
-      cz: "První měsíce,\ndoteky & blízkost"
-    },
-    icon: Baby,
-    offset: "xl:translate-y-6"
-  },
-  {
-    title: {
-      en: "At home &\nOutside",
-      cz: "Doma &\nvenku"
-    },
-    text: {
-      en: "A place where your\nfamily feels at ease",
-      cz: "Tam, kde se vaše\nrodina cítí dobře"
-    },
-    icon: Home,
-    offset: "xl:-translate-y-2"
-  }
-];
 
 const signatureTiles = [
   {
@@ -409,14 +354,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const heroY = useTransform(scrollYProgress, [0, 0.45], reducedMotion ? [0, 0] : [0, -80]);
   const featuredImageY = useTransform(scrollYProgress, [0.42, 0.86], reducedMotion ? [0, 0] : [24, -24]);
   const featuredImageScale = useTransform(scrollYProgress, [0.42, 0.86], reducedMotion ? [1, 1] : [1.035, 1]);
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
   const copy = homeExperienceCopy[locale];
-  const localizedHeroCards = heroCards.map((card) => ({
-    ...card,
-    title: card.title[locale],
-    text: card.text[locale]
-  }));
   const localizedSignatureTiles = signatureTiles.map((tile) => ({
     ...tile,
     title: tile.title[locale]
@@ -428,26 +366,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     };
   }, [entered]);
 
-  const handleHeroPointer = (event: React.PointerEvent<HTMLElement>) => {
-    if (reducedMotion) {
-      return;
-    }
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
-    pointerY.set((event.clientY - rect.top) / rect.height - 0.5);
-  };
-
   return (
     <>
-      <section
-        className="grain relative min-h-[100svh] overflow-hidden bg-emerald-deep"
-        onPointerMove={handleHeroPointer}
-        onPointerLeave={() => {
-          pointerX.set(0);
-          pointerY.set(0);
-        }}
-      >
+      <section className="grain relative min-h-[92svh] overflow-hidden bg-emerald-deep">
         <motion.div
           className="absolute inset-0"
           initial={false}
@@ -464,13 +385,11 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[38%_center] sm:object-[32%_center] xl:object-[26%_center]"
+            className="object-cover"
+            style={{ objectPosition: hero.focalPoint }}
           />
         </motion.div>
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(5,20,16,0.88),rgba(7,36,28,0.42)_34%,rgba(10,10,8,0.76)_70%,rgba(9,10,8,0.95))]" />
-        <div className="absolute inset-y-0 right-0 hidden w-[52vw] bg-black/48 backdrop-blur-2xl [mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,0.2)_8%,rgba(0,0,0,0.82)_44%,#000_76%)] lg:block" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(124,137,117,0.18),transparent_28rem),radial-gradient(circle_at_20%_72%,rgba(0,0,0,0.2),transparent_34rem)]" />
-        <AmbientParticles active={entered} />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04)_18%,rgba(0,0,0,0.72)_100%)] lg:bg-[linear-gradient(270deg,rgba(14,14,13,0.78)_0%,rgba(16,16,15,0.5)_34%,rgba(12,12,11,0.08)_68%,transparent_100%)]" />
 
         <AnimatePresence>
           {!entered && (
@@ -505,7 +424,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
         </AnimatePresence>
 
         <motion.div
-          className="relative z-10 mx-auto flex min-h-[100svh] max-w-[92rem] items-center px-5 pb-36 pt-28 sm:px-8 sm:pb-32 lg:px-12 lg:pb-24 lg:pt-32"
+          className="relative z-10 mx-auto flex min-h-[92svh] max-w-[92rem] items-end justify-end px-5 pb-28 pt-28 sm:px-8 lg:items-center lg:px-12 lg:pb-20 lg:pt-32"
           initial={false}
           animate={entered ? "show" : "hide"}
           variants={{
@@ -514,43 +433,19 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           }}
           transition={{ duration: 0.85, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="grid w-full items-center gap-9 lg:gap-10 xl:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] xl:gap-12 2xl:grid-cols-[minmax(0,33rem)_minmax(0,1fr)]">
-            <div className="max-w-[30rem] xl:max-w-none">
-              <p className="mb-5 text-xs uppercase tracking-[0.42em] text-white/76">
-                {copy.introKicker}
-              </p>
-              <h1 className="font-display text-[clamp(2.8rem,13vw,4.4rem)] uppercase leading-[0.86] tracking-[0.045em] text-white drop-shadow-[0_3px_28px_rgba(0,0,0,0.22)] sm:text-[clamp(4rem,9vw,5.9rem)] sm:tracking-[0.07em] xl:text-[clamp(4.15rem,5.15vw,5.25rem)] 2xl:text-[5.9rem]">
-                <span className="block whitespace-nowrap">{copy.introTitleTop}</span>
-                <span className="block">{copy.introTitleMiddle}</span>
+          <div className="w-full max-w-[38rem] lg:max-w-[42rem]">
+              <h1 className="font-display text-[clamp(3.1rem,12vw,5rem)] uppercase leading-[0.9] tracking-[0.045em] text-white drop-shadow-[0_3px_28px_rgba(0,0,0,0.32)] sm:text-[5.4rem] lg:text-[5.8rem] xl:text-[6.4rem]">
+                {copy.family.title}
               </h1>
-              <p className="-mt-1 pl-1 font-script text-[clamp(3rem,13vw,4.4rem)] leading-none text-white drop-shadow-[0_3px_24px_rgba(0,0,0,0.28)] sm:text-[clamp(4rem,8vw,5rem)] xl:-mt-3 xl:text-[4.9rem] 2xl:text-[5.6rem]">
-                {copy.introScript}
-              </p>
-              <p className="mt-8 max-w-md whitespace-pre-line text-base leading-8 tracking-[0.02em] text-white/78">
-                {copy.introText}
+              <p className="mt-7 max-w-xl text-base leading-8 tracking-[0.02em] text-white/82 sm:text-lg">
+                {copy.family.lead}
               </p>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
                 <LuxuryButton href="#portfolio">{copy.viewPortfolio}</LuxuryButton>
-                <LuxuryButton href="/contact" variant="ghost">
+                <LuxuryButton href="/contact" variant="hero">
                   {copy.bookSession}
                 </LuxuryButton>
               </div>
-            </div>
-            <div className="grid w-full max-w-[34rem] grid-cols-2 gap-3 sm:gap-4 lg:max-w-3xl lg:grid-cols-4 xl:ml-auto xl:max-w-[36rem] xl:grid-cols-2 xl:gap-5 2xl:max-w-[40rem]">
-              {localizedHeroCards.map((card, index) => {
-                return (
-                  <HeroFeatureCard
-                    key={card.title}
-                    card={card}
-                    index={index}
-                    entered={entered}
-                    reducedMotion={reducedMotion}
-                    pointerX={pointerX}
-                    pointerY={pointerY}
-                  />
-                );
-              })}
-            </div>
           </div>
         </motion.div>
 
@@ -574,6 +469,24 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
       </section>
 
       <main className="relative overflow-hidden bg-warm-black">
+        <section id="services" className="border-b border-ink/12 px-5 py-14 sm:px-8 lg:px-12 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+            <div>
+              <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.servicesEyebrow}</p>
+              <h2 className="mt-4 max-w-lg font-display text-4xl uppercase leading-none tracking-[0.08em] text-cream sm:text-5xl">
+                {copy.servicesTitle}
+              </h2>
+            </div>
+            <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
+              {copy.services.map((service) => (
+                <article key={service.title} className="border-t border-ink/16 pt-4">
+                  <h3 className="font-display text-2xl uppercase tracking-[0.08em] text-cream">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-cream/66">{service.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
         <SectionBand id="portfolio" eyebrow={copy.portfolioEyebrow} title={copy.portfolioTitle}>
           <div className="masonry">
             {portfolioItems.map((item, index) => (
@@ -753,17 +666,6 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           </div>
         </section>
 
-        <SectionBand id="services" eyebrow={copy.servicesEyebrow} title={copy.servicesTitle}>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {copy.services.map((service) => (
-              <article key={service.title} className="border border-champagne/18 bg-cream/[0.055] p-7 backdrop-blur-xl">
-                <h3 className="font-display text-2xl uppercase tracking-[0.1em] text-cream">{service.title}</h3>
-                <p className="mt-5 text-sm leading-7 text-cream/66">{service.description}</p>
-              </article>
-            ))}
-          </div>
-        </SectionBand>
-
         <SectionBand id="process" eyebrow={copy.processEyebrow} title={copy.processTitle}>
           <div className="grid gap-px overflow-hidden border border-champagne/14 bg-champagne/14 md:grid-cols-4">
             {copy.processSteps.map((step, index) => (
@@ -848,85 +750,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   );
 }
 
-type HeroFeatureCardProps = {
-  card: {
-    title: string;
-    text: string;
-    icon: (typeof heroCards)[number]["icon"];
-    offset: string;
-  };
-  index: number;
-  entered: boolean;
-  reducedMotion: boolean | null;
-  pointerX: MotionValue<number>;
-  pointerY: MotionValue<number>;
-};
-
-function HeroFeatureCard({ card, index, entered, reducedMotion, pointerX, pointerY }: HeroFeatureCardProps) {
-  const Icon = card.icon;
-  const parallaxX = useSpring(useTransform(pointerX, (value) => value * (4 + index * 2)), {
-    stiffness: 120,
-    damping: 24,
-    mass: 0.45
-  });
-  const parallaxY = useSpring(useTransform(pointerY, (value) => value * (3 + index * 2)), {
-    stiffness: 120,
-    damping: 24,
-    mass: 0.45
-  });
-  const floatDistance = index % 2 ? "5px" : "-5px";
-
-  return (
-    <motion.div
-      className={cn("hero-card-parallax", card.offset)}
-      style={{
-        x: reducedMotion ? 0 : parallaxX,
-        y: reducedMotion ? 0 : parallaxY
-      }}
-    >
-      <div
-        className={cn("hero-card-float", entered && !reducedMotion && "is-floating")}
-        style={
-          {
-            "--hero-card-float-y": floatDistance,
-            animationDuration: `${7 + index}s`,
-            animationDelay: `${index * -1.2}s`
-          } as CSSProperties
-        }
-      >
-        <article className="hero-card group min-h-40 border border-white/24 bg-white/[0.09] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.28)] backdrop-blur-2xl transition-[background-color,border-color,transform] duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-white/62 hover:bg-white/[0.15] sm:min-h-48 sm:p-5 lg:min-h-52 xl:min-h-56 xl:p-6">
-          <div className="flex size-10 items-center justify-center rounded-full border border-white/42 bg-black/18 text-white transition duration-300 sm:size-12">
-            <Icon size={18} strokeWidth={1.35} />
-          </div>
-          <h3 className="mt-5 whitespace-pre-line font-display text-lg uppercase leading-[0.92] tracking-[0.1em] text-white sm:mt-7 sm:text-xl 2xl:text-2xl">
-            {card.title}
-          </h3>
-          <p className="mt-4 whitespace-pre-line text-[0.68rem] leading-5 text-white/66 sm:mt-5 sm:text-[0.72rem] sm:leading-6 2xl:text-[0.8rem]">
-            {card.text}
-          </p>
-        </article>
-      </div>
-    </motion.div>
-  );
-}
-
-function AmbientParticles({ active }: { active: boolean }) {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {[0, 1, 2, 3, 4, 5].map((item) => (
-        <motion.span
-          key={item}
-          className="absolute size-1 rounded-full bg-champagne/35 blur-[1px]"
-          style={{ left: `${14 + item * 15}%`, top: `${18 + (item % 3) * 22}%` }}
-          animate={active ? { opacity: [0.08, 0.28, 0.08], y: [0, -16, 0] } : { opacity: 0.08 }}
-          transition={{ duration: 7 + item, repeat: Infinity, ease: "easeInOut" }}
-        />
-      ))}
-    </div>
-  );
-}
-
-function LuxuryButton({ href, children, variant = "solid" }: { href: string; children: React.ReactNode; variant?: "solid" | "ghost" }) {
+function LuxuryButton({ href, children, variant = "solid" }: { href: string; children: React.ReactNode; variant?: "solid" | "ghost" | "hero" }) {
   return (
     <Link
       href={href}
@@ -934,7 +758,9 @@ function LuxuryButton({ href, children, variant = "solid" }: { href: string; chi
         "inline-flex min-h-14 items-center justify-center gap-3 border px-7 text-xs font-semibold uppercase tracking-[0.22em] transition-all duration-300",
         variant === "solid"
           ? "border-champagne bg-champagne text-warm-black shadow-[0_18px_60px_rgba(214,190,132,0.2)] hover:bg-transparent hover:text-champagne"
-          : "border-champagne/45 bg-cream/[0.05] text-cream backdrop-blur-xl hover:border-champagne hover:text-champagne"
+          : variant === "hero"
+            ? "border-white/55 bg-white/[0.08] text-white backdrop-blur-md hover:border-white hover:bg-white hover:text-ink"
+            : "border-champagne/45 bg-cream/[0.05] text-cream backdrop-blur-xl hover:border-champagne hover:text-champagne"
       )}
     >
       {children}
