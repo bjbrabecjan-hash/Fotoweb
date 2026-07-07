@@ -3,9 +3,6 @@ import path from "node:path";
 import { fallbackPortfolioItems, type PortfolioCategory, type PortfolioItem } from "@/lib/portfolioData";
 
 const categoryFolders: Array<{ folder: string; category: PortfolioCategory; ratio: PortfolioItem["ratio"] }> = [
-  { folder: "beauty", category: "Beauty", ratio: "portrait" },
-  { folder: "hair", category: "Hair", ratio: "landscape" },
-  { folder: "salon", category: "Salon", ratio: "landscape" },
   { folder: "family", category: "Family", ratio: "portrait" }
 ];
 
@@ -62,7 +59,7 @@ export function getPortfolioItems(): PortfolioItem[] {
           category,
           type: videoExtensions.has(extension) ? "video" : "image",
           src: `/assets/portfolio/${folder}/${fileName}`,
-          alt: `${category} visual story by Hana Brabcová`,
+          alt: `Rodinný příběh fotografovaný Hanou Brabcovou`,
           ratio: ratioFromFile(fileName, ratio)
         } satisfies PortfolioItem;
       });

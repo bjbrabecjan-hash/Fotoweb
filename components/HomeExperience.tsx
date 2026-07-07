@@ -12,11 +12,11 @@ import {
   useTransform,
   type MotionValue
 } from "framer-motion";
-import { ArrowRight, Camera, Heart, Play, Sparkles, UserRound } from "lucide-react";
+import { ArrowRight, Baby, Heart, Home, Play, Users } from "lucide-react";
 import type { CSSProperties } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { heroSlides } from "@/lib/heroSlides";
-import { portfolioCategories, type PortfolioItem } from "@/lib/portfolioData";
+import type { PortfolioItem } from "@/lib/portfolioData";
 import { useExperience } from "@/lib/experience";
 import { type Locale, useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -30,50 +30,50 @@ const hero = heroSlides[0];
 const heroCards = [
   {
     title: {
-      en: "Beauty Content",
-      cz: "Beauty\nContent"
+      en: "Family\nStories",
+      cz: "Rodinné\npříběhy"
     },
     text: {
-      en: "Skincare, makeup,\ntreatments & beauty brands",
-      cz: "Kosmetika, péče,\nošetření & salony"
+      en: "Natural moments,\ntogetherness & emotion",
+      cz: "Přirozené momenty,\nblízkost & emoce"
     },
-    icon: UserRound,
+    icon: Heart,
     offset: "xl:translate-y-3"
   },
   {
     title: {
-      en: "Family\nSessions",
-      cz: "Rodinné\nfocení"
+      en: "Maternity\nSessions",
+      cz: "Těhotenské\nfocení"
     },
     text: {
-      en: "Natural moments,\nchildren & family stories",
-      cz: "Přirozené momenty,\nděti & rodinné příběhy"
+      en: "A quiet record of\nthe very beginning",
+      cz: "Jemná vzpomínka\nna úplný začátek"
     },
-    icon: Heart,
+    icon: Users,
     offset: "xl:-translate-y-5"
   },
   {
     title: {
-      en: "Portrait\nSessions",
-      cz: "Portrétní\nfocení"
+      en: "Babies &\nNewborns",
+      cz: "Miminka &\nnewborn"
     },
     text: {
-      en: "Personal branding\n& professional portraits",
-      cz: "Osobní brand\n& profesionální portréty"
+      en: "First months,\ntouch and closeness",
+      cz: "První měsíce,\ndoteky & blízkost"
     },
-    icon: Camera,
+    icon: Baby,
     offset: "xl:translate-y-6"
   },
   {
     title: {
-      en: "Brand &\nSocial Story",
-      cz: "Brand &\nobsah na sítě"
+      en: "At home &\nOutside",
+      cz: "Doma &\nvenku"
     },
     text: {
-      en: "Short videos,\nvisual identity & campaigns",
-      cz: "Krátká videa,\nvizuální identita & kampaně"
+      en: "A place where your\nfamily feels at ease",
+      cz: "Tam, kde se vaše\nrodina cítí dobře"
     },
-    icon: Sparkles,
+    icon: Home,
     offset: "xl:-translate-y-2"
   }
 ];
@@ -184,16 +184,16 @@ const homeExperienceCopy: Record<
     introTitleTop: "keeps your",
     introTitleMiddle: "story",
     introScript: "Alive.",
-    introText: "Cinematic photography, portraits and visual content\nfor beauty brands, salons, families and people\nwho want images with feeling.",
+    introText: "Natural family photography for pregnancy, babies,\nchildren and shared moments that deserve\nto remain close.",
     viewPortfolio: "View Portfolio",
     bookSession: "Book a Session",
     footerLine: "Elegant visuals. Real emotions. Lasting impact.",
     portfolioEyebrow: "Portfolio",
-    portfolioTitle: "Beauty, portraits and family stories",
+    portfolioTitle: "Family stories in every season",
     signatureEyebrow: "Signature style",
     signatureTitle: "Soft light. Real emotion. Editorial calm.",
     servicesEyebrow: "Services",
-    servicesTitle: "Created for brands, portraits and families",
+    servicesTitle: "Created for every stage of family life",
     processEyebrow: "Process",
     processTitle: "A calm rhythm before, during and after the shoot",
     processSteps: ["Mood, place and intention", "Creative direction or simple family plan", "Calm production day", "Polished gallery and social-ready delivery"],
@@ -201,28 +201,28 @@ const homeExperienceCopy: Record<
     featuredTitle: "Family moments with the same editorial care.",
     featuredText: "Natural family photography can feel refined without losing warmth. The direction stays gentle, the light stays cinematic, and the final images keep real emotion intact.",
     aboutEyebrow: "About",
-    aboutTitle: "Visual stories with editorial sensitivity",
+    aboutTitle: "Family stories with sensitivity and calm",
     aboutText:
-      "Hana creates polished visuals for beauty brands, entrepreneurs and families. Her work is built around feeling, texture and quiet confidence, whether the subject is a salon ritual, a portrait session or a family afternoon outside.",
+      "Hana photographs pregnancy, babies, children and families with a gentle, natural approach. Her work is built around trust, soft light and real connection rather than perfect poses.",
     aboutQuote: "Each frame should feel considered, but still honest to the person or story in front of the camera.",
     bookingEyebrow: "Booking",
     bookingTitle: "Book a shoot that feels personal and polished.",
     services: [
       {
-        title: "Beauty Content",
-        description: "Campaign imagery and detail-led visuals for beauty launches, skincare rituals and salon identities."
+        title: "Maternity",
+        description: "A gentle record of anticipation, closeness and the chapter before your baby arrives."
       },
       {
-        title: "Family Photography",
-        description: "Natural outdoor and lifestyle sessions for families, children and moments that should stay close."
+        title: "Newborn & Babies",
+        description: "The first months photographed calmly at home or outside, with space for your natural rhythm."
       },
       {
-        title: "Portrait Sessions",
-        description: "Soft, editorial portraits for founders, artists, personal brands and anyone who needs a refined presence."
+        title: "Family Sessions",
+        description: "Shared moments, laughter and closeness photographed without stiff posing or pressure."
       },
       {
-        title: "Reels & Social Content",
-        description: "Short-form movement, process moments and premium vertical assets shaped for social platforms."
+        title: "Children & Siblings",
+        description: "Playful portraits that keep personality, movement and the bond between children intact."
       }
     ],
     family: {
@@ -294,16 +294,16 @@ const homeExperienceCopy: Record<
     introTitleTop: "uchovají",
     introTitleMiddle: "příběh",
     introScript: "Naživu.",
-    introText: "Cinematické fotografie, portréty a vizuální obsah\npro beauty značky, salony, rodiny i jednotlivce,\nkteří chtějí snímky s atmosférou.",
+    introText: "Přirozené rodinné focení těhotenství, miminek,\ndětí a společných chvil, které si zaslouží\nzůstat nablízku.",
     viewPortfolio: "Zobrazit portfolio",
     bookSession: "Rezervovat focení",
     footerLine: "Elegantní vizuály. Reálné emoce. Trvalý dojem.",
     portfolioEyebrow: "Portfolio",
-    portfolioTitle: "Beauty, portréty a rodinné příběhy",
+    portfolioTitle: "Rodinné příběhy v každé životní etapě",
     signatureEyebrow: "Signature style",
     signatureTitle: "Jemné světlo. Reálné emoce. Editorial klid.",
     servicesEyebrow: "Služby",
-    servicesTitle: "Tvořeno pro značky, portréty i rodiny",
+    servicesTitle: "Pro každou etapu vašeho rodinného příběhu",
     processEyebrow: "Proces",
     processTitle: "Klidný rytmus před focením, během něj i po něm",
     processSteps: ["Nálada, místo a záměr", "Kreativní směr nebo jednoduchý rodinný plán", "Klidný den focení", "Vyladěná galerie a výstupy pro sítě"],
@@ -311,28 +311,28 @@ const homeExperienceCopy: Record<
     featuredTitle: "Rodinné momenty se stejnou editorial péčí.",
     featuredText: "Rodinné focení může být přirozené a zároveň kultivované. Směr zůstává jemný, světlo cinematické a výsledné snímky drží opravdovou emoci.",
     aboutEyebrow: "O Haně",
-    aboutTitle: "Vizuální příběhy s editorial citlivostí",
+    aboutTitle: "Rodinné příběhy s citem a klidem",
     aboutText:
-      "Hana tvoří promyšlené vizuály pro beauty značky, podnikatele i rodiny. Její práce stojí na pocitu, textuře a tiché jistotě, ať jde o salonní rituál, portrét nebo rodinné odpoledne venku.",
+      "Hana fotografuje těhotenství, miminka, děti a rodiny jemně a přirozeně. Její práce stojí na důvěře, měkkém světle a skutečné blízkosti namísto dokonalých póz.",
     aboutQuote: "Každý záběr má působit promyšleně, ale pořád pravdivě k člověku nebo příběhu před objektivem.",
     bookingEyebrow: "Rezervace",
     bookingTitle: "Rezervujte focení, které bude osobní a vyladěné.",
     services: [
       {
-        title: "Beauty Content",
-        description: "Kampaňové fotografie a detailní vizuály pro beauty launch, salonní identitu a rituály péče."
+        title: "Těhotenské focení",
+        description: "Jemná vzpomínka na očekávání, blízkost a období před příchodem miminka."
+      },
+      {
+        title: "Newborn a miminka",
+        description: "První měsíce v klidu domova nebo venku, s dostatkem prostoru pro váš přirozený rytmus."
       },
       {
         title: "Rodinné focení",
-        description: "Přirozené venkovní a lifestyle focení pro rodiny, děti a momenty, které mají zůstat blízko."
+        description: "Společné chvíle, smích a blízkost bez strojených póz a nepříjemného tlaku."
       },
       {
-        title: "Portrétní focení",
-        description: "Jemné editorial portréty pro zakladatelky, tvůrce, osobní značky i kohokoliv, kdo potřebuje kultivovanou prezentaci."
-      },
-      {
-        title: "Reels & obsah na sítě",
-        description: "Krátká videa, procesní momenty a prémiové vertikální výstupy pro sociální platformy."
+        title: "Děti a sourozenci",
+        description: "Hravé portréty, které zachovají osobnost, pohyb a vztah mezi dětmi."
       }
     ],
     family: {
@@ -403,7 +403,6 @@ const homeExperienceCopy: Record<
 
 export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const { locale, t } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState<(typeof portfolioCategories)[number]>("All");
   const { entered, enterExperience } = useExperience();
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
@@ -422,22 +421,6 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     ...tile,
     title: tile.title[locale]
   }));
-  const localizedCategoryLabels: Record<(typeof portfolioCategories)[number], string> = {
-    All: t.portfolio.categories.All,
-    Beauty: t.portfolio.categories.Beauty,
-    Hair: t.portfolio.categories.Hair,
-    Salon: t.portfolio.categories.Salon,
-    Family: t.portfolio.categories.Family
-  };
-
-  const visibleItems = useMemo(
-    () =>
-      activeCategory === "All"
-        ? portfolioItems
-        : portfolioItems.filter((item) => item.category === activeCategory),
-    [activeCategory, portfolioItems]
-  );
-
   useEffect(() => {
     document.body.style.overflow = entered ? "" : "hidden";
     return () => {
@@ -485,8 +468,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           />
         </motion.div>
         <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(5,20,16,0.88),rgba(7,36,28,0.42)_34%,rgba(10,10,8,0.76)_70%,rgba(9,10,8,0.95))]" />
-        <div className="absolute inset-y-0 right-0 hidden w-[52vw] bg-warm-black/48 backdrop-blur-2xl [mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,0.2)_8%,rgba(0,0,0,0.82)_44%,#000_76%)] lg:block" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(214,190,132,0.2),transparent_28rem),radial-gradient(circle_at_20%_72%,rgba(20,88,68,0.28),transparent_34rem)]" />
+        <div className="absolute inset-y-0 right-0 hidden w-[52vw] bg-black/48 backdrop-blur-2xl [mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,0.2)_8%,rgba(0,0,0,0.82)_44%,#000_76%)] lg:block" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(124,137,117,0.18),transparent_28rem),radial-gradient(circle_at_20%_72%,rgba(0,0,0,0.2),transparent_34rem)]" />
         <AmbientParticles active={entered} />
 
         <AnimatePresence>
@@ -502,16 +485,16 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                 className="max-w-4xl"
               >
-                <h1 className="font-display text-5xl uppercase leading-none tracking-[0.24em] text-cream sm:text-7xl lg:text-8xl">
+                <h1 className="font-display text-5xl uppercase leading-none tracking-[0.24em] text-white sm:text-7xl lg:text-8xl">
                   Hana Brabcová
                 </h1>
-                <p className="mt-6 text-sm uppercase tracking-[0.34em] text-champagne/82">
-                  {locale === "cz" ? "Fotografie pro značky, portréty a rodiny." : "Photography for brands, portraits and families."}
+                <p className="mt-6 text-sm uppercase tracking-[0.34em] text-white/76">
+                  {locale === "cz" ? "Přirozené rodinné focení plné emocí." : "Natural family photography filled with emotion."}
                 </p>
                 <button
                   type="button"
                   onClick={enterExperience}
-                  className="mt-12 inline-flex min-h-14 items-center gap-3 border border-champagne/70 bg-cream/8 px-7 text-xs font-semibold uppercase tracking-[0.24em] text-cream shadow-[0_0_42px_rgba(214,190,132,0.16)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:bg-champagne hover:text-warm-black hover:shadow-[0_0_56px_rgba(214,190,132,0.28)]"
+                  className="mt-12 inline-flex min-h-14 items-center gap-3 border border-white/70 bg-white/10 px-7 text-xs font-semibold uppercase tracking-[0.24em] text-white shadow-[0_0_42px_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white hover:text-ink"
                 >
                   {locale === "cz" ? "Vstoupit" : "Enter Experience"}
                   <ArrowRight size={16} />
@@ -533,17 +516,17 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
         >
           <div className="grid w-full items-center gap-9 lg:gap-10 xl:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] xl:gap-12 2xl:grid-cols-[minmax(0,33rem)_minmax(0,1fr)]">
             <div className="max-w-[30rem] xl:max-w-none">
-              <p className="mb-5 text-xs uppercase tracking-[0.42em] text-champagne drop-shadow-[0_0_18px_rgba(214,190,132,0.22)]">
+              <p className="mb-5 text-xs uppercase tracking-[0.42em] text-white/76">
                 {copy.introKicker}
               </p>
-              <h1 className="font-display text-[clamp(2.8rem,13vw,4.4rem)] uppercase leading-[0.86] tracking-[0.045em] text-cream drop-shadow-[0_0_36px_rgba(247,241,230,0.08)] sm:text-[clamp(4rem,9vw,5.9rem)] sm:tracking-[0.07em] xl:text-[clamp(4.15rem,5.15vw,5.25rem)] 2xl:text-[5.9rem]">
+              <h1 className="font-display text-[clamp(2.8rem,13vw,4.4rem)] uppercase leading-[0.86] tracking-[0.045em] text-white drop-shadow-[0_3px_28px_rgba(0,0,0,0.22)] sm:text-[clamp(4rem,9vw,5.9rem)] sm:tracking-[0.07em] xl:text-[clamp(4.15rem,5.15vw,5.25rem)] 2xl:text-[5.9rem]">
                 <span className="block whitespace-nowrap">{copy.introTitleTop}</span>
                 <span className="block">{copy.introTitleMiddle}</span>
               </h1>
-              <p className="-mt-1 pl-1 font-script text-[clamp(3rem,13vw,4.4rem)] leading-none text-champagne drop-shadow-[0_0_26px_rgba(214,190,132,0.34)] sm:text-[clamp(4rem,8vw,5rem)] xl:-mt-3 xl:text-[4.9rem] 2xl:text-[5.6rem]">
+              <p className="-mt-1 pl-1 font-script text-[clamp(3rem,13vw,4.4rem)] leading-none text-white drop-shadow-[0_3px_24px_rgba(0,0,0,0.28)] sm:text-[clamp(4rem,8vw,5rem)] xl:-mt-3 xl:text-[4.9rem] 2xl:text-[5.6rem]">
                 {copy.introScript}
               </p>
-              <p className="mt-8 max-w-md whitespace-pre-line text-base leading-8 tracking-[0.02em] text-cream/76">
+              <p className="mt-8 max-w-md whitespace-pre-line text-base leading-8 tracking-[0.02em] text-white/78">
                 {copy.introText}
               </p>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
@@ -577,12 +560,12 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
           animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
           transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-[0.58rem] uppercase tracking-[0.34em] text-cream/44">
+          <p className="text-[0.58rem] uppercase tracking-[0.34em] text-white/54">
             {copy.footerLine}
           </p>
-          <div className="mx-auto mt-4 h-10 w-px overflow-hidden bg-cream/12">
+          <div className="mx-auto mt-4 h-10 w-px overflow-hidden bg-white/18">
             <motion.div
-              className="h-5 w-px bg-champagne/70"
+              className="h-5 w-px bg-white/70"
               animate={reducedMotion ? undefined : { y: [-22, 42] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -592,9 +575,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
 
       <main className="relative overflow-hidden bg-warm-black">
         <SectionBand id="portfolio" eyebrow={copy.portfolioEyebrow} title={copy.portfolioTitle}>
-          <CategoryFilter activeCategory={activeCategory} onChange={setActiveCategory} categoryLabels={localizedCategoryLabels} />
-          <div className="masonry mt-10">
-            {visibleItems.map((item, index) => (
+          <div className="masonry">
+            {portfolioItems.map((item, index) => (
               <PortfolioCard key={item.id} item={item} index={index} />
             ))}
           </div>
@@ -627,9 +609,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                     sizes="(min-width: 1024px) 24vw, (min-width: 640px) 33vw, 100vw"
                     className="object-cover transition duration-[1400ms] group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-warm-black/88 via-warm-black/18 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/18 to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5">
-                    <p className="font-display text-2xl uppercase leading-tight tracking-[0.08em] text-cream drop-shadow-[0_3px_18px_rgba(0,0,0,0.7)]">{item.title}</p>
+                    <p className="font-display text-2xl uppercase leading-tight tracking-[0.08em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.7)]">{item.title}</p>
                   </div>
                 </motion.article>
               ))}
@@ -648,7 +630,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <Image src={familyStoryImage} alt={familyStoryAlt} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-warm-black/72 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-transparent to-transparent" />
             </motion.div>
             <div>
               <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.family.eyebrow}</p>
@@ -708,7 +690,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <Image src={continuityImage} alt={continuityAlt} fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover object-center" />
-              <div className="absolute inset-0 bg-gradient-to-t from-warm-black/80 via-warm-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/58 via-black/10 to-transparent" />
             </motion.div>
           </div>
         </section>
@@ -805,7 +787,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
               <motion.div className="absolute inset-0" style={{ y: featuredImageY, scale: featuredImageScale }}>
                 <Image src={featuredStoryImage} alt={featuredStoryAlt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
               </motion.div>
-              <div className="absolute inset-0 bg-gradient-to-t from-warm-black/70 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/58 to-transparent" />
             </motion.div>
             <div>
               <p className="text-xs uppercase tracking-[0.32em] text-champagne">{copy.featuredEyebrow}</p>
@@ -836,10 +818,10 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
                 sizes="(min-width: 1024px) 24vw, 100vw"
                 className="object-cover object-[50%_24%] transition duration-[1400ms] group-hover:scale-[1.035]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-warm-black/92 via-warm-black/16 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/16 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5">
-                <p className="text-[0.58rem] uppercase tracking-[0.28em] text-champagne drop-shadow-[0_2px_12px_rgba(0,0,0,0.72)]">{t.about.ownerRole}</p>
-                <h3 className="mt-2 font-display text-2xl uppercase tracking-[0.1em] text-cream drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">Hana Brabcová</h3>
+                <p className="text-[0.58rem] uppercase tracking-[0.28em] text-white/72 drop-shadow-[0_2px_12px_rgba(0,0,0,0.72)]">{t.about.ownerRole}</p>
+                <h3 className="mt-2 font-display text-2xl uppercase tracking-[0.1em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">Hana Brabcová</h3>
               </div>
             </motion.article>
             <div className="border border-champagne/18 bg-cream/[0.055] p-8 backdrop-blur-xl">
@@ -912,14 +894,14 @@ function HeroFeatureCard({ card, index, entered, reducedMotion, pointerX, pointe
           } as CSSProperties
         }
       >
-        <article className="hero-card group min-h-40 border border-champagne/24 bg-cream/[0.075] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.34)] backdrop-blur-2xl transition-[background-color,border-color,transform] duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-champagne/64 hover:bg-cream/[0.12] sm:min-h-48 sm:p-5 lg:min-h-52 xl:min-h-56 xl:p-6">
-          <div className="flex size-10 items-center justify-center rounded-full border border-champagne/42 bg-warm-black/22 text-champagne shadow-[0_0_34px_rgba(214,190,132,0.14)] transition duration-300 group-hover:shadow-[0_0_46px_rgba(214,190,132,0.26)] sm:size-12">
-            <Icon size={18} strokeWidth={1.35} fill={card.title.startsWith("Reels") ? "currentColor" : "none"} />
+        <article className="hero-card group min-h-40 border border-white/24 bg-white/[0.09] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.28)] backdrop-blur-2xl transition-[background-color,border-color,transform] duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-white/62 hover:bg-white/[0.15] sm:min-h-48 sm:p-5 lg:min-h-52 xl:min-h-56 xl:p-6">
+          <div className="flex size-10 items-center justify-center rounded-full border border-white/42 bg-black/18 text-white transition duration-300 sm:size-12">
+            <Icon size={18} strokeWidth={1.35} />
           </div>
-          <h3 className="mt-5 whitespace-pre-line font-display text-lg uppercase leading-[0.92] tracking-[0.1em] text-cream sm:mt-7 sm:text-xl 2xl:text-2xl">
+          <h3 className="mt-5 whitespace-pre-line font-display text-lg uppercase leading-[0.92] tracking-[0.1em] text-white sm:mt-7 sm:text-xl 2xl:text-2xl">
             {card.title}
           </h3>
-          <p className="mt-4 whitespace-pre-line text-[0.68rem] leading-5 text-cream/62 sm:mt-5 sm:text-[0.72rem] sm:leading-6 2xl:text-[0.8rem]">
+          <p className="mt-4 whitespace-pre-line text-[0.68rem] leading-5 text-white/66 sm:mt-5 sm:text-[0.72rem] sm:leading-6 2xl:text-[0.8rem]">
             {card.text}
           </p>
         </article>
@@ -978,36 +960,6 @@ function SectionBand({ id, eyebrow, title, children }: { id?: string; eyebrow: s
   );
 }
 
-function CategoryFilter({
-  activeCategory,
-  onChange,
-  categoryLabels
-}: {
-  activeCategory: (typeof portfolioCategories)[number];
-  onChange: (category: (typeof portfolioCategories)[number]) => void;
-  categoryLabels: Record<(typeof portfolioCategories)[number], string>;
-}) {
-  return (
-    <div className="flex gap-2 overflow-x-auto pb-2">
-      {portfolioCategories.map((category) => (
-        <button
-          key={category}
-          type="button"
-          className={cn(
-            "shrink-0 border px-4 py-2 text-[0.66rem] uppercase tracking-[0.22em] transition duration-300",
-            activeCategory === category
-              ? "border-champagne bg-champagne text-warm-black"
-              : "border-cream/14 text-cream/58 hover:border-champagne hover:text-champagne"
-          )}
-          onClick={() => onChange(category)}
-        >
-          {categoryLabels[category]}
-        </button>
-      ))}
-    </div>
-  );
-}
-
 function PortfolioCard({ item, index }: { item: PortfolioItem; index: number }) {
   const ratioClass = item.ratio === "portrait" ? "aspect-[4/5]" : item.ratio === "landscape" ? "aspect-[5/3]" : "aspect-square";
 
@@ -1029,10 +981,10 @@ function PortfolioCard({ item, index }: { item: PortfolioItem; index: number }) 
       ) : (
         <Image src={item.src} alt={item.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-[1400ms] group-hover:scale-105 group-hover:blur-[1px]" />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-warm-black/94 via-warm-black/32 to-transparent opacity-[0.82] transition duration-500 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/94 via-black/32 to-transparent opacity-[0.82] transition duration-500 group-hover:opacity-100" />
       <div className="absolute bottom-6 left-6 right-6 translate-y-3 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-        <p className="text-[0.64rem] uppercase tracking-[0.28em] text-champagne drop-shadow-[0_2px_12px_rgba(0,0,0,0.78)]">{item.category}</p>
-        <h3 className="mt-2 font-display text-3xl uppercase tracking-[0.1em] text-cream drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">{item.title}</h3>
+        <p className="text-[0.64rem] uppercase tracking-[0.28em] text-white/68 drop-shadow-[0_2px_12px_rgba(0,0,0,0.78)]">{item.category}</p>
+        <h3 className="mt-2 font-display text-3xl uppercase tracking-[0.1em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">{item.title}</h3>
       </div>
     </motion.article>
   );

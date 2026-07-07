@@ -17,7 +17,7 @@ export function Section({ eyebrow, title, children, className, contentClassName 
           <div className="mb-10 max-w-3xl">
             {eyebrow && <p className="mb-4 text-xs uppercase tracking-luxe text-gold">{eyebrow}</p>}
             {title && (
-              <h2 className="font-display text-4xl uppercase leading-none tracking-wider text-ivory sm:text-5xl lg:text-6xl">
+              <h2 className="font-display text-4xl uppercase leading-none tracking-wider text-ink sm:text-5xl lg:text-6xl">
                 {title}
               </h2>
             )}

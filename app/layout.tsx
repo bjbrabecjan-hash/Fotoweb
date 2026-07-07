@@ -29,7 +29,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Hana Brabcová",
-  description: "Beauty fotografie, rodinné focení, portréty, brand content, reels a vizuální storytelling.",
+  description: "Přirozené rodinné, těhotenské a newborn focení v Moravskoslezském kraji.",
   url: "https://hana-brabcova.vercel.app",
   image: "https://hana-brabcova.vercel.app/assets/about/hana-owner-portrait.png",
   email: "fotohanabrabcova@gmail.com",
@@ -43,33 +43,29 @@ const structuredData = {
     "@type": "Person",
     name: "Hana Brabcová"
   },
-  serviceType: ["Beauty fotografie", "Rodinné focení", "Těhotenské focení", "Newborn focení", "Portrétní fotografie", "Brand content", "Reels", "Salonní fotografie"]
+  serviceType: ["Rodinné focení", "Těhotenské focení", "Newborn focení", "Focení dětí a sourozenců"]
 };
 
 export const metadata: Metadata = {
   title: {
-    default: "Hana Brabcová | Fotografie pro značky, portréty a rodiny",
+    default: "Hana Brabcová | Přirozené rodinné focení",
     template: "%s | Hana Brabcová"
   },
   description:
-    "Hana Brabcová tvoří beauty fotografii, rodinné focení, těhotenské a newborn focení, portréty, brand content, reels a vizuální storytelling v Moravskoslezském kraji a okolí.",
+    "Hana Brabcová fotografuje rodiny, těhotenství, miminka, děti a sourozence přirozeně a bez strojených póz v Moravskoslezském kraji a okolí.",
   metadataBase: new URL("https://hana-brabcova.vercel.app"),
   applicationName: "Hana Brabcová",
   keywords: [
     "Hana Brabcová",
-    "beauty fotografie",
     "rodinné focení",
     "rodinná fotografka",
     "těhotenské focení",
     "newborn focení",
-    "portrétní focení",
-    "brand content",
     "fotografka Ostrava",
     "fotografka Moravskoslezský kraj",
-    "salon fotografie",
-    "reels pro salony",
-    "kosmetické značky",
-    "vlasový styling fotografie"
+    "focení dětí",
+    "focení sourozenců",
+    "rodinný příběh"
   ],
   authors: [{ name: "Hana Brabcová" }],
   creator: "Hana Brabcová",
@@ -78,8 +74,8 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Hana Brabcová | Fotografie pro značky, portréty a rodiny",
-    description: "Beauty fotografie, rodinné focení, portréty, reels a vizuální obsah pro značky i osobní příběhy.",
+    title: "Hana Brabcová | Přirozené rodinné focení",
+    description: "Rodinné, těhotenské a newborn focení plné skutečných emocí v Moravskoslezském kraji.",
     url: "/",
     siteName: "Hana Brabcová",
     images: [
@@ -95,8 +91,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hana Brabcová | Fotografie pro značky, portréty a rodiny",
-    description: "Beauty fotografie, rodinné focení, portréty, reels a vizuální storytelling.",
+    title: "Hana Brabcová | Přirozené rodinné focení",
+    description: "Rodinné, těhotenské a newborn focení plné skutečných emocí.",
     images: ["/assets/about/hana-owner-portrait.png"]
   },
   robots: {

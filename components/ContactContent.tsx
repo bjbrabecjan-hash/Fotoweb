@@ -17,7 +17,7 @@ export function ContactContent() {
       <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <p className="mb-5 text-xs uppercase tracking-luxe text-gold">{t.contact.eyebrow}</p>
-          <h1 className="font-display text-5xl uppercase leading-none tracking-wider text-ivory sm:text-7xl lg:text-8xl">
+          <h1 className="font-display text-5xl uppercase leading-none tracking-wider text-ink sm:text-7xl lg:text-8xl">
             {t.contact.title}
           </h1>
           <p className="mt-8 max-w-xl text-base leading-8 text-ash">{t.contact.text}</p>
@@ -58,13 +58,13 @@ export function ContactContent() {
           action={`mailto:${email}?subject=Poptavka%20z%20webu%20Hana%20Brabcova`}
           method="post"
           encType="text/plain"
-          className="border border-white/10 bg-white/[0.025] p-6 sm:p-8"
+          className="border border-ink/10 bg-white/62 p-6 shadow-[0_24px_80px_rgba(38,37,34,0.07)] sm:p-8"
         >
           <div className="grid gap-6">
             <label className="grid gap-3 text-xs uppercase tracking-luxe text-gold">
               {t.contact.name}
               <input
-                className="h-12 border border-white/10 bg-ink px-4 text-sm normal-case tracking-normal text-ivory outline-none transition focus:border-gold"
+                className="h-12 border border-ink/12 bg-white px-4 text-sm normal-case tracking-normal text-ink outline-none transition focus:border-gold"
                 name="name"
                 autoComplete="name"
               />
@@ -72,7 +72,7 @@ export function ContactContent() {
             <label className="grid gap-3 text-xs uppercase tracking-luxe text-gold">
               {t.contact.email}
               <input
-                className="h-12 border border-white/10 bg-ink px-4 text-sm normal-case tracking-normal text-ivory outline-none transition focus:border-gold"
+                className="h-12 border border-ink/12 bg-white px-4 text-sm normal-case tracking-normal text-ink outline-none transition focus:border-gold"
                 type="email"
                 name="email"
                 autoComplete="email"
@@ -81,7 +81,7 @@ export function ContactContent() {
             <label className="grid gap-3 text-xs uppercase tracking-luxe text-gold">
               {t.contact.project}
               <textarea
-                className="min-h-36 resize-y border border-white/10 bg-ink px-4 py-3 text-sm normal-case tracking-normal text-ivory outline-none transition focus:border-gold"
+                className="min-h-36 resize-y border border-ink/12 bg-white px-4 py-3 text-sm normal-case tracking-normal text-ink outline-none transition focus:border-gold"
                 name="message"
               />
             </label>

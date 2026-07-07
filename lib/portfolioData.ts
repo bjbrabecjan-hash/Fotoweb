@@ -1,4 +1,4 @@
-export type PortfolioCategory = "Beauty" | "Hair" | "Salon" | "Family";
+export type PortfolioCategory = "Family";
 
 export type PortfolioItem = {
   id: string;
@@ -10,22 +10,16 @@ export type PortfolioItem = {
   ratio: "portrait" | "landscape" | "square";
 };
 
-export const portfolioCategories: Array<"All" | PortfolioCategory> = [
-  "All",
-  "Beauty",
-  "Hair",
-  "Salon",
-  "Family"
-];
+export const portfolioCategories: Array<"All" | PortfolioCategory> = ["All", "Family"];
 
 export const fallbackPortfolioItems: PortfolioItem[] = [
   {
-    id: "hair-hana-story",
-    title: "Hana Hair Story",
-    category: "Hair",
+    id: "family-forest",
+    title: "Rodinný příběh",
+    category: "Family",
     type: "image",
-    src: "/assets/portfolio/hair/hana-hair-story.jpg",
-    alt: "Cinematic brunette hair visual story",
-    ratio: "landscape"
+    src: "/assets/portfolio/family/01-family-forest-portrait.jpg",
+    alt: "Přirozený rodinný portrét od Hany Brabcové",
+    ratio: "portrait"
   }
 ];

@@ -45,7 +45,7 @@ export function GalleryGrid({ items, categories: categoryOptions = categories, f
               key={item}
               className={cn(
                 "shrink-0 border px-4 py-2 text-[0.68rem] uppercase tracking-luxe transition",
-                category === item ? "border-gold bg-gold text-ink" : "border-white/12 text-ash hover:border-gold hover:text-gold"
+                category === item ? "border-gold bg-gold text-white" : "border-ink/14 text-ash hover:border-gold hover:text-gold"
               )}
               onClick={() => setCategory(item)}
             >
@@ -78,10 +78,10 @@ export function GalleryGrid({ items, categories: categoryOptions = categories, f
             />
             <span className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/24 to-transparent opacity-[0.82] transition group-hover:opacity-100" />
             <span className="absolute bottom-5 left-5 right-5 translate-y-3 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              <span className="block text-[0.65rem] uppercase tracking-luxe text-gold drop-shadow-[0_2px_12px_rgba(0,0,0,0.78)]">
+              <span className="block text-[0.65rem] uppercase tracking-luxe text-white/70 drop-shadow-[0_2px_12px_rgba(0,0,0,0.78)]">
                 {t.portfolio.categories[item.category] ?? item.category}
               </span>
-              <span className="mt-1 block font-display text-2xl uppercase tracking-wider text-ivory drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">{item.title}</span>
+              <span className="mt-1 block font-display text-2xl uppercase tracking-wider text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.82)]">{item.title}</span>
             </span>
           </motion.button>
         ))}

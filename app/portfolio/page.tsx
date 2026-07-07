@@ -4,7 +4,7 @@ import { getPortfolioItems } from "@/lib/portfolioItems";
 export const metadata = {
   title: "Portfolio | Hana Brabcová",
   description:
-    "Portfolio beauty fotografie, rodinného focení, vlasového stylingu, salonního obsahu a prémiových vizuálů od Hany Brabcové."
+    "Portfolio přirozeného rodinného, těhotenského a newborn focení od Hany Brabcové v Moravskoslezském kraji."
 };
 
 export default function PortfolioPage() {

@@ -84,9 +84,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       homeLabel: "Hana Brabcová home"
     },
     hero: {
-      eyebrow: "Photography for brands, portraits and families",
+      eyebrow: "Natural family photography",
       cta: "View portfolio",
-      text: "Cinematic photography, short-form visuals, polished brand stories, natural portraits, and family sessions with feeling."
+      text: "Maternity, newborn, children and family sessions that preserve real emotion without stiff posing."
     },
     home: {
       featuredEyebrow: "Featured work",
@@ -94,58 +94,53 @@ export const dictionaries: Record<Locale, Dictionary> = {
       aboutEyebrow: "About Hana",
       aboutTitle: "Photography with editorial restraint",
       aboutText:
-        "Hana Brabcová creates polished photo and video content for beauty brands, entrepreneurs and families who want images to feel elevated, tactile and honest. Her work balances clean composition with soft cinematic light.",
+        "Hana Brabcová photographs pregnancy, babies, children and families with a gentle approach, soft light and space for real connection.",
       aboutCta: "Meet Hana",
       servicesEyebrow: "Services",
-      servicesTitle: "Made for brands, portraits and families",
+      servicesTitle: "For every stage of your family story",
       services: [
         {
-          title: "Photo & Video Content",
-          text: "Campaign imagery, launch assets, reels, portraits and refined details shaped for a polished presence."
+          title: "Maternity",
+          text: "A calm and sensitive record of anticipation and the beginning of a new family chapter."
         },
         {
-          title: "Family Photography",
-          text: "Natural outdoor and lifestyle sessions for families, children and moments that should stay close."
+          title: "Newborn & Babies",
+          text: "First months photographed naturally at home or outside, following your family's rhythm."
         },
         {
-          title: "Brand & Personal Storytelling",
-          text: "Editorial direction that makes products, services and people feel cinematic, clear and memorable."
+          title: "Families & Children",
+          text: "Laughter, movement and closeness without pressure, stress or forced posing."
         }
       ],
       ctaEyebrow: "Now booking",
-      ctaTitle: "Create a visual world your clients can feel",
-      ctaButton: "Start a project"
+      ctaTitle: "Keep the moments that change too quickly",
+      ctaButton: "Book a session"
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Hair, cosmetics, salons, families",
-      text: "A focused selection of cinematic content for beauty campaigns, social launches, salon identities, family portraits, and editorial moments.",
+      title: "Families, maternity, babies and children",
+      text: "A selection of natural family stories photographed with sensitivity, soft light and attention to real emotion.",
       categories: {
         All: "All",
-        Beauty: "Beauty",
-        Hair: "Hair",
-        Salon: "Salon",
-        Family: "Family",
-        Cosmetics: "Cosmetics",
-        Editorial: "Editorial"
+        Family: "Family"
       }
     },
     about: {
       eyebrow: "About",
-      text: "Hana builds visual stories through polished photography, short-form video, and precise direction. Her approach is minimal, elegant, and equally attentive to beauty brands, portraits and family moments.",
-      ownerRole: "Owner & visual director",
+      text: "Hana photographs family stories through real moments, soft light and gentle guidance. Her approach is calm, natural and sensitive to children and every family stage.",
+      ownerRole: "Family photographer",
       directionEyebrow: "Direction",
-      directionTitle: "Emotion without noise",
+      directionTitle: "Real emotion without pressure",
       directionText:
-        "Every frame is planned around light, texture, touch and expression, so a salon, product, portrait or family story feels considered before a viewer reads a single caption.",
-      values: ["Quiet emotion", "Soft cinematic light", "Human-first composition", "Social-ready delivery"],
-      ctaTitle: "Let the story feel considered from the first glance",
+        "The session follows your family's rhythm. Children can play, adults can breathe and the photographs emerge from touch, glances, movement and closeness.",
+      values: ["Real emotion", "Soft natural light", "Gentle guidance", "Timeless editing"],
+      ctaTitle: "Let your family story stay close",
       ctaButton: "Contact"
     },
     contact: {
       eyebrow: "Contact",
-      title: "Start a visual story",
-      text: "Share the brand, salon, portrait session, family shoot or launch you are shaping. Hana will respond with availability and the right visual format for your goals.",
+      title: "Let's preserve your story",
+      text: "Tell me which family stage you would like to capture. Together we will choose the right session, place and date.",
       location: "Moravian-Silesian Region and nearby areas",
       name: "Name",
       email: "Email",
@@ -171,9 +166,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       homeLabel: "Domů Hana Brabcová"
     },
     hero: {
-      eyebrow: "Fotografie pro značky, portréty a rodiny",
+      eyebrow: "Přirozené rodinné focení",
       cta: "Zobrazit portfolio",
-      text: "Cinematická fotografie, krátká videa, promyšlené brand příběhy, přirozené portréty a rodinné focení s atmosférou."
+      text: "Těhotenství, miminka, děti a rodinné chvíle zachycené s opravdovou emocí a bez strojených póz."
     },
     home: {
       featuredEyebrow: "Vybrané práce",
@@ -181,58 +176,53 @@ export const dictionaries: Record<Locale, Dictionary> = {
       aboutEyebrow: "O Haně",
       aboutTitle: "Fotografie s elegancí a klidem",
       aboutText:
-        "Hana Brabcová tvoří promyšlený foto a video obsah pro beauty značky, podnikatele i rodiny, které chtějí snímky s atmosférou, citem a profesionálním dojmem.",
+        "Hana Brabcová fotografuje těhotenství, miminka, děti a rodiny jemně, v přirozeném světle a s prostorem pro skutečnou blízkost.",
       aboutCta: "Poznat Hanu",
       servicesEyebrow: "Služby",
-      servicesTitle: "Tvořeno pro značky, portréty a rodiny",
+      servicesTitle: "Pro každou etapu vašeho rodinného příběhu",
       services: [
         {
-          title: "Foto & Video Content",
-          text: "Kampaňové vizuály, launch obsah, reels, portréty a detaily navržené pro kultivovanou prezentaci."
+          title: "Těhotenské focení",
+          text: "Klidná a citlivá vzpomínka na očekávání a začátek nové rodinné etapy."
         },
         {
-          title: "Rodinné focení",
-          text: "Přirozené venkovní a lifestyle focení pro rodiny, děti a momenty, které mají zůstat blízko."
+          title: "Newborn a miminka",
+          text: "První měsíce zachycené přirozeně doma nebo venku, v rytmu vaší rodiny."
         },
         {
-          title: "Brand & osobní storytelling",
-          text: "Editorial direction, díky kterému produkty, služby i lidé působí cinematicky, jasně a zapamatovatelně."
+          title: "Rodiny a děti",
+          text: "Smích, pohyb a blízkost bez tlaku, stresu a vynucených póz."
         }
       ],
       ctaEyebrow: "Volné termíny",
-      ctaTitle: "Vytvořte vizuální svět, který klienti ucítí",
-      ctaButton: "Začít projekt"
+      ctaTitle: "Uchovejte chvíle, které se mění příliš rychle",
+      ctaButton: "Rezervovat focení"
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Vlasy, kosmetika, salony, rodiny",
-      text: "Výběr cinematického obsahu pro beauty kampaně, sociální sítě, salonní identity, rodinné portréty a editorial momenty.",
+      title: "Rodiny, těhotenství, miminka a děti",
+      text: "Výběr přirozených rodinných příběhů fotografovaných s citem, jemným světlem a důrazem na opravdové emoce.",
       categories: {
         All: "Vše",
-        Beauty: "Beauty",
-        Hair: "Vlasy",
-        Salon: "Salon",
-        Family: "Rodina",
-        Cosmetics: "Kosmetika",
-        Editorial: "Editorial"
+        Family: "Rodina"
       }
     },
     about: {
       eyebrow: "O mně",
-      text: "Hana tvoří vizuální příběhy skrze prémiovou fotografii, krátké video a přesné vedení focení. Její přístup je minimalistický, elegantní a stejně citlivý k beauty značkám, portrétům i rodinným momentům.",
-      ownerRole: "Majitelka webu",
+      text: "Hana zachycuje rodinné příběhy skrze skutečné momenty, jemné světlo a citlivé vedení. Její přístup je klidný, přirozený a respektuje děti i každou rodinnou etapu.",
+      ownerRole: "Rodinná fotografka",
       directionEyebrow: "Směr",
-      directionTitle: "Emoce bez zbytečného hluku",
+      directionTitle: "Skutečné emoce bez tlaku",
       directionText:
-        "Každý záběr vzniká s důrazem na světlo, texturu, dotek a výraz, aby salon, produkt, portrét nebo rodinný příběh působil promyšleně ještě před první přečtenou větou.",
-      values: ["Tichá emoce", "Jemné cinematické světlo", "Kompozice zaměřená na člověka", "Obsah připravený pro sítě"],
-      ctaTitle: "Ať příběh působí promyšleně od prvního pohledu",
+        "Focení se přizpůsobuje rytmu vaší rodiny. Děti si mohou hrát, dospělí vydechnout a fotografie vznikají z doteků, pohledů, pohybu a blízkosti.",
+      values: ["Opravdové emoce", "Jemné přirozené světlo", "Citlivé vedení", "Nadčasové úpravy"],
+      ctaTitle: "Ať váš rodinný příběh zůstane nablízku",
       ctaButton: "Kontakt"
     },
     contact: {
       eyebrow: "Kontakt",
-      title: "Začněme vizuální příběh",
-      text: "Napište značku, salon, portrét, rodinné focení nebo launch, který připravujete. Hana se ozve s dostupností a vhodným vizuálním formátem pro vaše cíle.",
+      title: "Uchovejme váš příběh",
+      text: "Napište mi, kterou rodinnou etapu chcete zachytit. Společně vybereme vhodné focení, místo a termín.",
       location: "Moravskoslezský kraj a okolí",
       name: "Jméno",
       email: "Email",
