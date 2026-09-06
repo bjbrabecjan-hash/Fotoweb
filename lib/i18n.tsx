@@ -10,6 +10,7 @@ type Dictionary = {
     instagram: string;
     facebook: string;
     portfolio: string;
+    pricing: string;
     services: string;
     process: string;
     about: string;
@@ -76,6 +77,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       instagram: "Instagram",
       facebook: "Facebook",
       portfolio: "Portfolio",
+      pricing: "Pricing",
       services: "Services",
       process: "Process",
       about: "About",
@@ -158,6 +160,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       instagram: "Instagram",
       facebook: "Facebook",
       portfolio: "Portfolio",
+      pricing: "Ceník",
       services: "Služby",
       process: "Proces",
       about: "O mně",
@@ -258,6 +261,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLocaleState(nextLocale);
     window.localStorage.setItem("hana-locale", nextLocale);
   }
+
+  useEffect(() => {
+    document.documentElement.lang = locale === "cz" ? "cs" : "en";
+  }, [locale]);
 
   const value = useMemo(() => ({ locale, setLocale, t: dictionaries[locale] }), [locale]);
 

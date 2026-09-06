@@ -12,11 +12,11 @@ const config: Config = {
         ink: "#262522",
         ivory: "#F7F4EE",
         ash: "#67665F",
-        gold: "#7C8975",
+        gold: "#5D6956",
         charcoal: "#E9E5DC",
         "emerald-deep": "#FFFDFC",
         "warm-black": "#F7F4EE",
-        champagne: "#7C8975",
+        champagne: "#5D6956",
         beige: "#CDAFA7",
         cream: "#262522"
       },

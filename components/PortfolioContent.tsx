@@ -9,7 +9,9 @@ export function PortfolioContent({ portfolioItems }: { portfolioItems?: Portfoli
   const { t } = useLanguage();
 
   return (
-    <Section className="pt-32 lg:pt-40" eyebrow={t.portfolio.eyebrow} title={t.portfolio.title}>
+    <Section className="pt-32 lg:pt-40">
+      <p className="mb-4 text-xs uppercase tracking-luxe text-gold">{t.portfolio.eyebrow}</p>
+      <h1 className="font-display text-5xl uppercase leading-none tracking-wider text-ink sm:text-7xl">{t.portfolio.title}</h1>
       <p className="mb-12 max-w-2xl text-base leading-8 text-ash">{t.portfolio.text}</p>
       <GalleryGrid items={portfolioItems ?? []} />
     </Section>

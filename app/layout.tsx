@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Parisienne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { ExperienceProvider } from "@/lib/experience";
 import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
@@ -113,13 +112,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <ExperienceProvider>
-          <LanguageProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </LanguageProvider>
-        </ExperienceProvider>
+        <LanguageProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
