@@ -1,4 +1,4 @@
-export const packageIds = ["mini", "full", "story-3", "story-5"] as const;
+export const packageIds = ["family-mini", "family-standard", "wedding-ceremony", "wedding-half-day", "wedding-full-day", "christmas-2026"] as const;
 export type PackageId = (typeof packageIds)[number];
 
 export function isPackageId(value: unknown): value is PackageId {
@@ -6,8 +6,10 @@ export function isPackageId(value: unknown): value is PackageId {
 }
 
 export const packageLabels: Record<PackageId, { cz: string; en: string }> = {
-  mini: { cz: "Mini – 5 900 Kč", en: "Mini – CZK 5,900" },
-  full: { cz: "Full – 8 500 Kč", en: "Full – CZK 8,500" },
-  "story-3": { cz: "Rodinný příběh – 3 focení od 15 900 Kč", en: "Family Story – 3 sessions from CZK 15,900" },
-  "story-5": { cz: "Rodinný příběh – 5 focení od 24 900 Kč", en: "Family Story – 5 sessions from CZK 24,900" }
+  "family-mini": { cz: "Rodinné focení – Mini, 2 600 Kč", en: "Family session – Mini, CZK 2,600" },
+  "family-standard": { cz: "Rodinné focení – Standardní, 3 800 Kč", en: "Family session – Standard, CZK 3,800" },
+  "wedding-ceremony": { cz: "Svatba – Obřad, 5 900 Kč", en: "Wedding – Ceremony, CZK 5,900" },
+  "wedding-half-day": { cz: "Svatba – Půl dne, 10 900 Kč", en: "Wedding – Half day, CZK 10,900" },
+  "wedding-full-day": { cz: "Svatba – Celý den, 19 900 Kč", en: "Wedding – Full day, CZK 19,900" },
+  "christmas-2026": { cz: "Vánoční focení 2026 – předprodej", en: "Christmas sessions 2026 – presale" }
 };

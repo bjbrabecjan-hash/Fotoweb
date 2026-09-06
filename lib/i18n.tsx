@@ -142,7 +142,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     contact: {
       eyebrow: "Contact",
       title: "Let's preserve your story",
-      text: "Tell me which family stage you would like to capture. Together we will choose the right session, place and date.",
+      text: "Tell me whether you are planning a family, wedding or seasonal session. Together we will choose the right package, place and date.",
       location: "Moravian-Silesian Region and nearby areas",
       name: "Name",
       email: "Email",
@@ -225,7 +225,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     contact: {
       eyebrow: "Kontakt",
       title: "Uchovejme váš příběh",
-      text: "Napište mi, kterou rodinnou etapu chcete zachytit. Společně vybereme vhodné focení, místo a termín.",
+      text: "Napište mi, zda plánujete rodinné, svatební nebo sezonní focení. Společně vybereme vhodný balíček, místo a termín.",
       location: "Moravskoslezský kraj a okolí",
       name: "Jméno",
       email: "Email",

@@ -10,22 +10,32 @@ import type { PortfolioItem } from "@/lib/portfolioData";
 import { useLanguage } from "@/lib/i18n";
 
 type HomeExperienceProps = { portfolioItems: PortfolioItem[] };
-const selectedIndexes = [0, 1, 3, 5, 12, 16, 19, 24];
+// Keep the homepage edit visually consistent: every selected frame is portrait,
+// so a landscape image can no longer leave an empty half-row beside it.
+const selectedIndexes = [0, 3, 5, 6, 7, 18, 21, 27, 30];
 
 const copy = {
   cz: {
     heroTitle: "Přirozené rodinné focení v Moravsko­slezském kraji",
     heroText: "Zachytím těhotenství, první měsíce s miminkem i společné chvíle vaší rodiny. V klidu, bez strojených póz a s prostorem pro děti.",
-    inquiry: "Poptat termín", photos: "Prohlédnout fotografie", from: "Focení od 5 900 Kč",
+    inquiry: "Poptat termín", photos: "Prohlédnout fotografie", from: "Rodinné focení od 2 600 Kč",
     selected: "Vybrané příběhy", selectedTitle: "Skutečné chvíle, které zůstanou", wholePortfolio: "Prohlédnout celé portfolio",
     services: "Typy focení", servicesTitle: "Pro každou etapu vaší rodiny",
     serviceItems: [["Těhotenské focení", "Jemná vzpomínka na očekávání a období před příchodem miminka."], ["Newborn a miminka", "První měsíce doma nebo venku, v klidném rytmu vaší rodiny."], ["Rodinné focení", "Společné chvíle, smích a blízkost bez nucených póz."], ["Děti a sourozenci", "Hravé portréty s prostorem pro pohyb a skutečnou povahu dětí."]],
-    pricing: "Ceník", pricingTitle: "Vyberte si rozsah focení", ask: "Poptat",
-    plans: [
-      { id: "mini", name: "Mini", price: "5 900 Kč", text: "Pro rychlé zachycení krásného období.", features: ["Focení cca 45–60 min", "20 upravených fotografií", "Online galerie", "1 krátké video na památku"], note: "Ideální pro těhotenské, děti a menší rodinné focení." },
-      { id: "full", name: "Full", price: "8 500 Kč", text: "Více emocí, více prostoru, více příběhu.", features: ["Focení cca 60–90 min", "40 upravených fotografií", "Online galerie", "3 krátká videa"], note: "Ideální pro větší rodiny, více kombinací a kompletní příběh." }
+    pricing: "Ceník", pricingTitle: "Vyberte si focení, které vám sedí", familyPricing: "Rodinné focení", weddingPricing: "Svatební balíčky", ask: "Poptat",
+    familyPlans: [
+      { id: "family-mini", name: "Mini balíček", price: "2 600 Kč", text: "Přirozené rodinné focení v ateliéru nebo venku.", features: ["10 profesionálně upravených fotografií", "1 lokalita – ateliér nebo exteriér", "Focení cca 60 minut"], note: "Ideální pro menší rodiny." },
+      { id: "family-standard", name: "Standardní balíček", price: "3 800 Kč", text: "Více času, míst i společných kombinací.", features: ["20+ upravených fotografií – všechny povedené z focení", "2 lokality, například město + příroda", "Focení cca 90–120 minut"], note: "Skvělé pro větší rodiny a příběhy, které si zaslouží víc." }
     ],
-    year: "Rodinný příběh – fotíme spolu celý rok", yearOptions: ["3 focení od 15 900 Kč, například těhotenství + miminko + rodina", "5 focení od 24 900 Kč, kompletní příběh prvního roku dítěte"], yearNote: "Výhodnější cena, jistota termínů, jeden styl a jeden fotograf, který už vaši rodinu zná.",
+    weddingPlans: [
+      { id: "wedding-ceremony", name: "Obřad", price: "5 900 Kč", text: "Až 3 hodiny", features: ["Obřad, gratulace a skupinové fotografie", "Uvolněné novomanželské portréty", "Minimálně 100 upravených fotografií", "Soukromá online galerie"], note: "To nejdůležitější v kratším čase." },
+      { id: "wedding-half-day", name: "Půl dne", price: "10 900 Kč", text: "6 hodin", features: ["Přípravy, obřad a začátek hostiny", "Skupinové i novomanželské fotografie", "Minimálně 250 upravených fotografií", "Soukromá online galerie"], note: "Kompletní začátek vašeho dne." },
+      { id: "wedding-full-day", name: "Celý den", price: "19 900 Kč", text: "12 hodin", features: ["Reportáž až po večerní zábavu", "Minimálně 550 upravených fotografií", "30 vytištěných fotografií 10 × 15 cm", "Soukromá online galerie"], note: "Váš celý příběh od rána až do noci." }
+    ],
+    weddingNote: "V ceně je předsvatební konzultace, pomoc s harmonogramem, doprava do 30 km od Suchdolu nad Odrou a první fotografie do 7 dnů. Každá další započatá hodina stojí 1 800 Kč. Termín je závazně rezervován po uhrazení zálohy.",
+    christmasTitle: "Vánoční focení 2026",
+    christmasText: "Termíny jsou již v předprodeji. Rezervujte si vánoční rodinné focení včas; podrobnosti a dostupné časy vám pošlu obratem.",
+    christmasCta: "Poptat Vánoce 2026",
     process: "Jak focení probíhá", processTitle: "Nemusíte umět pózovat", processText: "Focení vedu přirozeně a citlivě. Povídáme si, děti si hrají a já zachycuji skutečné momenty mezi vámi.",
     steps: [["01", "Domluvíme záměr", "Vybereme typ focení, místo a vhodný termín."], ["02", "Připravíme se", "Před focením probereme vše potřebné, abyste mohli přijít v klidu."], ["03", "Budeme spolu", "Bez tlaku a strojených póz. Jen vaše rodina taková, jaká je."]],
     about: "O Haně", aboutTitle: "Fotím rodinné příběhy s citem a klidem", aboutText: "Pomohu vám cítit se před objektivem přirozeně. Dávám prostor dětem, blízkosti i drobným momentům, které dělají váš příběh vaším.", aboutCta: "Poznat Hanu",
@@ -35,16 +45,24 @@ const copy = {
   en: {
     heroTitle: "Natural family photography in the Moravian-Silesian Region",
     heroText: "I photograph pregnancy, your baby's first months and time together as a family—calmly, without stiff poses and with room for children to be themselves.",
-    inquiry: "Ask about a date", photos: "View photographs", from: "Sessions from CZK 5,900",
+    inquiry: "Ask about a date", photos: "View photographs", from: "Family sessions from CZK 2,600",
     selected: "Selected stories", selectedTitle: "Real moments that stay", wholePortfolio: "View the full portfolio",
     services: "Sessions", servicesTitle: "For every stage of family life",
     serviceItems: [["Maternity", "A gentle memory of anticipation and the time before your baby arrives."], ["Newborn & babies", "The first months at home or outside, following your family's calm rhythm."], ["Family sessions", "Time together, laughter and closeness without forced poses."], ["Children & siblings", "Playful portraits with room for movement and real personality."]],
-    pricing: "Pricing", pricingTitle: "Choose your session", ask: "Ask about",
-    plans: [
-      { id: "mini", name: "Mini", price: "CZK 5,900", text: "A shorter session for a beautiful season.", features: ["Approx. 45–60 min", "20 edited photographs", "Online gallery", "1 short memory video"], note: "Ideal for maternity, children and smaller families." },
-      { id: "full", name: "Full", price: "CZK 8,500", text: "More emotion, space and story.", features: ["Approx. 60–90 min", "40 edited photographs", "Online gallery", "3 short videos"], note: "Ideal for larger families and a fuller story." }
+    pricing: "Pricing", pricingTitle: "Choose the session that suits you", familyPricing: "Family sessions", weddingPricing: "Wedding packages", ask: "Ask about",
+    familyPlans: [
+      { id: "family-mini", name: "Mini package", price: "CZK 2,600", text: "A natural family session in the studio or outdoors.", features: ["10 professionally edited photographs", "1 location – studio or outdoors", "Approx. 60 minutes"], note: "Ideal for smaller families." },
+      { id: "family-standard", name: "Standard package", price: "CZK 3,800", text: "More time, locations and family combinations.", features: ["20+ edited photographs – all successful images", "2 locations, such as town + nature", "Approx. 90–120 minutes"], note: "Great for larger families and a more complete story." }
     ],
-    year: "Family Story – a year together", yearOptions: ["3 sessions from CZK 15,900, e.g. pregnancy + baby + family", "5 sessions from CZK 24,900, your baby's complete first year"], yearNote: "Better value, secure dates, one style and a photographer who already knows your family.",
+    weddingPlans: [
+      { id: "wedding-ceremony", name: "Ceremony", price: "CZK 5,900", text: "Up to 3 hours", features: ["Ceremony, congratulations and group photographs", "Relaxed newlywed portraits", "At least 100 edited photographs", "Private online gallery"], note: "The most important moments in a shorter time." },
+      { id: "wedding-half-day", name: "Half day", price: "CZK 10,900", text: "6 hours", features: ["Preparations, ceremony and start of the reception", "Group and newlywed photographs", "At least 250 edited photographs", "Private online gallery"], note: "The complete beginning of your day." },
+      { id: "wedding-full-day", name: "Full day", price: "CZK 19,900", text: "12 hours", features: ["Coverage through the evening celebrations", "At least 550 edited photographs", "30 printed photographs, 10 × 15 cm", "Private online gallery"], note: "Your whole story, from morning until night." }
+    ],
+    weddingNote: "The price includes a pre-wedding consultation, timeline assistance, travel within 30 km of Suchdol nad Odrou and first photographs within 7 days. Each additional started hour is CZK 1,800. A date is confirmed after the booking deposit is paid.",
+    christmasTitle: "Christmas sessions 2026",
+    christmasText: "Dates are already on presale. Reserve your Christmas family session early; I will send current times and details in reply.",
+    christmasCta: "Ask about Christmas 2026",
     process: "How it works", processTitle: "You do not need to know how to pose", processText: "I guide the session gently. We talk, children play and I photograph the real moments between you.",
     steps: [["01", "We choose the direction", "We agree on the session, place and a suitable date."], ["02", "We prepare", "We cover the details beforehand so you can arrive at ease."], ["03", "We spend time together", "No pressure or stiff poses. Just your family as it is."]],
     about: "About Hana", aboutTitle: "Family stories photographed with care and calm", aboutText: "I help you feel natural in front of the camera and leave room for children, closeness and small moments that make your story yours.", aboutCta: "Meet Hana",
@@ -70,12 +88,23 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
 
     <Section eyebrow={t.selected} title={t.selectedTitle}><div id="portfolio" className="scroll-mt-28"><GalleryGrid items={selected} featured /></div><Button href="/portfolio" variant="ghost" className="mt-8">{t.wholePortfolio}<ArrowRight className="ml-2" size={16}/></Button></Section>
     <Section className="border-y border-ink/10 bg-white/50" eyebrow={t.services} title={t.servicesTitle}><div id="services" className="grid scroll-mt-28 gap-px overflow-hidden border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-4">{t.serviceItems.map(([title,text]) => <article key={title} className="bg-white p-7"><h3 className="font-display text-2xl text-ink">{title}</h3><p className="mt-4 text-sm leading-7 text-ash">{text}</p></article>)}</div></Section>
-    <Section eyebrow={t.pricing} title={t.pricingTitle}><div id="pricing" className="grid scroll-mt-28 gap-5 lg:grid-cols-2">{t.plans.map((plan) => <article key={plan.id} className="flex flex-col border border-ink/10 bg-white p-7 shadow-[0_20px_60px_rgba(38,37,34,.07)] sm:p-9"><p className="text-xs font-semibold uppercase tracking-luxe text-gold">{plan.name}</p><p className="mt-3 font-display text-5xl text-ink">{plan.price}</p><p className="mt-4 text-ash">{plan.text}</p><ul className="my-7 space-y-3">{plan.features.map((feature) => <li key={feature} className="flex gap-3 text-sm text-ink"><Check className="mt-0.5 shrink-0 text-gold" size={17}/>{feature}</li>)}</ul><p className="mb-7 text-sm leading-6 text-ash">{plan.note}</p><Button href={`/contact?package=${plan.id}`} className="mt-auto">{t.ask} {plan.name}</Button></article>)}
-      <article className="border border-gold/30 bg-[#eef0eb] p-7 lg:col-span-2 sm:p-9"><p className="text-xs font-semibold uppercase tracking-luxe text-gold">{t.story}</p><h3 className="mt-3 font-display text-4xl text-ink">{t.year}</h3><ul className="mt-6 grid gap-3 md:grid-cols-2">{t.yearOptions.map((item) => <li key={item} className="flex gap-3 text-sm leading-6 text-ink"><Check className="mt-0.5 shrink-0 text-gold" size={17}/>{item}</li>)}</ul><p className="mt-5 text-sm text-ash">{t.yearNote}</p><div className="mt-7 flex flex-wrap gap-3"><Button href="/contact?package=story-3" variant="ghost">{t.ask} 3×</Button><Button href="/contact?package=story-5" variant="ghost">{t.ask} 5×</Button></div></article>
+    <Section eyebrow={t.pricing} title={t.pricingTitle}><div id="pricing" className="scroll-mt-28">
+      <h3 className="font-display text-3xl text-ink sm:text-4xl">{t.familyPricing}</h3>
+      <div className="mt-6 grid gap-5 lg:grid-cols-2">{t.familyPlans.map((plan) => <PricingCard key={plan.id} plan={plan} ask={t.ask}/>)}</div>
+      <h3 className="mt-14 font-display text-3xl text-ink sm:text-4xl">{t.weddingPricing}</h3>
+      <div className="mt-6 grid gap-5 lg:grid-cols-3">{t.weddingPlans.map((plan) => <PricingCard key={plan.id} plan={plan} ask={t.ask}/>)}</div>
+      <p className="mt-6 border-l-2 border-gold pl-5 text-sm leading-7 text-ash">{t.weddingNote}</p>
+      <article className="mt-10 border border-gold/30 bg-[#eef0eb] p-7 sm:p-9"><p className="text-xs font-semibold uppercase tracking-luxe text-gold">2026</p><div className="mt-3 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><h3 className="font-display text-4xl text-ink">{t.christmasTitle}</h3><p className="mt-4 max-w-3xl text-sm leading-7 text-ash">{t.christmasText}</p></div><Button href="/contact?package=christmas-2026" className="shrink-0">{t.christmasCta}</Button></div></article>
     </div></Section>
     <Section className="border-y border-ink/10 bg-white/50" eyebrow={t.process} title={t.processTitle}><p className="max-w-2xl text-base leading-8 text-ash">{t.processText}</p><div id="process" className="mt-10 grid scroll-mt-28 gap-8 md:grid-cols-3">{t.steps.map(([number,title,text]) => <article key={number}><p className="font-display text-4xl text-gold">{number}</p><h3 className="mt-3 text-sm font-semibold uppercase tracking-luxe text-ink">{title}</h3><p className="mt-3 text-sm leading-7 text-ash">{text}</p></article>)}</div></Section>
     <Section><div id="about" className="grid scroll-mt-28 items-center gap-10 lg:grid-cols-[.75fr_1fr]"><div className="relative aspect-[4/5] overflow-hidden bg-charcoal"><Image src="/assets/about/hana-owner-portrait.png" alt="Hana Brabcová, rodinná fotografka" fill sizes="(min-width:1024px) 38vw, 100vw" className="object-cover object-[50%_24%]"/></div><div><p className="text-xs uppercase tracking-luxe text-gold">{t.about}</p><h2 className="mt-4 font-display text-4xl leading-none text-ink sm:text-6xl">{t.aboutTitle}</h2><p className="mt-6 text-base leading-8 text-ash">{t.aboutText}</p><Button href="/about" variant="ghost" className="mt-8">{t.aboutCta}</Button></div></div></Section>
     <Section className="border-y border-ink/10 bg-[#eef0eb]" eyebrow={t.story} title={t.storyTitle}><p className="max-w-3xl text-base leading-8 text-ash">{t.storyText}</p></Section>
     <Section><div className="flex flex-col gap-7 md:flex-row md:items-end md:justify-between"><div><h2 className="font-display text-4xl text-ink sm:text-6xl">{t.contactTitle}</h2><p className="mt-4 max-w-2xl text-ash">{t.contactText}</p></div><Button href="/contact" className="shrink-0">{t.inquiry}</Button></div></Section>
   </>;
+}
+
+type PricingPlan = { id: string; name: string; price: string; text: string; features: string[]; note: string };
+
+function PricingCard({ plan, ask }: { plan: PricingPlan; ask: string }) {
+  return <article className="flex h-full flex-col border border-ink/10 bg-white p-7 shadow-[0_20px_60px_rgba(38,37,34,.07)] sm:p-9"><p className="text-xs font-semibold uppercase tracking-luxe text-gold">{plan.name}</p><p className="mt-3 font-display text-5xl text-ink">{plan.price}</p><p className="mt-4 text-ash">{plan.text}</p><ul className="my-7 space-y-3">{plan.features.map((feature) => <li key={feature} className="flex gap-3 text-sm text-ink"><Check className="mt-0.5 shrink-0 text-gold" size={17}/>{feature}</li>)}</ul><p className="mb-7 text-sm leading-6 text-ash">{plan.note}</p><Button href={`/contact?package=${plan.id}`} className="mt-auto">{ask} {plan.name}</Button></article>;
 }
