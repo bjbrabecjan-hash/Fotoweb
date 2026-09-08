@@ -96,8 +96,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
       <div id="studio" className="scroll-mt-28">
         <div className="mb-9 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><p className="text-xs uppercase tracking-luxe text-gold">{t.studioEyebrow}</p><h2 className="mt-4 max-w-3xl font-display text-4xl leading-none text-ink sm:text-6xl">{t.studioTitle}</h2><p className="mt-5 max-w-2xl text-base leading-8 text-ash">{t.studioText}</p></div><Button href="/portfolio" variant="ghost" className="shrink-0">{t.studioCta}<ArrowRight className="ml-2" size={16}/></Button></div>
         <div className="grid gap-4 lg:grid-cols-[1.35fr_1fr]">
-          <StudioImage item={studioLandscape} className="aspect-[5/4] lg:h-full lg:min-h-[38rem]" />
-          <div className="grid grid-cols-2 gap-4">{studioPortraits.map((item) => <StudioImage key={item.id} item={item} className="aspect-[4/5]" />)}</div>
+          <StudioImage item={studioLandscape} locale={locale} className="aspect-[5/4] lg:h-full lg:min-h-[38rem]" />
+          <div className="grid grid-cols-2 gap-4">{studioPortraits.map((item) => <StudioImage key={item.id} item={item} locale={locale} className="aspect-[4/5]" />)}</div>
         </div>
       </div>
     </Section>}
@@ -123,6 +123,9 @@ function PricingCard({ plan, ask }: { plan: PricingPlan; ask: string }) {
   return <article className="flex h-full flex-col border border-ink/10 bg-white p-7 shadow-[0_20px_60px_rgba(38,37,34,.07)] sm:p-9"><p className="text-xs font-semibold uppercase tracking-luxe text-gold">{plan.name}</p><p className="mt-3 font-display text-5xl text-ink">{plan.price}</p><p className="mt-4 text-ash">{plan.text}</p><ul className="my-7 space-y-3">{plan.features.map((feature) => <li key={feature} className="flex gap-3 text-sm text-ink"><Check className="mt-0.5 shrink-0 text-gold" size={17}/>{feature}</li>)}</ul><p className="mb-7 text-sm leading-6 text-ash">{plan.note}</p><Button href={`/contact?package=${plan.id}`} className="mt-auto">{ask} {plan.name}</Button></article>;
 }
 
-function StudioImage({ item, className }: { item: PortfolioItem; className: string }) {
-  return <figure data-protected-media className={`group relative overflow-hidden bg-charcoal ${className}`}><Image src={item.src} alt={item.alt} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"/><span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/><figcaption className="absolute inset-x-5 bottom-5 font-display text-xl text-white sm:text-2xl">{item.title}</figcaption></figure>;
+function StudioImage({ item, locale, className }: { item: PortfolioItem; locale: "cz" | "en"; className: string }) {
+  const title = locale === "en" ? item.titleEn ?? item.title : item.title;
+  const alt = locale === "en" ? item.altEn ?? item.alt : item.alt;
+
+  return <figure data-protected-media className={`group relative overflow-hidden bg-charcoal ${className}`}><Image src={item.src} alt={alt} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"/><span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/><figcaption className="absolute inset-x-5 bottom-5 font-display text-xl text-white sm:text-2xl">{title}</figcaption></figure>;
 }

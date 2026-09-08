@@ -18,6 +18,8 @@ export function Lightbox({ items, index, onClose, onChange }: Props) {
   const [mounted, setMounted] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const active = index !== null ? items[index] : null;
+  const activeTitle = active ? (locale === "en" ? active.titleEn ?? active.title : active.title) : "";
+  const activeAlt = active ? (locale === "en" ? active.altEn ?? active.alt : active.alt) : "";
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export function Lightbox({ items, index, onClose, onChange }: Props) {
         else previous();
       }
       setTouchStart(null);
-    }}><Image src={active.src} alt={active.alt} fill sizes="100vw" className="object-contain" priority/></motion.div>
-    <div className="pointer-events-none absolute inset-x-16 bottom-7 text-center"><p className="text-xs uppercase tracking-luxe text-gold">{t.portfolio.categories[active.category] ?? active.category}</p><h2 className="mt-1 font-display text-xl text-white sm:text-2xl">{active.title}</h2></div>
+    }}><Image src={active.src} alt={activeAlt} fill sizes="100vw" className="object-contain" priority/></motion.div>
+    <div className="pointer-events-none absolute inset-x-16 bottom-7 text-center"><p className="text-xs uppercase tracking-luxe text-gold">{t.portfolio.categories[active.category] ?? active.category}</p><h2 className="mt-1 font-display text-xl text-white sm:text-2xl">{activeTitle}</h2></div>
   </motion.div>}</AnimatePresence>, document.body);
 }
