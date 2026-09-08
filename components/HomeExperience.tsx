@@ -20,6 +20,7 @@ const copy = {
     heroText: "Zachytím těhotenství, první měsíce s miminkem i společné chvíle vaší rodiny. V klidu, bez strojených póz a s prostorem pro děti.",
     inquiry: "Poptat termín", photos: "Prohlédnout fotografie", from: "Rodinné focení od 2 600 Kč",
     selected: "Vybrané příběhy", selectedTitle: "Skutečné chvíle, které zůstanou", wholePortfolio: "Prohlédnout celé portfolio",
+    studioEyebrow: "Ateliér", studioTitle: "Čisté světlo, klid a prostor být sami sebou", studioText: "Ateliérové focení je ideální pro nadčasové dětské a sourozenecké portréty. Bez rušivého pozadí vyniknou výrazy, blízkost i drobné detaily.", studioCta: "Prohlédnout Ateliér",
     services: "Typy focení", servicesTitle: "Pro každou etapu vaší rodiny",
     serviceItems: [["Těhotenské focení", "Jemná vzpomínka na očekávání a období před příchodem miminka."], ["Newborn a miminka", "První měsíce doma nebo venku, v klidném rytmu vaší rodiny."], ["Rodinné focení", "Společné chvíle, smích a blízkost bez nucených póz."], ["Děti a sourozenci", "Hravé portréty s prostorem pro pohyb a skutečnou povahu dětí."]],
     pricing: "Ceník", pricingTitle: "Vyberte si focení, které vám sedí", familyPricing: "Rodinné focení", weddingPricing: "Svatební balíčky", ask: "Poptat",
@@ -47,6 +48,7 @@ const copy = {
     heroText: "I photograph pregnancy, your baby's first months and time together as a family—calmly, without stiff poses and with room for children to be themselves.",
     inquiry: "Ask about a date", photos: "View photographs", from: "Family sessions from CZK 2,600",
     selected: "Selected stories", selectedTitle: "Real moments that stay", wholePortfolio: "View the full portfolio",
+    studioEyebrow: "Studio", studioTitle: "Clean light, calm and room to be yourselves", studioText: "Studio sessions are ideal for timeless portraits of children and siblings. With no distracting background, expressions, closeness and small details take centre stage.", studioCta: "View studio work",
     services: "Sessions", servicesTitle: "For every stage of family life",
     serviceItems: [["Maternity", "A gentle memory of anticipation and the time before your baby arrives."], ["Newborn & babies", "The first months at home or outside, following your family's calm rhythm."], ["Family sessions", "Time together, laughter and closeness without forced poses."], ["Children & siblings", "Playful portraits with room for movement and real personality."]],
     pricing: "Pricing", pricingTitle: "Choose the session that suits you", familyPricing: "Family sessions", weddingPricing: "Wedding packages", ask: "Ask about",
@@ -75,6 +77,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const { locale } = useLanguage();
   const t = copy[locale];
   const selected = selectedIndexes.map((index) => portfolioItems[index]).filter(Boolean);
+  const studioItems = portfolioItems.filter((item) => item.category === "Studio");
+  const studioLandscape = studioItems.find((item) => item.ratio === "landscape") ?? studioItems[0];
+  const studioPortraits = studioItems.filter((item) => item.id !== studioLandscape?.id).slice(0, 4);
 
   return <>
     <section className="relative flex min-h-[92svh] items-end overflow-hidden bg-ink pt-20 text-white lg:items-center">
@@ -87,6 +92,15 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     </section>
 
     <Section eyebrow={t.selected} title={t.selectedTitle}><div id="portfolio" className="scroll-mt-28"><GalleryGrid items={selected} featured /></div><Button href="/portfolio" variant="ghost" className="mt-8">{t.wholePortfolio}<ArrowRight className="ml-2" size={16}/></Button></Section>
+    {studioLandscape && <Section className="border-y border-ink/10 bg-[#eef0eb]">
+      <div id="studio" className="scroll-mt-28">
+        <div className="mb-9 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><p className="text-xs uppercase tracking-luxe text-gold">{t.studioEyebrow}</p><h2 className="mt-4 max-w-3xl font-display text-4xl leading-none text-ink sm:text-6xl">{t.studioTitle}</h2><p className="mt-5 max-w-2xl text-base leading-8 text-ash">{t.studioText}</p></div><Button href="/portfolio" variant="ghost" className="shrink-0">{t.studioCta}<ArrowRight className="ml-2" size={16}/></Button></div>
+        <div className="grid gap-4 lg:grid-cols-[1.35fr_1fr]">
+          <StudioImage item={studioLandscape} className="aspect-[5/4] lg:h-full lg:min-h-[38rem]" />
+          <div className="grid grid-cols-2 gap-4">{studioPortraits.map((item) => <StudioImage key={item.id} item={item} className="aspect-[4/5]" />)}</div>
+        </div>
+      </div>
+    </Section>}
     <Section className="border-y border-ink/10 bg-white/50" eyebrow={t.services} title={t.servicesTitle}><div id="services" className="grid scroll-mt-28 gap-px overflow-hidden border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-4">{t.serviceItems.map(([title,text]) => <article key={title} className="bg-white p-7"><h3 className="font-display text-2xl text-ink">{title}</h3><p className="mt-4 text-sm leading-7 text-ash">{text}</p></article>)}</div></Section>
     <Section eyebrow={t.pricing} title={t.pricingTitle}><div id="pricing" className="scroll-mt-28">
       <h3 className="font-display text-3xl text-ink sm:text-4xl">{t.familyPricing}</h3>
@@ -107,4 +121,8 @@ type PricingPlan = { id: string; name: string; price: string; text: string; feat
 
 function PricingCard({ plan, ask }: { plan: PricingPlan; ask: string }) {
   return <article className="flex h-full flex-col border border-ink/10 bg-white p-7 shadow-[0_20px_60px_rgba(38,37,34,.07)] sm:p-9"><p className="text-xs font-semibold uppercase tracking-luxe text-gold">{plan.name}</p><p className="mt-3 font-display text-5xl text-ink">{plan.price}</p><p className="mt-4 text-ash">{plan.text}</p><ul className="my-7 space-y-3">{plan.features.map((feature) => <li key={feature} className="flex gap-3 text-sm text-ink"><Check className="mt-0.5 shrink-0 text-gold" size={17}/>{feature}</li>)}</ul><p className="mb-7 text-sm leading-6 text-ash">{plan.note}</p><Button href={`/contact?package=${plan.id}`} className="mt-auto">{ask} {plan.name}</Button></article>;
+}
+
+function StudioImage({ item, className }: { item: PortfolioItem; className: string }) {
+  return <figure className={`group relative overflow-hidden bg-charcoal ${className}`}><Image src={item.src} alt={item.alt} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"/><span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/><figcaption className="absolute inset-x-5 bottom-5 font-display text-xl text-white sm:text-2xl">{item.title}</figcaption></figure>;
 }

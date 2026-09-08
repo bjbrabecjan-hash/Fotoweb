@@ -120,11 +120,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Families, maternity, babies and children",
-      text: "A selection of natural family stories photographed with sensitivity, soft light and attention to real emotion.",
+      title: "Family stories outdoors and in the studio",
+      text: "Natural family stories and timeless studio portraits, photographed with sensitivity, soft light and attention to real emotion.",
       categories: {
         All: "All",
-        Family: "Family"
+        Family: "Family",
+        Studio: "Studio"
       }
     },
     about: {
@@ -203,11 +204,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Rodiny, těhotenství, miminka a děti",
-      text: "Výběr přirozených rodinných příběhů fotografovaných s citem, jemným světlem a důrazem na opravdové emoce.",
+      title: "Rodinné příběhy venku i v ateliéru",
+      text: "Přirozené rodinné příběhy a nadčasové ateliérové portréty fotografované s citem, jemným světlem a důrazem na opravdové emoce.",
       categories: {
         All: "Vše",
-        Family: "Rodina"
+        Family: "Rodina",
+        Studio: "Ateliér"
       }
     },
     about: {
