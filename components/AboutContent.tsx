@@ -22,6 +22,7 @@ export function AboutContent() {
             <p className="mt-8 max-w-3xl text-lg leading-9 text-ash">{t.about.text}</p>
           </div>
           <motion.article
+            data-protected-media
             className="group relative aspect-[4/5] overflow-hidden border border-gold/30 bg-charcoal shadow-[0_28px_100px_rgba(0,0,0,0.36)]"
             initial={reducedMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
             whileInView={reducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}

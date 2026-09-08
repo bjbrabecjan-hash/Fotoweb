@@ -30,6 +30,14 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+img,
+video,
+[data-protected-media] {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 ::selection {
   background: rgba(124, 137, 117, 0.3);
   color: #262522;

@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter, Parisienne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { LanguageProvider } from "@/lib/i18n";
+import { PhotoProtection } from "@/components/PhotoProtection";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -108,6 +109,7 @@ export default function RootLayout({
   return (
     <html lang="cs" className={`${cormorant.variable} ${inter.variable} ${parisienne.variable}`}>
       <body className="pb-24 font-sans antialiased lg:pb-0">
+        <PhotoProtection />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
