@@ -10,7 +10,7 @@ import { useLanguage } from "@/lib/i18n";
 const email = "fotohanabrabcova@gmail.com";
 const phone = "+420734548996";
 const instagramUrl = "https://www.instagram.com/brabcovahana_content_/";
-const messengerUrl = "https://m.me/61579648302684";
+const messengerUrl = "https://www.facebook.com/profile.php?id=61569378107108";
 
 export function ContactContent({ initialPackage }: { initialPackage?: PackageId }) {
   const { t, locale } = useLanguage();
@@ -25,7 +25,7 @@ export function ContactContent({ initialPackage }: { initialPackage?: PackageId 
     instagram: "Napsat na Instagramu",
     instagramText: "Přejdete na profil, kde můžete poslat soukromou zprávu.",
     messenger: "Napsat přes Messenger",
-    messengerText: "Otevře se přímá konverzace na Facebook Messengeru.",
+    messengerText: "Otevře se facebookový profil, odkud můžete poslat zprávu.",
     phone: "Zavolat",
     phoneText: "Pokud je pro vás jednodušší domluvit se telefonicky.",
     fallback: "Pokud se e-mailový program neotevře, napište ručně na",
@@ -41,7 +41,7 @@ export function ContactContent({ initialPackage }: { initialPackage?: PackageId 
     instagram: "Message on Instagram",
     instagramText: "Opens the profile where you can send a private message.",
     messenger: "Message on Messenger",
-    messengerText: "Opens a direct conversation in Facebook Messenger.",
+    messengerText: "Opens the Facebook profile where you can send a message.",
     phone: "Call",
     phoneText: "For arranging the details by phone.",
     fallback: "If your email app does not open, write directly to",
