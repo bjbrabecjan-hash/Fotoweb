@@ -7,7 +7,7 @@ import { Section } from "@/components/Section";
 import { useLanguage } from "@/lib/i18n";
 
 export function AboutContent() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const reducedMotion = useReducedMotion();
 
   return (
@@ -31,7 +31,7 @@ export function AboutContent() {
           >
             <Image
               src="/assets/about/hana-owner-portrait.png"
-              alt="Portrait medallion of Hana Brabcova, owner of the studio"
+              alt={locale === "cz" ? "Hana Brabcová, rodinná fotografka" : "Hana Brabcová, family photographer"}
               fill
               sizes="(min-width: 1024px) 38vw, 100vw"
               className="object-cover object-[50%_24%] transition duration-[1400ms] group-hover:scale-[1.035]"
