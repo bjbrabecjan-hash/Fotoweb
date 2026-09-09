@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { homeTitle, homeDescription } from "@/lib/seo";
 import { Cormorant_Garamond, Inter, Parisienne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -28,6 +29,7 @@ const parisienne = Parisienne({
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://hana-brabcova.vercel.app/#photographer",
   name: "Hana Brabcová",
   description: "Přirozené rodinné, těhotenské a newborn focení v Moravskoslezském kraji.",
   url: "https://hana-brabcova.vercel.app",
@@ -48,11 +50,11 @@ const structuredData = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Hana Brabcová | Přirozené rodinné focení",
+    default: homeTitle,
     template: "%s | Hana Brabcová"
   },
   description:
-    "Hana Brabcová fotografuje rodiny, těhotenství, miminka, děti a sourozence přirozeně a bez strojených póz v Moravskoslezském kraji a okolí.",
+    homeDescription,
   metadataBase: new URL("https://hana-brabcova.vercel.app"),
   applicationName: "Hana Brabcová",
   keywords: [
@@ -74,7 +76,7 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Hana Brabcová | Přirozené rodinné focení",
+    title: homeTitle,
     description: "Rodinné, těhotenské a newborn focení plné skutečných emocí v Moravskoslezském kraji.",
     url: "/",
     siteName: "Hana Brabcová",
@@ -91,7 +93,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hana Brabcová | Přirozené rodinné focení",
+    title: homeTitle,
     description: "Rodinné, těhotenské a newborn focení plné skutečných emocí.",
     images: ["/assets/about/hana-owner-portrait.png"]
   },
