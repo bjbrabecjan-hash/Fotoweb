@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/Button";
 import { GalleryGrid } from "@/components/GalleryGrid";
@@ -8,6 +9,8 @@ import { Section } from "@/components/Section";
 import { heroSlides } from "@/lib/heroSlides";
 import type { PortfolioItem } from "@/lib/portfolioData";
 import { useLanguage } from "@/lib/i18n";
+
+const sessionLinks = ["/tehotenske-foceni", "/newborn-foceni", "/rodinne-foceni", "/portfolio"];
 
 type HomeExperienceProps = { portfolioItems: PortfolioItem[] };
 // Keep the homepage edit visually consistent: every selected frame is portrait,
@@ -101,7 +104,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
         </div>
       </div>
     </Section>}
-    <Section className="border-y border-ink/10 bg-white/50" eyebrow={t.services} title={t.servicesTitle}><div id="services" className="grid scroll-mt-28 gap-px overflow-hidden border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-4">{t.serviceItems.map(([title,text]) => <article key={title} className="bg-white p-7"><h3 className="font-display text-2xl text-ink">{title}</h3><p className="mt-4 text-sm leading-7 text-ash">{text}</p></article>)}</div></Section>
+    <Section className="border-y border-ink/10 bg-white/50" eyebrow={t.services} title={t.servicesTitle}><div id="services" className="grid scroll-mt-28 gap-px overflow-hidden border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-4">{t.serviceItems.map(([title,text], index) => <article key={title} className="bg-white p-7"><h3 className="font-display text-2xl text-ink"><Link href={sessionLinks[index]} className="underline decoration-ink/25 underline-offset-4 hover:decoration-ink focus-visible:outline-gold">{title}</Link></h3><p className="mt-4 text-sm leading-7 text-ash">{text}</p></article>)}</div></Section>
     <Section eyebrow={t.pricing} title={t.pricingTitle}><div id="pricing" className="scroll-mt-28">
       <h3 className="font-display text-3xl text-ink sm:text-4xl">{t.familyPricing}</h3>
       <div className="mt-6 grid gap-5 lg:grid-cols-2">{t.familyPlans.map((plan) => <PricingCard key={plan.id} plan={plan} ask={t.ask}/>)}</div>
