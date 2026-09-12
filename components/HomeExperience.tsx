@@ -6,6 +6,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/Button";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { Section } from "@/components/Section";
+import { Testimonials } from "@/components/Testimonials";
 import { heroSlides } from "@/lib/heroSlides";
 import type { PortfolioItem } from "@/lib/portfolioData";
 import { useLanguage } from "@/lib/i18n";
@@ -116,6 +117,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
     <Section className="border-y border-ink/10 bg-white/50" eyebrow={t.process} title={t.processTitle}><p className="max-w-2xl text-base leading-8 text-ash">{t.processText}</p><div id="process" className="mt-10 grid scroll-mt-28 gap-8 md:grid-cols-3">{t.steps.map(([number,title,text]) => <article key={number}><p className="font-display text-4xl text-gold">{number}</p><h3 className="mt-3 text-sm font-semibold uppercase tracking-luxe text-ink">{title}</h3><p className="mt-3 text-sm leading-7 text-ash">{text}</p></article>)}</div></Section>
     <Section><div id="about" className="grid scroll-mt-28 items-center gap-10 lg:grid-cols-[.75fr_1fr]"><div data-protected-media className="relative aspect-[4/5] overflow-hidden bg-charcoal"><Image src="/assets/about/hana-owner-portrait.png" alt="Hana Brabcová, rodinná fotografka" fill sizes="(min-width:1024px) 38vw, 100vw" className="object-cover object-[50%_24%]"/></div><div><p className="text-xs uppercase tracking-luxe text-gold">{t.about}</p><h2 className="mt-4 font-display text-4xl leading-none text-ink sm:text-6xl">{t.aboutTitle}</h2><p className="mt-6 text-base leading-8 text-ash">{t.aboutText}</p><Button href="/about" variant="ghost" className="mt-8">{t.aboutCta}</Button></div></div></Section>
     <Section className="border-y border-ink/10 bg-[#eef0eb]" eyebrow={t.story} title={t.storyTitle}><p className="max-w-3xl text-base leading-8 text-ash">{t.storyText}</p></Section>
+    <Testimonials />
     <Section><div className="flex flex-col gap-7 md:flex-row md:items-end md:justify-between"><div><h2 className="font-display text-4xl text-ink sm:text-6xl">{t.contactTitle}</h2><p className="mt-4 max-w-2xl text-ash">{t.contactText}</p></div><Button href="/contact" className="shrink-0">{t.inquiry}</Button></div></Section>
   </>;
 }
