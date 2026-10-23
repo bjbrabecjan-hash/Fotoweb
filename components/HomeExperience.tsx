@@ -84,10 +84,9 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const studioPortraits = studioItems.filter((item) => item.id !== studioLandscape?.id).slice(0, 4);
 
   return <>
-    <section data-protected-media className="relative flex min-h-[92svh] items-end overflow-hidden bg-ink pt-20 text-white lg:items-center">
-      <Image src={heroSlides[0].src} alt={heroSlides[0].alt} fill priority sizes="100vw" className="object-cover" style={{ objectPosition: heroSlides[0].focalPoint }} />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,20,18,.2)_0%,rgba(20,20,18,.78)_78%,rgba(20,20,18,.9)_100%)] lg:bg-[linear-gradient(90deg,rgba(20,20,18,.2)_0%,rgba(20,20,18,.25)_42%,rgba(20,20,18,.88)_75%,rgba(20,20,18,.95)_100%)]" />
-      <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 sm:px-8 lg:flex lg:justify-end lg:px-12 lg:pb-0"><div className="max-w-2xl rounded-sm bg-black/65 p-6 shadow-2xl backdrop-blur-sm sm:p-9">
+    <section data-protected-media className="relative grid overflow-hidden bg-ink pt-28 text-white lg:grid-cols-2">
+      <div className="relative h-[70svh] min-h-[30rem] lg:h-[85svh]"><Image src={heroSlides[0].src} alt={heroSlides[0].alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" style={{ objectPosition: heroSlides[0].focalPoint }} /></div>
+      <div className="relative flex items-center px-5 py-12 sm:px-8 lg:px-12"><div className="max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[.28em] text-white">Hana Brabcová</p><h1 className="mt-5 font-display text-5xl leading-[.94] tracking-[.02em] text-white sm:text-6xl lg:text-7xl">{t.heroTitle}</h1><p className="mt-6 max-w-xl text-base leading-8 text-white sm:text-lg">{t.heroText}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button href="/contact">{t.inquiry}</Button><Button href="#portfolio" variant="ghost" className="border-white/70 bg-black/25 text-white hover:border-white hover:text-white">{t.photos}</Button></div><p className="mt-5 text-sm font-semibold text-white">{t.from}</p>
       </div></div>

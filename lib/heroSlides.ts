@@ -7,9 +7,9 @@ export type HeroSlide = {
 
 export const heroSlides: HeroSlide[] = [
   {
-    id: "child-paint-portrait",
-    src: "/assets/hero/family-child-paint-bw.jpg",
-    alt: "Černobílý hravý portrét dítěte s barvou od Hany Brabcové",
-    focalPoint: "36% center"
+    id: "portrait-books",
+    src: "/assets/hero/portrait-books.webp",
+    alt: "Portrét ženy s brýlemi a knihami před dřevěnými dveřmi",
+    focalPoint: "50% 25%"
   }
 ];
