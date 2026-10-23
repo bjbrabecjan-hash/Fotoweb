@@ -33,9 +33,8 @@ const copy = {
       { id: "family-standard", name: "Standardní balíček", price: "3 800 Kč", text: "Více času, míst i společných kombinací.", features: ["20+ upravených fotografií – všechny povedené z focení", "2 lokality, například město + příroda", "Focení cca 90–120 minut"], note: "Skvělé pro větší rodiny a příběhy, které si zaslouží víc." }
     ],
     weddingPlans: [
-      { id: "wedding-ceremony", name: "Obřad", price: "5 900 Kč", text: "Až 3 hodiny", features: ["Obřad, gratulace a skupinové fotografie", "Uvolněné novomanželské portréty", "Minimálně 100 upravených fotografií", "Soukromá online galerie"], note: "To nejdůležitější v kratším čase." },
-      { id: "wedding-half-day", name: "Půl dne", price: "10 900 Kč", text: "6 hodin", features: ["Přípravy, obřad a začátek hostiny", "Skupinové i novomanželské fotografie", "Minimálně 250 upravených fotografií", "Soukromá online galerie"], note: "Kompletní začátek vašeho dne." },
-      { id: "wedding-full-day", name: "Celý den", price: "19 900 Kč", text: "12 hodin", features: ["Reportáž až po večerní zábavu", "Minimálně 550 upravených fotografií", "30 vytištěných fotografií 10 × 15 cm", "Soukromá online galerie"], note: "Váš celý příběh od rána až do noci." }
+      { id: "wedding-half-day", name: "Půl dne", price: "15 900 Kč", text: "6 hodin", features: ["Přípravy, obřad a začátek hostiny", "Skupinové i novomanželské fotografie", "Minimálně 250 upravených fotografií", "Soukromá online galerie"], note: "Kompletní začátek vašeho dne." },
+      { id: "wedding-full-day", name: "Celý den", price: "22 000 Kč", text: "12 hodin", features: ["Reportáž až po večerní zábavu", "Minimálně 550 upravených fotografií", "30 vytištěných fotografií 10 × 15 cm", "Soukromá online galerie"], note: "Váš celý příběh od rána až do noci." }
     ],
     weddingNote: "V ceně je předsvatební konzultace, pomoc s harmonogramem, doprava do 30 km od Suchdolu nad Odrou a první fotografie do 7 dnů. Každá další započatá hodina stojí 1 800 Kč. Termín je závazně rezervován po uhrazení zálohy.",
     christmasTitle: "Vánoční focení 2026",
@@ -61,9 +60,8 @@ const copy = {
       { id: "family-standard", name: "Standard package", price: "CZK 3,800", text: "More time, locations and family combinations.", features: ["20+ edited photographs – all successful images", "2 locations, such as town + nature", "Approx. 90–120 minutes"], note: "Great for larger families and a more complete story." }
     ],
     weddingPlans: [
-      { id: "wedding-ceremony", name: "Ceremony", price: "CZK 5,900", text: "Up to 3 hours", features: ["Ceremony, congratulations and group photographs", "Relaxed newlywed portraits", "At least 100 edited photographs", "Private online gallery"], note: "The most important moments in a shorter time." },
-      { id: "wedding-half-day", name: "Half day", price: "CZK 10,900", text: "6 hours", features: ["Preparations, ceremony and start of the reception", "Group and newlywed photographs", "At least 250 edited photographs", "Private online gallery"], note: "The complete beginning of your day." },
-      { id: "wedding-full-day", name: "Full day", price: "CZK 19,900", text: "12 hours", features: ["Coverage through the evening celebrations", "At least 550 edited photographs", "30 printed photographs, 10 × 15 cm", "Private online gallery"], note: "Your whole story, from morning until night." }
+      { id: "wedding-half-day", name: "Half day", price: "CZK 15,900", text: "6 hours", features: ["Preparations, ceremony and start of the reception", "Group and newlywed photographs", "At least 250 edited photographs", "Private online gallery"], note: "The complete beginning of your day." },
+      { id: "wedding-full-day", name: "Full day", price: "CZK 22,000", text: "12 hours", features: ["Coverage through the evening celebrations", "At least 550 edited photographs", "30 printed photographs, 10 × 15 cm", "Private online gallery"], note: "Your whole story, from morning until night." }
     ],
     weddingNote: "The price includes a pre-wedding consultation, timeline assistance, travel within 30 km of Suchdol nad Odrou and first photographs within 7 days. Each additional started hour is CZK 1,800. A date is confirmed after the booking deposit is paid.",
     christmasTitle: "Christmas sessions 2026",
@@ -110,7 +108,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
       <h3 className="font-display text-3xl text-ink sm:text-4xl">{t.familyPricing}</h3>
       <div className="mt-6 grid gap-5 lg:grid-cols-2">{t.familyPlans.map((plan) => <PricingCard key={plan.id} plan={plan} ask={t.ask}/>)}</div>
       <h3 className="mt-14 font-display text-3xl text-ink sm:text-4xl">{t.weddingPricing}</h3>
-      <div className="mt-6 grid gap-5 lg:grid-cols-3">{t.weddingPlans.map((plan) => <PricingCard key={plan.id} plan={plan} ask={t.ask}/>)}</div>
+      <div className="mt-6 grid gap-5 lg:grid-cols-2">{t.weddingPlans.map((plan) => <PricingCard key={plan.id} plan={plan} ask={t.ask}/>)}</div>
       <p className="mt-6 border-l-2 border-gold pl-5 text-sm leading-7 text-ash">{t.weddingNote}</p>
       <article className="mt-10 border border-gold/30 bg-[#eef0eb] p-7 sm:p-9"><p className="text-xs font-semibold uppercase tracking-luxe text-gold">2026</p><div className="mt-3 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><h3 className="font-display text-4xl text-ink">{t.christmasTitle}</h3><p className="mt-4 max-w-3xl text-sm leading-7 text-ash">{t.christmasText}</p></div><Button href="/contact?package=christmas-2026" className="shrink-0">{t.christmasCta}</Button></div></article>
     </div></Section>
