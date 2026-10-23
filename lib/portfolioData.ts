@@ -1,4 +1,4 @@
-export type PortfolioCategory = "Family" | "Studio";
+export type PortfolioCategory = "Family" | "Studio" | "Christmas" | "Portraits";
 
 export type PortfolioItem = {
   id: string;
@@ -12,7 +12,7 @@ export type PortfolioItem = {
   ratio: "portrait" | "landscape" | "square";
 };
 
-export const portfolioCategories: Array<"All" | PortfolioCategory> = ["All", "Family", "Studio"];
+export const portfolioCategories: Array<"All" | PortfolioCategory> = ["All", "Family", "Studio", "Christmas", "Portraits"];
 
 export const fallbackPortfolioItems: PortfolioItem[] = [
   {

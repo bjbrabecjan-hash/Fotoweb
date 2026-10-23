@@ -16,7 +16,15 @@ const sessionLinks = ["/tehotenske-foceni", "/newborn-foceni", "/rodinne-foceni"
 type HomeExperienceProps = { portfolioItems: PortfolioItem[] };
 // Keep the homepage edit visually consistent: every selected frame is portrait,
 // so a landscape image can no longer leave an empty half-row beside it.
-const selectedIndexes = [0, 3, 5, 6, 7, 18, 21, 27, 30];
+const selectedIds = [
+  "family-04-baby-sun-portrait",
+  "family-06-mother-baby-portrait",
+  "family-07-family-green-portrait",
+  "family-08-mother-sons-meadow-portrait",
+  "family-22-siblings-soft-portrait",
+  "family-28-child-painted-face-portrait",
+  "family-31-woman-water-reflection-portrait"
+];
 
 const copy = {
   cz: {
@@ -78,7 +86,7 @@ const copy = {
 export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const { locale } = useLanguage();
   const t = copy[locale];
-  const selected = selectedIndexes.map((index) => portfolioItems[index]).filter(Boolean);
+  const selected = selectedIds.flatMap((id) => portfolioItems.filter((item) => item.id === id));
   const studioItems = portfolioItems.filter((item) => item.category === "Studio");
   const studioLandscape = studioItems.find((item) => item.ratio === "landscape") ?? studioItems[0];
   const studioPortraits = studioItems.filter((item) => item.id !== studioLandscape?.id).slice(0, 4);

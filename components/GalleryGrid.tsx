@@ -21,7 +21,7 @@ export function GalleryGrid({ items, categories: categoryOptions = categories, f
   const visibleItems = useMemo(() => category === "All" ? items : items.filter((item) => item.category === category), [category, items]);
 
   return <>
-    {filterable && <div className="mb-10 flex gap-2 overflow-x-auto pb-2" aria-label={locale === "cz" ? "Filtrovat portfolio" : "Filter portfolio"}>{categoryOptions.map((item) => <button key={item} type="button" className={cn("shrink-0 border px-4 py-2 text-[0.68rem] uppercase tracking-luxe transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold", category === item ? "border-gold bg-gold text-white" : "border-ink/20 text-ash hover:border-gold hover:text-gold")} onClick={() => setCategory(item)}>{t.portfolio.categories[item] ?? item}</button>)}</div>}
+    {filterable && <div className="mb-10 flex gap-2 overflow-x-auto pb-2" aria-label={locale === "cz" ? "Filtrovat portfolio" : "Filter portfolio"}>{categoryOptions.map((item) => <button key={item} type="button" className={cn("shrink-0 border px-4 py-2 text-[0.68rem] uppercase tracking-luxe transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold", category === item ? "border-gold bg-gold text-white" : "border-ink/20 text-ash hover:border-gold hover:text-gold")} aria-pressed={category === item} onClick={() => { setCategory(item); setActiveIndex(null); }}>{t.portfolio.categories[item] ?? item}</button>)}</div>}
     <div className={featured ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3" : "masonry"}>
       {visibleItems.map((item,index) => {
         const title = locale === "en" ? item.titleEn ?? item.title : item.title;
@@ -33,6 +33,7 @@ export function GalleryGrid({ items, categories: categoryOptions = categories, f
         </motion.button>;
       })}
     </div>
+    {visibleItems.length === 0 && <p role="status" className="py-12 text-center text-ash">{locale === "cz" ? "Fotografie do této kategorie brzy doplním." : "Photographs for this category are coming soon."}</p>}
     <Lightbox items={visibleItems} index={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex}/>
   </>;
 }

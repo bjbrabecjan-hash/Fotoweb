@@ -4,8 +4,13 @@ import { fallbackPortfolioItems, type PortfolioCategory, type PortfolioItem } fr
 
 const categoryFolders: Array<{ folder: string; category: PortfolioCategory; ratio: PortfolioItem["ratio"] }> = [
   { folder: "family", category: "Family", ratio: "portrait" },
-  { folder: "studio", category: "Studio", ratio: "portrait" }
+  { folder: "studio", category: "Studio", ratio: "portrait" },
+  { folder: "christmas", category: "Christmas", ratio: "portrait" },
+  { folder: "portraits", category: "Portraits", ratio: "portrait" }
 ];
+
+const hiddenFiles = new Set(["01-family-forest-portrait.jpg", "19-father-son-close-portrait.jpg"]);
+const isVisible = (item: PortfolioItem) => !hiddenFiles.has(path.basename(item.src));
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const videoExtensions = new Set([".mp4", ".webm", ".mov"]);
@@ -191,6 +196,7 @@ export function getPortfolioItems(): PortfolioItem[] {
       .readdirSync(absoluteFolder)
       .sort((a, b) => a.localeCompare(b, "cs", { numeric: true }))
       .filter((fileName) => {
+        if (hiddenFiles.has(fileName)) return false;
         const extension = path.extname(fileName).toLowerCase();
         return imageExtensions.has(extension) || videoExtensions.has(extension);
       })
@@ -215,9 +221,9 @@ export function getPortfolioItems(): PortfolioItem[] {
 
   if (discovered.length > 0) {
     const discoveredSources = new Set(discovered.map((item) => item.src));
-    const supplemental = fallbackPortfolioItems.filter((item) => !discoveredSources.has(item.src));
+    const supplemental = fallbackPortfolioItems.filter((item) => isVisible(item) && !discoveredSources.has(item.src));
     return [...discovered, ...supplemental];
   }
 
-  return fallbackPortfolioItems;
+  return fallbackPortfolioItems.filter(isVisible);
 }

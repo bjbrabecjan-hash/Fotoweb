@@ -125,7 +125,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       categories: {
         All: "All",
         Family: "Family",
-        Studio: "Studio"
+        Studio: "Studio",
+        Christmas: "Christmas sessions",
+        Portraits: "Portraits"
       }
     },
     about: {
@@ -209,7 +211,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       categories: {
         All: "Vše",
         Family: "Rodina",
-        Studio: "Ateliér"
+        Studio: "Ateliér",
+        Christmas: "Vánoční focení",
+        Portraits: "Portréty"
       }
     },
     about: {
