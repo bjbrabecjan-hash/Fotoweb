@@ -20,7 +20,8 @@ export function Navbar() {
     { href: "/#services", label: t.nav.services },
     { href: "/#process", label: t.nav.process },
     { href: "/#about", label: t.nav.about },
-    { href: "/contact", label: t.nav.contact }
+    { href: "/contact", label: t.nav.contact },
+    { href: "/obchodni-podminky", label: locale === "cz" ? "Obchodní podmínky" : "Terms & conditions" }
   ] as const;
   const mobileNavLinks = [
     { href: "/portfolio", label: t.nav.portfolio, external: false },
@@ -39,12 +40,12 @@ export function Navbar() {
       >
         <nav
           aria-label="Primary navigation"
-          className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-5 px-5 sm:px-8 lg:px-12"
+          className="mx-auto flex min-h-20 max-w-7xl flex-wrap py-3 items-center justify-between gap-5 px-5 sm:px-8 lg:px-12"
         >
           <Link href="/" className="rounded-sm font-display text-lg uppercase tracking-[0.24em] text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
             Hana Brabcová
           </Link>
-          <div className="hidden items-center gap-6 lg:flex">
+          <div className="order-last hidden w-full flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -79,6 +80,12 @@ export function Navbar() {
               {t.nav.bookSession}
             </Link>
           </div>
+          <Link
+            href="/obchodni-podminky"
+            className={cn(navLinkClasses, "order-last w-full text-center lg:hidden")}
+          >
+            {locale === "cz" ? "Obchodní podmínky" : "Terms & conditions"}
+          </Link>
         </nav>
       </motion.header>
 
