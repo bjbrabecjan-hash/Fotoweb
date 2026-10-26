@@ -15,6 +15,31 @@ const isVisible = (item: PortfolioItem) => !hiddenFiles.has(path.basename(item.s
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const videoExtensions = new Set([".mp4", ".webm", ".mov"]);
 const portfolioCopy: Record<string, { title: string; alt: string }> = {
+  "01-christmas-dsc09543-landscape.webp": {"title": "Spolu u stromečku", "alt": "Dvě dívky s dárkem u vánočního stromečku"},
+  "02-christmas-dsc09538-portrait.webp": {"title": "Vánoční překvapení", "alt": "Dívka s brýlemi drží vánoční dárek"},
+  "03-christmas-dsc09535-landscape.webp": {"title": "Společný dárek", "alt": "Dvě dívky na pohovce se společným dárkem"},
+  "04-christmas-dsc09531-portrait.webp": {"title": "Těšení na Vánoce", "alt": "Dívka v kostkovaných šatech s dárkem"},
+  "05-christmas-dsc09502-portrait.webp": {"title": "Zimní objetí", "alt": "Dvě dívky se objímají pod zasněženým obloukem"},
+  "06-christmas-dsc09495-portrait.webp": {"title": "Pod zasněženým obloukem", "alt": "Dívka v černobílých šatech pod vánočním obloukem"},
+  "07-christmas-dsc09413-portrait.webp": {"title": "Vánoční polibek", "alt": "Pár v objetí při vánočním focení"},
+  "08-christmas-dsc09404-portrait.webp": {"title": "S tátou", "alt": "Muž nese dívku na zádech pod vánočním obloukem"},
+  "09-christmas-dsc09400-portrait.webp": {"title": "Zimní úsměv", "alt": "Usmívající se dívka ve světlém oblečení"},
+  "10-christmas-dsc09380-landscape.webp": {"title": "Rodinné Vánoce", "alt": "Rodina se dvěma dětmi pod zasněženým obloukem"},
+  "11-christmas-dsc09362-landscape.webp": {"title": "Kouzlo blízkosti", "alt": "Rodina na pohovce se dívá na miminko"},
+  "12-christmas-dsc09330-portrait.webp": {"title": "Všichni pohromadě", "alt": "Rodinný vánoční portrét na pohovce"},
+  "13-christmas-dsc08926-portrait.webp": {"title": "V červeném", "alt": "Portrét dívky v červených šatech u stromečku"},
+  "14-christmas-dsc08923-portrait.webp": {"title": "Vánoční elegance", "alt": "Dívka v červených šatech s vánoční stuhou"},
+  "15-christmas-dsc08846-portrait.webp": {"title": "Ve světle stromečku", "alt": "Portrét dívky v zelených šatech u vánočních světýlek"},
+  "16-christmas-dsc08810-portrait.webp": {"title": "Bílá mašle", "alt": "Dívka s bílou mašlí ve vlasech u stromečku"},
+  "17-christmas-dsc08894-portrait.webp": {"title": "Zlatá ozdoba", "alt": "Dívka v zelených šatech natahuje ruku ke zlaté ozdobě"},
+  "18-christmas-dsc08966-landscape.webp": {"title": "Vánoční hravost", "alt": "Dívka v červených šatech si hraje s dárkem"},
+  "19-christmas-dsc01620-portrait.webp": {"title": "Červený samet", "alt": "Dívka v červených sametových šatech u stromečku"},
+  "20-christmas-dsc01614-portrait.webp": {"title": "Ozdoba v dlaních", "alt": "Dětské ruce drží červenou vánoční ozdobu"},
+  "21-christmas-dsc01611-portrait.webp": {"title": "Společná radost", "alt": "Tři dívky při hravém vánočním focení"},
+  "22-christmas-dsc01586-landscape.webp": {"title": "Kouzlo Vánoc", "alt": "Vánoční stromeček s červenými stuhami a světýlky"},
+  "23-christmas-dsc01562-landscape.webp": {"title": "Malé vánoční radosti", "alt": "Dvě malé dívky v červených šatech s dárky"},
+  "24-christmas-dsc01569-landscape.webp": {"title": "Dárek s mašlí", "alt": "Detail dětských rukou a červené mašle na dárku"},
+
   "01-family-forest-portrait.jpg": { title: "Spolu v lese", alt: "Rodina s dětmi společně stojí v lese" },
   "02-family-kiss-landscape.jpg": { title: "Rodinné objetí", alt: "Rodiče se líbají při společném rodinném focení" },
   "03-family-path-landscape.jpg": { title: "Společnou cestou", alt: "Rodina s dětmi kráčí po cestě v přírodě" },
@@ -90,6 +115,31 @@ const portfolioCopy: Record<string, { title: string; alt: string }> = {
 };
 
 const portfolioTitlesEn: Record<string, string> = {
+  "01-christmas-dsc09543-landscape.webp": "Together by the Christmas tree",
+  "02-christmas-dsc09538-portrait.webp": "Christmas surprise",
+  "03-christmas-dsc09535-landscape.webp": "A shared gift",
+  "04-christmas-dsc09531-portrait.webp": "Waiting for Christmas",
+  "05-christmas-dsc09502-portrait.webp": "Winter embrace",
+  "06-christmas-dsc09495-portrait.webp": "Under the snowy arch",
+  "07-christmas-dsc09413-portrait.webp": "Christmas kiss",
+  "08-christmas-dsc09404-portrait.webp": "With dad",
+  "09-christmas-dsc09400-portrait.webp": "Winter smile",
+  "10-christmas-dsc09380-landscape.webp": "Family Christmas",
+  "11-christmas-dsc09362-landscape.webp": "The magic of closeness",
+  "12-christmas-dsc09330-portrait.webp": "All together",
+  "13-christmas-dsc08926-portrait.webp": "In red",
+  "14-christmas-dsc08923-portrait.webp": "Christmas elegance",
+  "15-christmas-dsc08846-portrait.webp": "By the Christmas lights",
+  "16-christmas-dsc08810-portrait.webp": "A white bow",
+  "17-christmas-dsc08894-portrait.webp": "A golden ornament",
+  "18-christmas-dsc08966-landscape.webp": "Christmas playfulness",
+  "19-christmas-dsc01620-portrait.webp": "Red velvet",
+  "20-christmas-dsc01614-portrait.webp": "An ornament in little hands",
+  "21-christmas-dsc01611-portrait.webp": "Shared joy",
+  "22-christmas-dsc01586-landscape.webp": "Christmas magic",
+  "23-christmas-dsc01562-landscape.webp": "Little Christmas joys",
+  "24-christmas-dsc01569-landscape.webp": "A gift with a bow",
+
   "01-family-forest-portrait.jpg": "Together in the forest",
   "02-family-kiss-landscape.jpg": "Family embrace",
   "03-family-path-landscape.jpg": "Along the same path",
@@ -213,7 +263,7 @@ export function getPortfolioItems(): PortfolioItem[] {
           type: videoExtensions.has(extension) ? "video" : "image",
           src: `/assets/portfolio/${folder}/${fileName}`,
           alt: content.alt,
-          altEn: category === "Studio" ? "Natural studio photograph by Hana Brabcová" : "Natural family photograph by Hana Brabcová",
+          altEn: category === "Christmas" ? `Christmas photography: ${portfolioTitlesEn[fileName]}` : category === "Studio" ? "Natural studio photograph by Hana Brabcová" : "Natural family photograph by Hana Brabcová",
           ratio: ratioFromFile(fileName, ratio)
         } satisfies PortfolioItem;
       });
@@ -227,3 +277,4 @@ export function getPortfolioItems(): PortfolioItem[] {
 
   return fallbackPortfolioItems.filter(isVisible);
 }
+
