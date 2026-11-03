@@ -21,6 +21,7 @@ export function Navbar() {
     { href: "/#process", label: t.nav.process },
     { href: "/#about", label: t.nav.about },
     { href: "/contact", label: t.nav.contact },
+    { href: "/pro-klienty", label: locale === "cz" ? "Pro klienty" : "Client galleries" },
     { href: "/obchodni-podminky", label: locale === "cz" ? "Obchodní podmínky" : "Terms & conditions" }
   ] as const;
   const mobileNavLinks = [
@@ -29,6 +30,8 @@ export function Navbar() {
     { href: "/#about", label: t.nav.about, external: false },
     { href: "/contact", label: t.nav.contact, external: false }
   ] as const;
+
+  if (pathname.startsWith("/pro-klienty") || pathname.startsWith("/administrace/galerie")) return null;
 
   return (
     <>

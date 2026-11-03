@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.proofing-data
+.env*
+.DS_Store
+.agents
+.codex
+.aws
+output
+docs
+scripts
+supabase
+*.tsbuildinfo
