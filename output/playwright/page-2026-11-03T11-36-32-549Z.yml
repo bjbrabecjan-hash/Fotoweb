@@ -1,0 +1,83 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation "Primary navigation" [ref=e3]:
+      - link "Hana Brabcová" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e5]:
+        - link "Domů" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - link "Portfolio" [ref=e7] [cursor=pointer]:
+          - /url: /portfolio
+        - link "Služby" [ref=e8] [cursor=pointer]:
+          - /url: /#services
+        - link "Proces" [ref=e9] [cursor=pointer]:
+          - /url: /#process
+        - link "O mně" [ref=e10] [cursor=pointer]:
+          - /url: /#about
+        - link "Kontakt" [ref=e11] [cursor=pointer]:
+          - /url: /contact
+        - link "Pro klienty" [ref=e12] [cursor=pointer]:
+          - /url: /pro-klienty
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - button "en" [ref=e15] [cursor=pointer]
+          - button "cz" [pressed] [ref=e16] [cursor=pointer]
+        - link "Rezervovat focení" [ref=e17] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e18]:
+    - generic [ref=e20]:
+      - paragraph [ref=e21]: Chvilka po focení
+      - heading "Jak se vám líbilo focení?" [level=1] [ref=e22]
+      - paragraph [ref=e23]: Děkuji za společné chvíle před objektivem. Budu ráda za pár slov o vašem zážitku. Zároveň mi prosím dejte vědět, zda mohu fotografie a vaši recenzi sdílet.
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - text: Vaše jméno
+          - generic [ref=e26]: (povinné)
+          - textbox "Vaše jméno (povinné)" [ref=e27]
+        - generic [ref=e28]:
+          - text: Které focení?
+          - generic [ref=e29]: Nepovinné — například rodinné focení v říjnu, abych věděla, kterých fotografií se odpověď týká.
+          - textbox "Které focení? Nepovinné — například rodinné focení v říjnu, abych věděla, kterých fotografií se odpověď týká." [ref=e30]
+        - group "Zveřejnění fotografií" [ref=e31]:
+          - paragraph [ref=e33]: Souhlasím se zveřejněním fotografií z mého focení v portfoliu Hany Brabcové na jejím webu, Instagramu a Facebooku.
+          - generic [ref=e34]:
+            - generic [ref=e35] [cursor=pointer]:
+              - radio "Ano, souhlasím" [ref=e36]
+              - text: Ano, souhlasím
+            - generic [ref=e37] [cursor=pointer]:
+              - radio "Ne, nesouhlasím" [ref=e38]
+              - text: Ne, nesouhlasím
+        - generic [ref=e39]:
+          - text: Vaše recenze
+          - generic [ref=e40]: Nepovinná — co vám udělalo radost a co mohu příště zlepšit?
+          - textbox "Vaše recenze Nepovinná — co vám udělalo radost a co mohu příště zlepšit?" [ref=e41]
+        - group "Zveřejnění recenze se jménem" [ref=e42]:
+          - paragraph [ref=e44]: Souhlasím se zveřejněním mé recenze s uvedeným jménem na webu, Instagramu a Facebooku Hany Brabcové.
+          - generic [ref=e45]:
+            - generic [ref=e46] [cursor=pointer]:
+              - radio "Ano, souhlasím" [ref=e47]
+              - text: Ano, souhlasím
+            - generic [ref=e48] [cursor=pointer]:
+              - radio "Ne, nesouhlasím" [ref=e49]
+              - text: Ne, nesouhlasím
+        - paragraph [ref=e50]:
+          - text: Obě rozhodnutí jsou samostatná a dobrovolná. Nesouhlas nemá vliv na předání fotografií. Pokud souhlasíte, můžete své rozhodnutí později změnit zprávou na
+          - link "fotohanabrabcova@gmail.com" [ref=e51] [cursor=pointer]:
+            - /url: mailto:fotohanabrabcova@gmail.com
+          - text: .
+        - paragraph [ref=e52]: Odpovědi se odešlou e-mailem Haně Brabcové pro vyřízení zpětné vazby a zaznamenání vaší volby. Zveřejnění probíhá ručně podle vašich odpovědí. Údaje ostatních osob do recenze prosím neuvádějte.
+        - button "Odeslat Hance" [ref=e53] [cursor=pointer]
+  - contentinfo [ref=e54]:
+    - generic [ref=e55]:
+      - paragraph [ref=e56]: Hana Brabcová
+      - generic [ref=e57]:
+        - link "Pro klienty" [ref=e58] [cursor=pointer]:
+          - /url: /pro-klienty
+        - link "Portfolio" [ref=e59] [cursor=pointer]:
+          - /url: /portfolio
+        - link "Kontakt" [ref=e60] [cursor=pointer]:
+          - /url: /contact
+        - link "Pro Hanku — přihlášení do správy galerií" [ref=e61] [cursor=pointer]:
+          - /url: /administrace/galerie
+          - text: Pro Hanku
+  - alert [ref=e66]
