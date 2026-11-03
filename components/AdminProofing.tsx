@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, Copy, Download, FolderPlus, Heart, Images, LockKeyhole, Plus, RefreshCw, Upload, X } from "lucide-react";
+import { AdminReviews } from "./AdminReviews";
 import type { ProofAlbum } from "@/lib/proofing-types";
 import { ErrorNotice, photoUrl, proofDate, ProofDialog, proofRequest, ProofShell } from "./ProofingShared";
 
@@ -36,6 +37,7 @@ const notificationLabels: Record<ProofAlbum["notification"], string> = {
 const statusLabels = { open: "Otevřená", submitted: "Výběr odeslán", archived: "Archivovaná" };
 
 export function AdminProofing() {
+  const [tab, setTab] = useState<"albums" | "reviews">("albums");
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState("");
@@ -144,6 +146,8 @@ export function AdminProofing() {
   const shown = album?.photos.filter(photo => !selectedOnly || album.selected.includes(photo.id)) || [];
   const current = album?.photos.find(photo => photo.id === preview);
   return <ProofShell admin logout={busy ? undefined : logout}>
+    <div className="pf-tabs mb-6"><button aria-pressed={tab === "albums"} onClick={() => setTab("albums")}>Galerie</button><button aria-pressed={tab === "reviews"} onClick={() => setTab("reviews")}>Recenze a souhlasy</button></div>
+    {tab === "reviews" ? <AdminReviews /> : <>
     <div className="pf-admin-heading"><div><p className="pf-eyebrow">Váš pracovní prostor</p><h1>Klientské galerie</h1><p>Od prvních náhledů po poslední vybranou vzpomínku.</p></div><button className="pf-button" onClick={() => { setCreate(true); setError(""); }} disabled={busy}><Plus size={18} /> Nová galerie</button></div>
     {!mailConfigured && <p className="pf-warning">E-mailová upozornění nejsou nastavená. Výběry se ukládají a uvidíte je tady; automatický e-mail zatím neodejde.</p>}
     {mailConfigured && <p><button className="pf-text-button" disabled={busy} onClick={() => void testEmail()}>Poslat testovací e-mail</button></p>}
@@ -163,6 +167,7 @@ export function AdminProofing() {
         {!shown.length && <p className="pf-list-empty">{selectedOnly ? "Zatím není vybraná žádná fotografie." : "Nahrajte první fotografie do galerie."}</p>}
         <p><button className="pf-text-button pf-delete-button" disabled={busy} onClick={() => { setDeleteTitle(""); setError(""); setAction("delete"); }}>Smazat galerii</button></p>
       </>}</section></div>
+    </>}
     {create && <ProofDialog label="Nová galerie" close={() => { if (!busy) setCreate(false); }}><form className="pf-create-form" onSubmit={createAlbum}><button type="button" className="pf-icon-button pf-form-close" disabled={busy} aria-label="Zavřít formulář" onClick={() => setCreate(false)}><X /></button><p className="pf-eyebrow">Nový příběh</p><h2>Vytvořit galerii</h2><label className="pf-label">Název galerie<input autoFocus className="pf-input" name="title" placeholder="Podzimní focení Novákových" required maxLength={120} /></label><label className="pf-label">Jméno klienta<input className="pf-input" name="clientName" placeholder="Rodina Novákova" required maxLength={120} /></label><label className="pf-label">Galerie dostupná do<input className="pf-input" type="date" name="expiresAt" required min={new Date().toISOString().slice(0, 10)} defaultValue={new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10)} /></label><label className="pf-label">Vzkaz klientovi<textarea className="pf-input" name="message" maxLength={2000} placeholder="Vyberte si své oblíbené fotografie…" /></label><ErrorNotice message={error} /><button className="pf-button" disabled={busy}>{busy ? "Vytvářím…" : "Vytvořit a získat kód"}<ArrowRight size={17} /></button></form></ProofDialog>}
     {action === "delete" && album && <ProofDialog label="Smazat galerii" close={() => { if (!busy) setAction(null); }}><form className="pf-confirm" onSubmit={event => { event.preventDefault(); void confirmDelete(); }}><h2>Smazat galerii „{album.title}“?</h2><p>Trvale odstraníte galerii, všechny její náhledy, výběr i vzkaz klienta. Přístupový kód přestane fungovat. Smazání nelze vrátit.</p><label className="pf-label">Pro potvrzení napište název galerie<input autoFocus className="pf-input" value={deleteTitle} onChange={event => setDeleteTitle(event.target.value)} disabled={busy} autoComplete="off" required /></label><ErrorNotice message={error} /><button className="pf-button pf-delete-confirm" disabled={busy || deleteTitle !== album.title}>{busy ? "Mažu…" : "Trvale smazat galerii"}</button><button type="button" className="pf-text-button" disabled={busy} onClick={() => setAction(null)}>Zpět</button></form></ProofDialog>}
     {action && action !== "delete" && <ProofDialog label="Potvrdit změnu galerie" close={() => { if (!busy) setAction(null); }}><div className="pf-confirm"><h2>{action === "archive" ? "Uzavřít galerii?" : action === "rotate" ? "Vygenerovat nový kód?" : "Otevřít výběr k úpravě?"}</h2><p>{action === "archive" ? "Klient ztratí přístup. Fotografie a jeho výběr zůstanou uložené v administraci. V této verzi je uzavření trvalé." : action === "rotate" ? "Původní kód a přihlášení klienta přestanou fungovat. Nový kód si zkopírujte a předejte klientovi." : "Klient bude moci svůj výběr znovu změnit a odeslat. Aktuální výběr zatím zůstane zachovaný."}</p><ErrorNotice message={error} /><button className="pf-button" disabled={busy} onClick={() => void doAction(action)}>{busy ? "Ukládám…" : "Potvrdit změnu"}</button><button autoFocus className="pf-text-button" disabled={busy} onClick={() => setAction(null)}>Zpět</button></div></ProofDialog>}

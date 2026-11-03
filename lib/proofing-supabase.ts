@@ -28,7 +28,7 @@ function configuration() {
   return { url: url.origin, key };
 }
 
-async function request(endpoint: string, init: RequestInit = {}) {
+export async function request(endpoint: string, init: RequestInit = {}) {
   const { url, key } = configuration();
   const headers = new Headers(init.headers);
   headers.set("apikey", key);

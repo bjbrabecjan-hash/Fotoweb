@@ -3,6 +3,8 @@ import { randomUUID } from "node:crypto";
 import { ADMIN_COOKIE, CLIENT_COOKIE, equal, limitLogin, passwordVersion, readSession, requireAdmin, requireOrigin, setSession } from "@/lib/proofing-auth";
 import { checkAvailable, codeHash, deleteAlbum, findAlbum, newCode, notifySelection, sendTestNotification, ProofError, publicAlbum, readPreview, removePreview, transaction, writePreview } from "@/lib/proofing-store";
 
+import { listFeedback, publishFeedback, getFeedback, notifyFeedback } from "@/lib/review-store";
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 const privateHeaders = { "Cache-Control": "private, no-store, max-age=0", "X-Robots-Tag": "noindex, nofollow, noarchive", "X-Content-Type-Options": "nosniff" };
@@ -52,6 +54,12 @@ export async function GET(req: NextRequest, context: Context) {
   try {
     const segments = (await context.params).segments;
     const endpoint = segments.join("/");
+    if (endpoint === "admin/reviews") {
+      requireAdmin(req);
+      const offset = Number(req.nextUrl.searchParams.get("offset") || 0);
+      if (!Number.isSafeInteger(offset) || offset < 0 || offset > 100000) throw new ProofError(400, "Neplatná stránka.");
+      return json(await listFeedback(offset));
+    }
     if (endpoint === "admin") {
       requireAdmin(req);
       return json({ albums: await transaction(db => db.albums.map(publicAlbum).reverse()), mailConfigured: !!(process.env.RESEND_API_KEY && process.env.PROOFING_EMAIL_FROM && process.env.PROOFING_EMAIL_TO && process.env.PROOFING_PUBLIC_URL) });
@@ -137,6 +145,16 @@ export async function POST(req: NextRequest, context: Context) {
       return json({ album });
     }
     requireAdmin(req);
+    if (endpoint === "admin/reviews") {
+      const input = await body(req);
+      const id = textField(input.id, 36, true);
+      if (input.action === "notify") {
+        await notifyFeedback(await getFeedback(id));
+        return json({ review: await getFeedback(id) });
+      }
+      if (input.action !== "publish" && input.action !== "hide") throw new ProofError(400, "Neplatná akce.");
+      return json({ review: await publishFeedback(id, input.action === "publish") });
+    }
     if (endpoint === "admin/delete") {
       const input = await body(req);
       await deleteAlbum(textField(input.id, 36, true), textField(input.title, 120, true));

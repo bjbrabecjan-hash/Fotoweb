@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { LockKeyhole } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { LockKeyhole } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
@@ -9,14 +8,8 @@ import { useLanguage } from "@/lib/i18n";
 export function Footer() {
   const { t, locale } = useLanguage();
   const pathname = usePathname();
-  const { entered } = useExperience();
-  const { t, locale } = useLanguage();
 
   if (pathname.startsWith("/pro-klienty") || pathname.startsWith("/administrace/galerie")) return null;
-
-  if (pathname === "/" && !entered) {
-    return null;
-  }
 
   return (
     <footer className="border-t border-champagne/10 px-5 py-10 sm:px-8 lg:px-12">
@@ -25,8 +18,6 @@ export function Footer() {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
           <Link href="/pro-klienty" className="rounded-sm transition hover:text-champagne focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne">{locale === "cz" ? "Pro klienty" : "Client galleries"}</Link>
           <Link href="/portfolio" className="rounded-sm transition hover:text-champagne focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne">
-            {t.footer.portfolio}
-          </Link>
             {t.footer.portfolio}
           </Link>
           <Link href="/#pricing" className="rounded-sm transition hover:text-champagne focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne">

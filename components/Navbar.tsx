@@ -32,11 +32,6 @@ export function Navbar() {
   ] as const;
 
   if (pathname.startsWith("/pro-klienty") || pathname.startsWith("/administrace/galerie")) return null;
-  if (pathname.startsWith("/pro-klienty") || pathname.startsWith("/administrace/galerie")) return null;
-
-  if (pathname === "/" && !entered) {
-    return null;
-  }
 
   return (
     <>

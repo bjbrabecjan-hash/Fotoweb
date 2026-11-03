@@ -1,9 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import type { PublicReview } from "@/lib/review-types";
 import { useLanguage } from "@/lib/i18n";
 import "./Testimonials.css";
 
 export function Testimonials() {
+ const [approved, setApproved] = useState<PublicReview[]>([]);
+ useEffect(() => {
+   const controller = new AbortController();
+   fetch("/api/reviews", { cache: "no-store", signal: controller.signal }).then(async response => { if (response.ok) setApproved((await response.json()).reviews); }).catch(() => {});
+   return () => controller.abort();
+ }, []);
  const { locale } = useLanguage();
  const cz = locale === "cz";
  return (
@@ -12,6 +20,7 @@ export function Testimonials() {
   <p className="hr-kicker">{cz ? "Vaše slova" : "Your words"}</p>
   <h2 id="reviews-title">{cz ? <>Jak se vám<br />se mnou <em>fotilo.</em></> : <>Your moments.<br /><em>Your words.</em></>}</h2>
   <p className="hr-intro">{cz ? "Nejhezčí zprávy přicházejí od vás." : "The loveliest messages come from you. Reviews in their original Czech."}</p>
+  {approved.length > 0 && <div className="hr-extra mb-8">{approved.map(review => <figure lang="cs" key={review.id}><span className="hr-quote" aria-hidden="true">“</span><blockquote className="whitespace-pre-wrap break-words">{review.review}</blockquote><figcaption>{review.name}</figcaption></figure>)}</div>}
   <div className="hr-grid">
     <figure lang="cs" className="hr-featured">
       <span className="hr-quote" aria-hidden="true">“</span>

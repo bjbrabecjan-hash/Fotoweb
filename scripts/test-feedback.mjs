@@ -11,7 +11,17 @@ function load(file, replacements = {}) {
   return module.exports;
 }
 const feedback = load("../lib/feedback.ts");
-const { POST } = load("../app/api/feedback/route.ts", { "@/lib/feedback": feedback });
+let storeFailure = false;
+let notifyFailure = false;
+let notification = "sent";
+const { POST } = load("../app/api/feedback/route.ts", {
+  "@/lib/feedback": feedback,
+  "@/lib/proofing-server-types": load("../lib/proofing-server-types.ts"),
+  "@/lib/review-store": {
+    saveFeedback: async input => { if (storeFailure) throw new Error("db down"); return { data: input, notification: "pending" }; },
+    notifyFeedback: async () => { if (notifyFailure) throw new Error("mail status unavailable"); return notification; }
+  }
+});
 const { NextRequest } = require("next/server");
 const base = "http://localhost:3000";
 const input = { name: "Testovací klient", session: "Rodinné focení", photoConsent: "no", review: "Děkuji za focení.", reviewConsent: "yes", submissionId: "12345678-1234-4123-8123-123456789abc", submittedAt: "2026-11-03T10:00:00.000Z", website: "" };
@@ -27,27 +37,17 @@ assert.equal((await call({ ...input, name: " " })).status, 400);
 assert.equal((await call({ ...input, website: "spam" })).status, 400);
 assert.equal((await call("bad json")).status, 400);
 assert.equal((await call("x".repeat(30001))).status, 413);
-delete process.env.RESEND_API_KEY;
+storeFailure = true;
 assert.equal((await call(input)).status, 503);
-process.env.RESEND_API_KEY = "mock-key";
-process.env.PROOFING_EMAIL_FROM = "mock@example.com";
-process.env.PROOFING_EMAIL_TO = "recipient@example.com";
-let sent;
-globalThis.fetch = async (_url, options) => { sent = options; return new Response("{}", { status: 200 }); };
-assert.equal((await call(input)).status, 200);
-const message = JSON.parse(sent.body);
-assert.match(message.text, /FOTOGRAFIE: NESOUHLASÍM/);
-assert.match(message.text, /ZVEŘEJNĚNÍ RECENZE SE JMÉNEM: SOUHLASÍM/);
-assert.ok(message.text.includes(feedback.photoConsentText));
-assert.ok(message.text.includes(feedback.reviewConsentText));
-assert.equal(sent.headers["Idempotency-Key"], `feedback-${input.submissionId}`);
-const firstBody = sent.body;
-assert.equal((await call(input)).status, 200);
-assert.equal(sent.body, firstBody, "retry must use an identical provider body");
-globalThis.fetch = async () => new Response("{}", { status: 500 });
-assert.equal((await call(input)).status, 502);
+storeFailure = false;
+notification = "unconfigured";
+assert.equal((await call(input)).status, 200, "saved response succeeds even without email config");
+notification = "failed";
+assert.equal((await call(input)).status, 200, "mail outage must not lose a saved response");
+notifyFailure = true;
+assert.equal((await call(input)).status, 200, "notification write failure must not lose saved response");
 assert.equal((await call(input)).status, 429);
 assert.equal(feedback.parseFeedback({ ...input, review: "", reviewConsent: "no" }).review, "");
 assert.throws(() => feedback.parseFeedback({ ...input, photoConsent: ["yes"] }));
 assert.throws(() => feedback.parseFeedback({ ...input, reviewConsent: true }));
-console.log("Feedback validation, independent consent, retry, mail failure and rate-limit checks passed. No real mail sent.");
+console.log("Feedback validation, storage failure, saved mail-outage responses and rate-limit checks passed. No real mail sent.");

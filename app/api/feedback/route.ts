@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { feedbackEmail, parseFeedback } from "@/lib/feedback";
+import { parseFeedback } from "@/lib/feedback";
+import { saveFeedback, notifyFeedback } from "@/lib/review-store";
+import { ProofError } from "@/lib/proofing-server-types";
 
 export const runtime = "nodejs";
 const attempts = new Map<string, { count: number; until: number }>();
@@ -42,20 +44,13 @@ export async function POST(req: NextRequest) {
     return json({ error: error instanceof SyntaxError ? "Neplatný požadavek." : error instanceof Error ? error.message : "Zkontrolujte vyplněné údaje." }, 400);
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.PROOFING_EMAIL_FROM;
-  const to = process.env.PROOFING_EMAIL_TO;
-  if (!apiKey || !from || !to) return json({ error: "Odesílání dotazníku nyní není dostupné. Zkuste to později nebo napište na fotohanabrabcova@gmail.com." }, 503);
   try {
-    const result = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": `feedback-${input.submissionId}` },
-      body: JSON.stringify({ from, to: [to], subject: `Dotazník po focení: ${input.name}`, text: feedbackEmail(input) }),
-      signal: AbortSignal.timeout(10000)
-    });
-    if (!result.ok) throw new Error("Mail delivery failed");
-    return json({ ok: true });
-  } catch {
-    return json({ error: "Odeslání se nepodařilo potvrdit. Vaše odpovědi zůstávají vyplněné; zkuste odeslání znovu." }, 502);
+    const stored = await saveFeedback(input);
+    // Once saved, a mail outage must not make the client resubmit a new record.
+    let notification = stored.notification;
+    try { notification = await notifyFeedback(stored); } catch { /* Pending notification remains visible to the admin. */ }
+    return json({ ok: true, notification });
+  } catch (error) {
+    return json({ error: error instanceof ProofError ? error.message : "Odpověď se nepodařilo uložit. Údaje zůstávají vyplněné; zkuste to znovu." }, error instanceof ProofError ? error.status : 503);
   }
 }
