@@ -48,6 +48,20 @@ try {
   await client.query("notify pgrst, 'reload schema'");
   await client.query("commit");
   console.log("PASS: review table RLS, private access, publication, withdrawal, consent guard. Synthetic test row rolled back.");
+  const restBase = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const restKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!restBase || !restKey) throw new Error("Review REST configuration missing.");
+  const restHeaders = { apikey: restKey, ...(restKey.startsWith("sb_secret_") ? {} : { Authorization: `Bearer ${restKey}` }) };
+  const endpoint = "/rest/v1/photo_feedback?select=id,name:data->>name,review:data->>review&published_at=not.is.null&data->>reviewConsent=eq.yes&limit=0";
+  let ready = false;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const response = await fetch(`${restBase}${endpoint}`, { headers: restHeaders, signal: AbortSignal.timeout(15000) });
+    if (response.ok && Array.isArray(await response.json())) { ready = true; break; }
+    console.log("Waiting for review REST schema; status:", response.status);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  }
+  if (!ready) throw new Error("Review REST verification failed.");
+  console.log("PASS: actual review REST projection is accessible using the existing server configuration; no client rows read.");
 } catch (error) {
   await client.query("rollback").catch(() => {});
   // Provider messages can contain connection details; log only safe categories.
