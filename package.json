@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test:feedback": "node scripts/test-feedback.mjs",
+    "test:proofing": "node scripts/test-proofing.mjs",
+    "test:proofing:supabase": "node scripts/test-proofing-supabase.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.24",

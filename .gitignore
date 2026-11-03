@@ -7,3 +7,5 @@ dist
 vercel.json
 npm-debug.log*
 .vercel
+.proofing-data/
+*.tsbuildinfo

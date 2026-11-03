@@ -23,7 +23,8 @@ export function Navbar() {
     { href: "/#services", label: t.nav.services },
     { href: "/#process", label: t.nav.process },
     { href: "/#about", label: t.nav.about },
-    { href: "/contact", label: t.nav.contact }
+    { href: "/contact", label: t.nav.contact },
+    { href: "/pro-klienty", label: locale === "cz" ? "Pro klienty" : "Client galleries" }
   ] as const;
   const mobileNavLinks = [
     { href: instagramUrl, label: t.nav.instagram, external: true },
@@ -31,6 +32,8 @@ export function Navbar() {
     { href: "/#about", label: t.nav.about, external: false },
     { href: "/contact", label: t.nav.contact, external: false }
   ] as const;
+
+  if (pathname.startsWith("/pro-klienty") || pathname.startsWith("/administrace/galerie")) return null;
 
   if (pathname === "/" && !entered) {
     return null;
