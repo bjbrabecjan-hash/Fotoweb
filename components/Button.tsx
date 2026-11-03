@@ -23,7 +23,7 @@ const buttonClasses =
 
 const variants = {
   gold: "border-gold bg-gold text-white shadow-gold hover:bg-transparent hover:text-gold",
-  ghost: "border-ink/15 bg-white/50 text-ink hover:border-gold hover:text-gold"
+  ghost: "border-ink/20 bg-white/50 text-ink hover:border-gold hover:text-gold"
 };
 
 export function Button({ children, className, variant = "gold", ...props }: LinkButtonProps | NativeButtonProps) {

@@ -10,6 +10,7 @@ type Dictionary = {
     instagram: string;
     facebook: string;
     portfolio: string;
+    pricing: string;
     services: string;
     process: string;
     about: string;
@@ -76,6 +77,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       instagram: "Instagram",
       facebook: "Facebook",
       portfolio: "Portfolio",
+      pricing: "Pricing",
       services: "Services",
       process: "Process",
       about: "About",
@@ -118,11 +120,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Families, maternity, babies and children",
-      text: "A selection of natural family stories photographed with sensitivity, soft light and attention to real emotion.",
+      title: "Family stories outdoors and in the studio",
+      text: "Natural family stories and timeless studio portraits, photographed with sensitivity, soft light and attention to real emotion.",
       categories: {
         All: "All",
-        Family: "Family"
+        Family: "Family",
+        Studio: "Studio",
+        Christmas: "Christmas sessions",
+        Portraits: "Portraits"
       }
     },
     about: {
@@ -140,7 +145,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     contact: {
       eyebrow: "Contact",
       title: "Let's preserve your story",
-      text: "Tell me which family stage you would like to capture. Together we will choose the right session, place and date.",
+      text: "Tell me whether you are planning a family, wedding or seasonal session. Together we will choose the right package, place and date.",
       location: "Moravian-Silesian Region and nearby areas",
       name: "Name",
       email: "Email",
@@ -158,6 +163,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       instagram: "Instagram",
       facebook: "Facebook",
       portfolio: "Portfolio",
+      pricing: "Ceník",
       services: "Služby",
       process: "Proces",
       about: "O mně",
@@ -200,11 +206,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     portfolio: {
       eyebrow: "Portfolio",
-      title: "Rodiny, těhotenství, miminka a děti",
-      text: "Výběr přirozených rodinných příběhů fotografovaných s citem, jemným světlem a důrazem na opravdové emoce.",
+      title: "Rodinné příběhy venku i v ateliéru",
+      text: "Přirozené rodinné příběhy a nadčasové ateliérové portréty fotografované s citem, jemným světlem a důrazem na opravdové emoce.",
       categories: {
         All: "Vše",
-        Family: "Rodina"
+        Family: "Rodina",
+        Studio: "Ateliér",
+        Christmas: "Vánoční focení",
+        Portraits: "Portréty"
       }
     },
     about: {
@@ -222,7 +231,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     contact: {
       eyebrow: "Kontakt",
       title: "Uchovejme váš příběh",
-      text: "Napište mi, kterou rodinnou etapu chcete zachytit. Společně vybereme vhodné focení, místo a termín.",
+      text: "Napište mi, zda plánujete rodinné, svatební nebo sezonní focení. Společně vybereme vhodný balíček, místo a termín.",
       location: "Moravskoslezský kraj a okolí",
       name: "Jméno",
       email: "Email",
@@ -258,6 +267,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLocaleState(nextLocale);
     window.localStorage.setItem("hana-locale", nextLocale);
   }
+
+  useEffect(() => {
+    document.documentElement.lang = locale === "cz" ? "cs" : "en";
+  }, [locale]);
 
   const value = useMemo(() => ({ locale, setLocale, t: dictionaries[locale] }), [locale]);
 
