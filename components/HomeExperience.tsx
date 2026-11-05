@@ -30,7 +30,7 @@ const copy = {
   cz: {
     heroTitle: "Přirozené rodinné focení v Moravsko­slezském kraji",
     heroText: "Zachytím těhotenství, první měsíce s miminkem i společné chvíle vaší rodiny. V klidu, bez strojených póz a s prostorem pro děti.",
-    inquiry: "Poptat termín", photos: "Prohlédnout fotografie", from: "Rodinné focení od 2 600 Kč",
+    inquiry: "Poptat termín", photos: "Prohlédnout fotografie", contentLink: "Content creator pro salony a gastro",
     selected: "Vybrané příběhy", selectedTitle: "Skutečné chvíle, které zůstanou", wholePortfolio: "Prohlédnout celé portfolio",
     studioEyebrow: "Ateliér", studioTitle: "Čisté světlo, klid a prostor být sami sebou", studioText: "Ateliérové focení je ideální pro nadčasové dětské a sourozenecké portréty. Bez rušivého pozadí vyniknou výrazy, blízkost i drobné detaily.", studioCta: "Prohlédnout Ateliér",
     services: "Typy focení", servicesTitle: "Pro každou etapu vaší rodiny",
@@ -57,7 +57,7 @@ const copy = {
   en: {
     heroTitle: "Natural family photography in the Moravian-Silesian Region",
     heroText: "I photograph pregnancy, your baby's first months and time together as a family—calmly, without stiff poses and with room for children to be themselves.",
-    inquiry: "Ask about a date", photos: "View photographs", from: "Family sessions from CZK 2,600",
+    inquiry: "Ask about a date", photos: "View photographs", contentLink: "Content creation for salons & hospitality",
     selected: "Selected stories", selectedTitle: "Real moments that stay", wholePortfolio: "View the full portfolio",
     studioEyebrow: "Studio", studioTitle: "Clean light, calm and room to be yourselves", studioText: "Studio sessions are ideal for timeless portraits of children and siblings. With no distracting background, expressions, closeness and small details take centre stage.", studioCta: "View studio work",
     services: "Sessions", servicesTitle: "For every stage of family life",
@@ -96,9 +96,11 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
       <div className="relative h-[70svh] min-h-[30rem] lg:h-[85svh]"><Image src={heroSlides[0].src} alt={heroSlides[0].alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" style={{ objectPosition: heroSlides[0].focalPoint }} /></div>
       <div className="relative flex items-center px-5 py-12 sm:px-8 lg:px-12"><div className="max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[.28em] text-white">Hana Brabcová</p><h1 className="mt-5 font-display text-5xl leading-[.94] tracking-[.02em] text-white sm:text-6xl lg:text-7xl">{t.heroTitle}</h1><p className="mt-6 max-w-xl text-base leading-8 text-white sm:text-lg">{t.heroText}</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button href="/contact">{t.inquiry}</Button><Button href="#portfolio" variant="ghost" className="border-white/70 bg-black/25 text-white hover:border-white hover:text-white">{t.photos}</Button></div><p className="mt-5 text-sm font-semibold text-white">{t.from}</p>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button href="/contact">{t.inquiry}</Button><Button href="#portfolio" variant="ghost" className="border-white/70 bg-black/25 text-white hover:border-white hover:text-white">{t.photos}</Button></div><Link href="#content-creator" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline-white">{t.contentLink}<ArrowRight size={16}/></Link>
       </div></div>
     </section>
+
+    <ContentCreatorSection locale={locale} />
 
     <Section eyebrow={t.selected} title={t.selectedTitle}><div id="portfolio" className="scroll-mt-28"><GalleryGrid items={selected} featured /></div><Button href="/portfolio" variant="ghost" className="mt-8">{t.wholePortfolio}<ArrowRight className="ml-2" size={16}/></Button></Section>
     {studioLandscape && <Section className="border-y border-ink/10 bg-[#eef0eb]">
@@ -138,4 +140,38 @@ function StudioImage({ item, locale, className }: { item: PortfolioItem; locale:
   const alt = locale === "en" ? item.altEn ?? item.alt : item.alt;
 
   return <figure data-protected-media className={`group relative overflow-hidden bg-charcoal ${className}`}><Image src={item.src} alt={alt} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"/><span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"/><figcaption className="absolute inset-x-5 bottom-5 font-display text-xl text-white sm:text-2xl">{title}</figcaption></figure>;
+}
+
+function ContentCreatorSection({ locale }: { locale: "cz" | "en" }) {
+  const c = locale === "cz" ? {
+    title: "Obsah, který ukáže, co je na vašem podniku výjimečné",
+    text: "Fotografie a krátká videa pro sociální sítě i web. Zachytím vaši práci, atmosféru a detaily, kvůli kterým se k vám zákazníci rádi vracejí.",
+    note: "Rozsah tvorby a cenovou nabídku domluvíme podle potřeb vašeho podniku.",
+    items: [
+      { id: "content-salons", title: "Pro salony", text: "Ukažte péči, kterou svým klientům věnujete. Přirozený obsah pro kadeřnictví, kosmetické a beauty salony.", details: ["Prostor, tým a atmosféra salonu", "Průběh služeb, výsledky a produktové detaily", "Krátká videa a Reels pro sociální sítě"], cta: "Poptat obsah pro salon" },
+      { id: "content-gastro", title: "Pro gastro podniky", text: "Dejte lidem chuť přijít. Fotografie a videa pro restaurace, kavárny, bistra a další gastro podniky.", details: ["Jídlo, nápoje a sezónní nabídka", "Atmosféra podniku, tým a zákulisí přípravy", "Krátká videa a Reels pro sociální sítě"], cta: "Poptat obsah pro gastro" }
+    ]
+  } : {
+    title: "Content that shows what makes your business special",
+    text: "Photography and short videos for social media and your website. I capture your work, atmosphere and the details that bring customers back.",
+    note: "We will agree on the scope and a quote tailored to your business.",
+    items: [
+      { id: "content-salons", title: "For salons", text: "Show the care you give your clients. Natural content for hair, skincare and beauty salons.", details: ["Your space, team and salon atmosphere", "Services, results and product details", "Short videos and Reels for social media"], cta: "Enquire about salon content" },
+      { id: "content-gastro", title: "For hospitality", text: "Give people a reason to visit. Photography and videos for restaurants, cafés, bistros and other food businesses.", details: ["Food, drinks and seasonal menus", "Your atmosphere, team and behind the scenes", "Short videos and Reels for social media"], cta: "Enquire about hospitality content" }
+    ]
+  };
+  return <Section className="border-b border-ink/10 bg-[#eef0eb]">
+    <div id="content-creator" className="scroll-mt-40">
+      <p className="text-xs font-semibold uppercase tracking-luxe text-gold">Content creator</p>
+      <h2 className="mt-4 max-w-4xl font-display text-4xl leading-tight text-ink sm:text-6xl">{c.title}</h2>
+      <p className="mt-6 max-w-3xl text-base leading-8 text-ash">{c.text}</p>
+      <div className="mt-10 grid gap-6 md:grid-cols-2">{c.items.map((item) => <article key={item.id} className="flex flex-col border border-ink/10 bg-white p-7 sm:p-9">
+        <h3 className="font-display text-3xl text-ink sm:text-4xl">{item.title}</h3>
+        <p className="mt-4 text-sm leading-7 text-ash">{item.text}</p>
+        <ul className="my-7 space-y-3">{item.details.map((detail) => <li key={detail} className="flex gap-3 text-sm leading-6 text-ink"><Check size={17} className="mt-1 shrink-0 text-gold"/>{detail}</li>)}</ul>
+        <Button href={`/contact?package=${item.id}`} className="mt-auto">{item.cta}</Button>
+      </article>)}</div>
+      <p className="mt-6 text-sm leading-7 text-ash">{c.note}</p>
+    </div>
+  </Section>;
 }

@@ -19,7 +19,7 @@ export function ContactContent({ initialPackage }: { initialPackage?: PackageId 
     eyebrow: "Vyberte si, kde vám to vyhovuje",
     title: "Napište mi přímo",
     text: "Žádný formulář a žádné čekání, jestli zpráva dorazila. Ozvěte se kanálem, který běžně používáte.",
-    selected: "Vaše vybrané focení",
+    selected: "Vaše vybraná služba",
     email: "Napsat e-mail",
     emailText: "Otevře váš e-mail s předvyplněným předmětem a zprávou.",
     instagram: "Napsat na Instagramu",
@@ -29,13 +29,13 @@ export function ContactContent({ initialPackage }: { initialPackage?: PackageId 
     phone: "Zavolat",
     phoneText: "Pokud je pro vás jednodušší domluvit se telefonicky.",
     fallback: "Pokud se e-mailový program neotevře, napište ručně na",
-    subject: selectedPackage ? `Poptávka focení – ${selectedPackage}` : "Poptávka focení z webu",
-    body: `Dobrý den,\n\nmám zájem o focení${selectedPackage ? `: ${selectedPackage}` : ""}.\n\nPreferovaný termín:\n\nMoje zpráva:\n\nDěkuji.`
+    subject: selectedPackage ? `Poptávka – ${selectedPackage}` : "Poptávka focení z webu",
+    body: `Dobrý den,\n\nmám zájem o ${selectedPackage ? selectedPackage : "focení"}.\n\nPreferovaný termín:\n\nMoje zpráva:\n\nDěkuji.`
   } : {
     eyebrow: "Choose what suits you",
     title: "Message me directly",
     text: "No form and no uncertainty about delivery. Get in touch through the channel you already use.",
-    selected: "Your selected session",
+    selected: "Your selected service",
     email: "Send an email",
     emailText: "Opens your email app with a prepared subject and message.",
     instagram: "Message on Instagram",
@@ -45,13 +45,13 @@ export function ContactContent({ initialPackage }: { initialPackage?: PackageId 
     phone: "Call",
     phoneText: "For arranging the details by phone.",
     fallback: "If your email app does not open, write directly to",
-    subject: selectedPackage ? `Photography inquiry – ${selectedPackage}` : "Photography inquiry from the website",
-    body: `Hello,\n\nI am interested in a photography session${selectedPackage ? `: ${selectedPackage}` : ""}.\n\nPreferred date:\n\nMy message:\n\nThank you.`
+    subject: selectedPackage ? `Inquiry – ${selectedPackage}` : "Photography inquiry from the website",
+    body: `Hello,\n\nI am interested in ${selectedPackage ? selectedPackage : "a photography session"}.\n\nPreferred date:\n\nMy message:\n\nThank you.`
   };
   const mailHref = `mailto:${email}?subject=${encodeURIComponent(c.subject)}&body=${encodeURIComponent(c.body)}`;
 
   return <Section className="min-h-screen pt-32 lg:pt-40"><div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
-    <div><p className="mb-5 text-xs uppercase tracking-luxe text-gold">{t.contact.eyebrow}</p><h1 className="font-display text-5xl uppercase leading-none tracking-wider text-ink sm:text-7xl">{t.contact.title}</h1><p className="mt-8 max-w-xl text-base leading-8 text-ash">{t.contact.text}</p>
+    <div><p className="mb-5 text-xs uppercase tracking-luxe text-gold">{t.contact.eyebrow}</p><h1 className="font-display text-5xl uppercase leading-none tracking-wider text-ink sm:text-7xl">{t.contact.title}</h1><p className="mt-8 max-w-xl text-base leading-8 text-ash">{initialPackage?.startsWith("content-") ? (locale === "cz" ? "Napište mi o svém podniku a obsahu, který potřebujete. Společně domluvíme fotografie, videa a rozsah spolupráce." : "Tell me about your business and the content you need. Together we will plan the photography, videos and scope of our work.") : t.contact.text}</p>
       <div className="mt-10 space-y-5 text-sm text-ash"><a className="flex items-center gap-4 rounded-sm transition hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold" href={`mailto:${email}`}><Mail size={18}/>{email}</a><a className="flex items-center gap-4 rounded-sm transition hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold" href={`tel:${phone}`}><Phone size={18}/>734 548 996</a><p className="flex items-center gap-4"><MapPin size={18}/>{t.contact.location}</p></div>
     </div>
     <div className="border border-ink/10 bg-white/70 p-6 shadow-[0_24px_80px_rgba(38,37,34,.07)] sm:p-8">
