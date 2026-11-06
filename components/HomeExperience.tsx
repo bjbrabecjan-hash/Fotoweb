@@ -44,7 +44,7 @@ const copy = {
       { id: "wedding-half-day", name: "Půl dne", price: "15 900 Kč", text: "6 hodin", features: ["Přípravy, obřad a začátek hostiny", "Skupinové i novomanželské fotografie", "Minimálně 250 upravených fotografií", "Soukromá online galerie"], note: "Kompletní začátek vašeho dne." },
       { id: "wedding-full-day", name: "Celý den", price: "22 000 Kč", text: "12 hodin", features: ["Reportáž až po večerní zábavu", "Minimálně 550 upravených fotografií", "30 vytištěných fotografií 10 × 15 cm", "Soukromá online galerie"], note: "Váš celý příběh od rána až do noci." }
     ],
-    weddingNote: "V ceně je předsvatební konzultace, pomoc s harmonogramem, doprava do 30 km od Suchdolu nad Odrou a první fotografie do 7 dnů. Každá další započatá hodina stojí 1 800 Kč. Termín je závazně rezervován po uhrazení rezervačního poplatku.",
+    weddingNote: "V ceně je předsvatební konzultace, pomoc s harmonogramem, doprava do 30 km od Suchdolu nad Odrou a první fotografie do 7 dnů. Každá další započatá hodina stojí 1 800 Kč. Termín je závazně rezervován po uhrazení nevratného rezervačního poplatku ve výši 3 000 Kč.",
     christmasTitle: "Vánoční focení 2026",
     christmasText: "Termíny jsou již v předprodeji. Rezervujte si vánoční rodinné focení včas; podrobnosti a dostupné časy vám pošlu obratem.",
     christmasCta: "Poptat Vánoce 2026",
@@ -71,7 +71,7 @@ const copy = {
       { id: "wedding-half-day", name: "Half day", price: "CZK 15,900", text: "6 hours", features: ["Preparations, ceremony and start of the reception", "Group and newlywed photographs", "At least 250 edited photographs", "Private online gallery"], note: "The complete beginning of your day." },
       { id: "wedding-full-day", name: "Full day", price: "CZK 22,000", text: "12 hours", features: ["Coverage through the evening celebrations", "At least 550 edited photographs", "30 printed photographs, 10 × 15 cm", "Private online gallery"], note: "Your whole story, from morning until night." }
     ],
-    weddingNote: "The price includes a pre-wedding consultation, timeline assistance, travel within 30 km of Suchdol nad Odrou and first photographs within 7 days. Each additional started hour is CZK 1,800. A date is confirmed after the booking deposit is paid.",
+    weddingNote: "The price includes a pre-wedding consultation, timeline assistance, travel within 30 km of Suchdol nad Odrou and first photographs within 7 days. Each additional started hour is CZK 1,800. A date is confirmed after a non-refundable reservation fee of CZK 3,000 is paid.",
     christmasTitle: "Christmas sessions 2026",
     christmasText: "Dates are already on presale. Reserve your Christmas family session early; I will send current times and details in reply.",
     christmasCta: "Ask about Christmas 2026",
