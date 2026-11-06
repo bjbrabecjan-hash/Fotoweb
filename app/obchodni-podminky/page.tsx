@@ -28,8 +28,8 @@ export default function TermsPage() {
           <section aria-labelledby="terms-1">
             <h2 id="terms-1" className="mb-4 font-display text-3xl">1. Rezervace termínu</h2>
             <div className="space-y-3 text-base leading-8">
-              <p>Termín focení je závazně rezervován po vzájemném potvrzení a uhrazení rezervační zálohy 1 000 Kč.</p>
-              <p>Záloha je splatná do 3 dnů od zaslání platebních údajů a odečítá se z celkové ceny focení.</p>
+              <p>Termín focení je závazně rezervován po vzájemném potvrzení a uhrazení rezervačního poplatku ve výši 1 000 Kč.</p>
+              <p>Rezervační poplatek je splatný do 3 dnů od zaslání platebních údajů. Z celkové ceny focení se odečítá, pokud klient dorazí v původně sjednaném termínu nebo v termínu, který byl nejvýše jednou změněn a následně dodržen.</p>
               <p>Cena a rozsah fotografování jsou stanoveny předem při objednávce.</p>
             </div>
           </section>
@@ -44,11 +44,14 @@ export default function TermsPage() {
             </div>
           </section>
           <section aria-labelledby="terms-3">
-            <h2 id="terms-3" className="mb-4 font-display text-3xl">3. Změna a zrušení termínu</h2>
+            <h2 id="terms-3" className="mb-4 font-display text-3xl">3. Rezervace, změna a zrušení termínu</h2>
             <div className="space-y-3 text-base leading-8">
-              <p>Změnu termínu z důvodu nemoci nebo nepříznivého počasí řešíme individuální domluvou.</p>
-              <p>Při zrušení termínu klientem méně než 72 hodin před focením je sjednán storno poplatek 1 000 Kč, který se započítává proti uhrazené záloze. Pokud se podaří termín znovu obsadit, storno poplatek neúčtuji.</p>
-              <p>Při zrušení focení ze strany fotografky bude nabídnut náhradní termín nebo vrácena zaplacená záloha.</p>
+              <p>Termín focení je závazně rezervován po uhrazení rezervačního poplatku ve výši 1 000 Kč. Rezervační poplatek slouží k rezervaci a blokaci konkrétního termínu.</p>
+              <p>Pokud klient požádá o změnu termínu z důvodu nemoci nebo jiné překážky, fotografka může nabídnout náhradní termín podle svých časových možností. Pokud se klient s fotografkou na novém termínu dohodne, rezervační poplatek se převede na tento termín, a to nejvýše při jedné změně termínu.</p>
+              <p>Při druhé změně termínu na žádost klienta, tedy při rezervaci třetího termínu, je nutné uhradit nový rezervační poplatek ve výši 1 000 Kč. Původní rezervační poplatek se na třetí termín nepřevádí ani se neodečítá z ceny focení. Nový rezervační poplatek se při dodržení tohoto termínu odečte z celkové ceny focení.</p>
+              <p>Pokud klient nabízený náhradní termín nepřijme nebo si focení rozmyslí, může za sebe najít náhradníka na původní termín. Náhradník musí rezervaci potvrdit přímo s fotografkou a uhradit vlastní rezervační poplatek. Jakmile náhradník termín závazně rezervuje, původní rezervační poplatek bude klientovi vrácen.</p>
+              <p>Pokud se náhradníka na původní termín nepodaří najít, rezervační poplatek se nevrací.</p>
+              <p>Pokud focení zruší fotografka, nabídne klientovi náhradní termín, nebo rezervační poplatek vrátí.</p>
               <p>Tato pravidla neomezují zákonná práva spotřebitele na odstoupení od smlouvy.</p>
             </div>
           </section>

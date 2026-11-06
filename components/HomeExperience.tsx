@@ -44,7 +44,7 @@ const copy = {
       { id: "wedding-half-day", name: "Půl dne", price: "15 900 Kč", text: "6 hodin", features: ["Přípravy, obřad a začátek hostiny", "Skupinové i novomanželské fotografie", "Minimálně 250 upravených fotografií", "Soukromá online galerie"], note: "Kompletní začátek vašeho dne." },
       { id: "wedding-full-day", name: "Celý den", price: "22 000 Kč", text: "12 hodin", features: ["Reportáž až po večerní zábavu", "Minimálně 550 upravených fotografií", "30 vytištěných fotografií 10 × 15 cm", "Soukromá online galerie"], note: "Váš celý příběh od rána až do noci." }
     ],
-    weddingNote: "V ceně je předsvatební konzultace, pomoc s harmonogramem, doprava do 30 km od Suchdolu nad Odrou a první fotografie do 7 dnů. Každá další započatá hodina stojí 1 800 Kč. Termín je závazně rezervován po uhrazení zálohy.",
+    weddingNote: "V ceně je předsvatební konzultace, pomoc s harmonogramem, doprava do 30 km od Suchdolu nad Odrou a první fotografie do 7 dnů. Každá další započatá hodina stojí 1 800 Kč. Termín je závazně rezervován po uhrazení rezervačního poplatku.",
     christmasTitle: "Vánoční focení 2026",
     christmasText: "Termíny jsou již v předprodeji. Rezervujte si vánoční rodinné focení včas; podrobnosti a dostupné časy vám pošlu obratem.",
     christmasCta: "Poptat Vánoce 2026",
