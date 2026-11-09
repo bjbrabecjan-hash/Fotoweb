@@ -37,8 +37,7 @@ const copy = {
     serviceItems: [["Těhotenské focení", "Jemná vzpomínka na očekávání a období před příchodem miminka."], ["Newborn a miminka", "První měsíce doma nebo venku, v klidném rytmu vaší rodiny."], ["Rodinné focení", "Společné chvíle, smích a blízkost bez nucených póz."], ["Děti a sourozenci", "Hravé portréty s prostorem pro pohyb a skutečnou povahu dětí."]],
     pricing: "Ceník", pricingTitle: "Vyberte si focení, které vám sedí", familyPricing: "Rodinné focení", weddingPricing: "Svatební balíčky", ask: "Poptat",
     familyPlans: [
-      { id: "family-mini", name: "Mini balíček", price: "2 600 Kč", text: "Přirozené rodinné focení v ateliéru nebo venku.", features: ["10 profesionálně upravených fotografií", "1 lokalita – ateliér nebo exteriér", "Focení cca 60 minut"], note: "Ideální pro menší rodiny." },
-      { id: "family-standard", name: "Standardní balíček", price: "3 800 Kč", text: "Více času, míst i společných kombinací.", features: ["20+ upravených fotografií – všechny povedené z focení", "2 lokality, například město + příroda", "Focení cca 90–120 minut"], note: "Skvělé pro větší rodiny a příběhy, které si zaslouží víc." }
+      { id: "family-standard", name: "Standardní balíček", price: "3 600 Kč", text: "Více času, míst i společných kombinací.", features: ["20+ upravených fotografií – všechny povedené z focení", "2 lokality, například město + příroda", "Focení cca 90–120 minut"], note: "Skvělé pro větší rodiny a příběhy, které si zaslouží víc." }
     ],
     weddingPlans: [
       { id: "wedding-half-day", name: "Půl dne", price: "15 900 Kč", text: "6 hodin", features: ["Přípravy, obřad a začátek hostiny", "Skupinové i novomanželské fotografie", "Minimálně 250 upravených fotografií", "Soukromá online galerie"], note: "Kompletní začátek vašeho dne." },
@@ -64,8 +63,7 @@ const copy = {
     serviceItems: [["Maternity", "A gentle memory of anticipation and the time before your baby arrives."], ["Newborn & babies", "The first months at home or outside, following your family's calm rhythm."], ["Family sessions", "Time together, laughter and closeness without forced poses."], ["Children & siblings", "Playful portraits with room for movement and real personality."]],
     pricing: "Pricing", pricingTitle: "Choose the session that suits you", familyPricing: "Family sessions", weddingPricing: "Wedding packages", ask: "Ask about",
     familyPlans: [
-      { id: "family-mini", name: "Mini package", price: "CZK 2,600", text: "A natural family session in the studio or outdoors.", features: ["10 professionally edited photographs", "1 location – studio or outdoors", "Approx. 60 minutes"], note: "Ideal for smaller families." },
-      { id: "family-standard", name: "Standard package", price: "CZK 3,800", text: "More time, locations and family combinations.", features: ["20+ edited photographs – all successful images", "2 locations, such as town + nature", "Approx. 90–120 minutes"], note: "Great for larger families and a more complete story." }
+      { id: "family-standard", name: "Standard package", price: "CZK 3,600", text: "More time, locations and family combinations.", features: ["20+ edited photographs – all successful images", "2 locations, such as town + nature", "Approx. 90–120 minutes"], note: "Great for larger families and a more complete story." }
     ],
     weddingPlans: [
       { id: "wedding-half-day", name: "Half day", price: "CZK 15,900", text: "6 hours", features: ["Preparations, ceremony and start of the reception", "Group and newlywed photographs", "At least 250 edited photographs", "Private online gallery"], note: "The complete beginning of your day." },
