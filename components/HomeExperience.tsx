@@ -4,10 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/Button";
-import { GalleryGrid } from "@/components/GalleryGrid";
+import { PortfolioOpening } from "@/components/PortfolioOpening";
 import { Section } from "@/components/Section";
 import { Testimonials } from "@/components/Testimonials";
-import { heroSlides } from "@/lib/heroSlides";
 import type { PortfolioItem } from "@/lib/portfolioData";
 import { useLanguage } from "@/lib/i18n";
 
@@ -90,8 +89,8 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
   const studioPortraits = studioItems.filter((item) => item.id !== studioLandscape?.id).slice(0, 4);
 
   return <>
-    <section data-protected-media className="relative grid overflow-hidden bg-ink pt-28 text-white lg:grid-cols-2">
-      <div className="relative h-[70svh] min-h-[30rem] lg:h-[85svh]"><Image src={heroSlides[0].src} alt={heroSlides[0].alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" style={{ objectPosition: heroSlides[0].focalPoint }} /></div>
+    <PortfolioOpening items={selected} locale={locale} />
+    <section className="relative overflow-hidden bg-ink py-12 text-white">
       <div className="relative flex items-center px-5 py-12 sm:px-8 lg:px-12"><div className="max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[.28em] text-white">Hana Brabcová</p><h1 className="mt-5 font-display text-5xl leading-[.94] tracking-[.02em] text-white sm:text-6xl lg:text-7xl">{t.heroTitle}</h1><p className="mt-6 max-w-xl text-base leading-8 text-white sm:text-lg">{t.heroText}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button href="/contact">{t.inquiry}</Button><Button href="#portfolio" variant="ghost" className="border-white/70 bg-black/25 text-white hover:border-white hover:text-white">{t.photos}</Button></div><Link href="#content-creator" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline-white">{t.contentLink}<ArrowRight size={16}/></Link>
@@ -100,7 +99,7 @@ export function HomeExperience({ portfolioItems }: HomeExperienceProps) {
 
     <ContentCreatorSection locale={locale} />
 
-    <Section eyebrow={t.selected} title={t.selectedTitle}><div id="portfolio" className="scroll-mt-28"><GalleryGrid items={selected} featured /></div><Button href="/portfolio" variant="ghost" className="mt-8">{t.wholePortfolio}<ArrowRight className="ml-2" size={16}/></Button></Section>
+    <Section><Button href="/portfolio" variant="ghost">{t.wholePortfolio}<ArrowRight className="ml-2" size={16}/></Button></Section>
     {studioLandscape && <Section className="border-y border-ink/10 bg-[#eef0eb]">
       <div id="studio" className="scroll-mt-28">
         <div className="mb-9 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div><p className="text-xs uppercase tracking-luxe text-gold">{t.studioEyebrow}</p><h2 className="mt-4 max-w-3xl font-display text-4xl leading-none text-ink sm:text-6xl">{t.studioTitle}</h2><p className="mt-5 max-w-2xl text-base leading-8 text-ash">{t.studioText}</p></div><Button href="/portfolio" variant="ghost" className="shrink-0">{t.studioCta}<ArrowRight className="ml-2" size={16}/></Button></div>
@@ -173,3 +172,4 @@ function ContentCreatorSection({ locale }: { locale: "cz" | "en" }) {
     </div>
   </Section>;
 }
+

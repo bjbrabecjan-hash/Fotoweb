@@ -1,0 +1,31 @@
+.intro { display: none; position: fixed; inset: 0; z-index: 200; background: #eeeee8; color: #262522; place-items: center; pointer-events: none; }
+.intro[data-playing] { display: grid; animation: uncover 380ms cubic-bezier(.22,1,.36,1) 1120ms both; pointer-events: auto; }
+.intro span { position: absolute; font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(3.5rem, 10vw, 9rem); letter-spacing: -.04em; opacity: 0; }
+.intro[data-playing] span { animation: word 280ms ease both; }
+.intro[data-playing] span:last-child { animation-name: lastWord; }
+@keyframes word { 0% { opacity: 0; transform: translateY(10px); } 18%, 78% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes lastWord { 0% { opacity: 0; transform: translateY(10px); } 18%,100% { opacity: 1; transform: translateY(0); } }
+@keyframes uncover { to { opacity: 0; } }
+.gallery { padding: 7rem 5vw 4rem; background: #eeeee8; scroll-margin-top: 6rem; }
+.frame { margin: 0 auto 12svh; position: relative; width: 100%; }
+.photo { position: relative; height: min(78svh, 900px); overflow: hidden; }
+.image { object-fit: contain; }
+.portrait { max-width: 1200px; }
+.frame:nth-child(3n + 2) { width: 82%; margin-left: 0; }
+.frame:nth-child(3n) { width: 82%; margin-right: 0; }
+.frame figcaption { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; color: #5b5a52; font-size: .75rem; letter-spacing: .08em; }
+@media (max-width: 767px) {
+  .gallery { padding: 6rem 1rem 2rem; }
+  .photo { height: calc(100svh - 10rem); min-height: 250px; }
+  .frame { margin-bottom: 7svh; }
+  .frame:nth-child(n) { width: 100%; }
+  .landscape .photo { height: 60svh; min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro[data-playing] { display: none; }
+  .photo { transform: none !important; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(html):has(.intro[data-playing]) { overflow: hidden; }
+}
