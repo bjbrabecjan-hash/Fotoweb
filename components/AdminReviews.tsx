@@ -21,10 +21,17 @@ export function AdminReviews() {
     finally { setLoading(false); }
   }
   useEffect(() => { void load(0); /* Load only when opening the authenticated panel. */ }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  async function act(row: StoredFeedback, action: "publish" | "hide" | "notify") {
+  async function act(row: StoredFeedback, action: "publish" | "hide" | "notify" | "delete") {
+    if (action === "delete" && !window.confirm("Trvale smazat recenzi včetně uložených souhlasů?")) return;
     setBusy(row.id); setError(""); setMessage("");
     try {
       const result = await proofRequest("admin/reviews", { id: row.id, action });
+      if (action === "delete") {
+        setReviews(items => items.filter(item => item.id !== row.id));
+        setMessage("Recenze a její souhlasy byly smazány.");
+        await load(0);
+        return;
+      }
       setReviews(items => items.map(item => item.id === row.id ? result.review : item));
       setMessage(action === "publish" ? "Recenze je zveřejněná na úvodní stránce." : action === "hide" ? "Recenze je stažená z webu." : mailLabels[result.review.notification as StoredFeedback["notification"]]);
     } catch (error) { setError((error as Error).message); }
@@ -42,6 +49,7 @@ export function AdminReviews() {
         <p className="text-sm">Fotografie: <strong>{row.data.photoConsent === "yes" ? "souhlasí" : "nesouhlasí"}</strong> · Recenze se jménem: <strong>{row.data.reviewConsent === "yes" ? "souhlasí" : "nesouhlasí"}</strong></p>
         <details className="my-4 text-sm"><summary className="cursor-pointer">Znění zaznamenaných souhlasů</summary><p className="mt-3">{row.data.photoConsentText}</p><p className="mt-2">{row.data.reviewConsentText}</p><p className="mt-2">Verze {row.data.consentVersion}. Totožnost odesílatele formuláře není ověřená.</p></details>
         <div className="flex flex-wrap items-center gap-4">
+          <button className="pf-button pf-secondary" disabled={!!busy} onClick={() => void act(row, "delete")}>Smazat</button>
           {row.published_at ? <button className="pf-button pf-secondary" disabled={!!busy} onClick={() => void act(row, "hide")}>Stáhnout z webu</button> : <button className="pf-button" disabled={!!busy || !canPublish} onClick={() => void act(row, "publish")}>Zveřejnit na webu</button>}
           {!canPublish && <span className="text-sm">{row.data.reviewConsent !== "yes" ? "Klient nedal souhlas ke zveřejnění recenze." : "Není vyplněný text recenze."}</span>}
           <span className="text-sm">{mailLabels[row.notification]}</span>
@@ -52,3 +60,4 @@ export function AdminReviews() {
     <div className="flex gap-4"><button className="pf-text-button" disabled={loading || !!busy || offset === 0} onClick={() => void load(Math.max(0, offset - 50))}>Novější odpovědi</button><button className="pf-text-button" disabled={loading || !!busy || !hasMore} onClick={() => void load(offset + 50)}>Starší odpovědi</button></div>
   </section>;
 }
+

@@ -37,6 +37,13 @@ export async function get(id: string) {
   const a = (await list({ id: `eq.${id}`, limit: "1" }))[0];
   if (!a) throw new ProofError(404, "Dokument není dostupný."); return a;
 }
+export async function deleteAgreement(a: Agreement) {
+  const params = new URLSearchParams({ id: `eq.${a.id}`, revision: `eq.${a.revision}`, select: "id" });
+  const response = await request(`/rest/v1/client_agreements?${params}`, {
+    method: "DELETE", headers: { Prefer: "return=representation" }
+  });
+  if (!(await response.json()).length) throw new ProofError(409, "Dohoda se mezitím změnila. Obnovte seznam.");
+}
 export async function commit(a: Agreement, expected: number | null) {
   a.revision = (expected ?? -1) + 1;
   const ok = await rpc<boolean>("agreement_commit", { p_id: a.id, p_expected: expected, p_data: a });

@@ -32,6 +32,9 @@ export async function publishFeedback(id: string, published: boolean) {
   if (!rows[0]) throw new ProofError(409, "Zveřejnit lze jen neprázdnou recenzi s výslovným souhlasem klienta.");
   return rows[0];
 }
+export async function deleteFeedback(id: string) {
+  await request(query(id), { method: "DELETE" });
+}
 export async function publicReviews(): Promise<PublicReview[]> {
   const rows: PublicReview[] = await (await request(`${table}?select=id,name:data->>name,review:data->>review&published_at=not.is.null&data->>reviewConsent=eq.yes&order=published_at.desc,id.desc&limit=100`)).json();
   return rows.map(row => ({ id: row.id, name: row.name, review: row.review }));
@@ -48,3 +51,4 @@ export async function notifyFeedback(row: StoredFeedback) {
   await request(`${query(row.id)}&notification=neq.sent`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ notification }) });
   return notification;
 }
+

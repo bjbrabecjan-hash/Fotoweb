@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, requireOrigin } from "@/lib/proofing-auth";
 import { ProofError } from "@/lib/proofing-store";
-import { authorize, changeStatus, clientSession, commit, COOKIE, expose, get, hash, list, loginLimit, newPassword, notify, safeEqual, sendMail, setClient } from "@/lib/agreements/server";
+import { authorize, changeStatus, clientSession, commit, deleteAgreement, COOKIE, expose, get, hash, list, loginLimit, newPassword, notify, safeEqual, sendMail, setClient } from "@/lib/agreements/server";
 import { completedText, initialDetails, TERMS_VERSION } from "@/lib/agreements/template";
 import { invalidCredentials, statuses, type Agreement, type Confirmation, type Details } from "@/lib/agreements/types";
 
@@ -86,6 +86,7 @@ export async function POST(req: NextRequest, ctx: Context) {
     }
     if (endpoint.startsWith("admin/")) {
       const a = await get(field(input.id, 36)); revision(a, input);
+      if (endpoint === "admin/delete") { await deleteAgreement(a); return json({ ok: true }); }
       if (endpoint === "admin/save") {
         mutable(a); a.details = details(input.details);
         if (a.status !== "koncept") { changeStatus(a, "koncept"); a.accessVersion = randomUUID(); delete a.accessHash; delete a.openedAt; }

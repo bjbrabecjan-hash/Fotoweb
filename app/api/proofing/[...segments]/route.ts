@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import { ADMIN_COOKIE, CLIENT_COOKIE, equal, limitLogin, passwordVersion, readSession, requireAdmin, requireOrigin, setSession } from "@/lib/proofing-auth";
 import { checkAvailable, codeHash, deleteAlbum, findAlbum, newCode, notifySelection, sendTestNotification, ProofError, publicAlbum, readPreview, removePreview, transaction, writePreview } from "@/lib/proofing-store";
 
-import { listFeedback, publishFeedback, getFeedback, notifyFeedback } from "@/lib/review-store";
+import { listFeedback, deleteFeedback, publishFeedback, getFeedback, notifyFeedback } from "@/lib/review-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -152,6 +152,7 @@ export async function POST(req: NextRequest, context: Context) {
         await notifyFeedback(await getFeedback(id));
         return json({ review: await getFeedback(id) });
       }
+      if (input.action === "delete") { await deleteFeedback(id); return json({ ok: true }); }
       if (input.action !== "publish" && input.action !== "hide") throw new ProofError(400, "Neplatná akce.");
       return json({ review: await publishFeedback(id, input.action === "publish") });
     }
@@ -241,3 +242,4 @@ export async function POST(req: NextRequest, context: Context) {
     throw new ProofError(404, "Stránka neexistuje.");
   } catch (error) { return failure(error); }
 }
+
