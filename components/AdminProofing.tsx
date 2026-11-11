@@ -5,6 +5,8 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, Copy, Download, FolderPlus, Heart, Images, LockKeyhole, Plus, RefreshCw, Upload, X } from "lucide-react";
 import { AdminReviews } from "./AdminReviews";
+import { AdminAgreements } from "./Agreements";
+import "@/app/agreements.css";
 import type { ProofAlbum } from "@/lib/proofing-types";
 import { ErrorNotice, photoUrl, proofDate, ProofDialog, proofRequest, ProofShell } from "./ProofingShared";
 
@@ -37,7 +39,7 @@ const notificationLabels: Record<ProofAlbum["notification"], string> = {
 const statusLabels = { open: "Otevřená", submitted: "Výběr odeslán", archived: "Archivovaná" };
 
 export function AdminProofing() {
-  const [tab, setTab] = useState<"albums" | "reviews">("albums");
+  const [tab, setTab] = useState<"albums" | "reviews" | "agreements">("albums");
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState("");
@@ -127,7 +129,7 @@ export function AdminProofing() {
   }
   async function copyCode() {
     if (!share) return;
-    try { await navigator.clipboard.writeText(`Vaše fotografie najdete na ${window.location.origin}/pro-klienty\nPřístupový kód: ${share.code}`); setCopied(true); }
+    try { await navigator.clipboard.writeText(`Vaše fotografie najdete na ${window.location.origin}/pro-klienty/galerie\nPřístupový kód: ${share.code}`); setCopied(true); }
     catch { setError("Kód se nepodařilo zkopírovat. Označte ho a zkopírujte ručně."); }
   }
   async function confirmDelete() {
@@ -146,8 +148,8 @@ export function AdminProofing() {
   const shown = album?.photos.filter(photo => !selectedOnly || album.selected.includes(photo.id)) || [];
   const current = album?.photos.find(photo => photo.id === preview);
   return <ProofShell admin logout={busy ? undefined : logout}>
-    <div className="pf-tabs mb-6"><button aria-pressed={tab === "albums"} onClick={() => setTab("albums")}>Galerie</button><button aria-pressed={tab === "reviews"} onClick={() => setTab("reviews")}>Recenze a souhlasy</button></div>
-    {tab === "reviews" ? <AdminReviews /> : <>
+    <div className="pf-tabs mb-6"><button aria-pressed={tab === "albums"} onClick={() => setTab("albums")}>Galerie</button><button aria-pressed={tab === "reviews"} onClick={() => setTab("reviews")}>Recenze a souhlasy</button><button aria-pressed={tab === "agreements"} onClick={() => setTab("agreements")}>Smlouvy a dohody</button></div>
+    {tab === "agreements" ? <AdminAgreements embedded /> : tab === "reviews" ? <AdminReviews /> : <>
     <div className="pf-admin-heading"><div><p className="pf-eyebrow">Váš pracovní prostor</p><h1>Klientské galerie</h1><p>Od prvních náhledů po poslední vybranou vzpomínku.</p></div><button className="pf-button" onClick={() => { setCreate(true); setError(""); }} disabled={busy}><Plus size={18} /> Nová galerie</button></div>
     {!mailConfigured && <p className="pf-warning">E-mailová upozornění nejsou nastavená. Výběry se ukládají a uvidíte je tady; automatický e-mail zatím neodejde.</p>}
     {mailConfigured && <p><button className="pf-text-button" disabled={busy} onClick={() => void testEmail()}>Poslat testovací e-mail</button></p>}
@@ -156,7 +158,7 @@ export function AdminProofing() {
     <div className="pf-admin-layout"><aside className="pf-album-list" aria-label="Seznam galerií"><div className="pf-list-title">Galerie <span>{albums.length}</span><button className="pf-icon-button" aria-label="Obnovit galerie" disabled={busy} onClick={() => { void refresh().catch(error => setError(error.message)); }}><RefreshCw size={15} /></button></div>{!albums.length && <p className="pf-list-empty">Zatím tu není žádná galerie. Začněte tlačítkem „Nová galerie“.</p>}{albums.map(item => <button className={`pf-album-item ${item.id === activeId ? "is-active" : ""}`} key={item.id} disabled={busy} onClick={() => { setActiveId(item.id); setSelectedOnly(item.status === "submitted"); setError(""); }}><span className={`pf-status pf-status-${item.status}`}>{statusLabels[item.status]}</span><strong>{item.title}</strong><span>{item.clientName} · {item.photos.length} fotek</span><small>{item.selected.length} vybraných · do {proofDate(item.expiresAt)}</small></button>)}</aside>
       <section className="pf-album-detail">{!album ? <div className="pf-empty"><FolderPlus size={36} /><h2>Prostor pro další příběh.</h2><p>Vytvořte galerii, nahrajte fotografie a předejte klientovi přístupový kód.</p><button className="pf-button pf-secondary" onClick={() => setCreate(true)}>Vytvořit první galerii</button></div> : <>
         <div className="pf-detail-heading"><div><p className="pf-eyebrow">{album.clientName}</p><h2>{album.title}</h2><p>Platnost do {proofDate(album.expiresAt)} · {statusLabels[album.status]}</p></div><div className="pf-detail-actions"><button className="pf-text-button" disabled={busy || album.status === "archived"} onClick={() => setAction("rotate")}>Nový přístupový kód</button>{album.status === "submitted" && <button className="pf-text-button" disabled={busy} onClick={() => setAction("reopen")}>Otevřít výběr k úpravě</button>}{album.status !== "archived" && <button className="pf-text-button" disabled={busy} onClick={() => setAction("archive")}>Uzavřít galerii</button>}</div></div>
-        {share?.id === album.id && <div className="pf-share"><div><p className="pf-eyebrow">Předejte klientovi · kód se zobrazí pouze nyní</p><strong>{share.code}</strong><span>{typeof window !== "undefined" ? window.location.origin : ""}/pro-klienty</span></div><button className="pf-button pf-secondary" onClick={copyCode}>{copied ? <Check size={17} /> : <Copy size={17} />}{copied ? "Zkopírováno" : "Kopírovat pozvánku"}</button></div>}
+        {share?.id === album.id && <div className="pf-share"><div><p className="pf-eyebrow">Předejte klientovi · kód se zobrazí pouze nyní</p><strong>{share.code}</strong><span>{typeof window !== "undefined" ? window.location.origin : ""}/pro-klienty/galerie</span></div><button className="pf-button pf-secondary" onClick={copyCode}>{copied ? <Check size={17} /> : <Copy size={17} />}{copied ? "Zkopírováno" : "Kopírovat pozvánku"}</button></div>}
         {album.message && <p className="pf-album-message">Vzkaz pro klienta: {album.message}</p>}
         {album.status === "submitted" && <div className="pf-success"><Heart size={23} /><div><strong>Výběr klienta je odeslaný · Počet fotografií: {album.selected.length}</strong><p>{proofDate(album.submittedAt!)} · {notificationLabels[album.notification]}</p>{album.notification !== "sent" && <button className="pf-text-button" disabled={busy || !mailConfigured} onClick={() => void doAction("retry")}>Znovu zkusit e-mailové upozornění</button>}</div></div>}
         {album.note && <div className="pf-client-note"><p className="pf-eyebrow">Vzkaz od klienta</p><p>{album.note}</p></div>}
@@ -174,3 +176,4 @@ export function AdminProofing() {
     {current && album && <ProofDialog label={current.name} close={() => setPreview(null)}><div className="pf-lightbox"><button autoFocus className="pf-icon-button pf-lightbox-close" aria-label="Zavřít náhled" onClick={() => setPreview(null)}><X /></button><img src={photoUrl(album, current.id)} alt={current.name} /><p className="pf-lightbox-controls">{current.name}{album.selected.includes(current.id) && <span className="pf-status pf-status-submitted">Vybráno klientem</span>}</p></div></ProofDialog>}
   </ProofShell>;
 }
+

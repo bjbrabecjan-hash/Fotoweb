@@ -44,3 +44,4 @@ export function ProofDialog({ children, close, label }: { children: React.ReactN
 export function ErrorNotice({ message }: { message: string }) {
   return message ? <p className="pf-error" role="alert">{message}</p> : null;
 }
+

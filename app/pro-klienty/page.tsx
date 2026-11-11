@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { ClientProofing } from "@/components/ClientProofing";
-import "@/app/proofing.css";
-
+import Link from "next/link";
+import "@/app/agreements.css";
 export const metadata: Metadata = { title: "Pro klienty", robots: { index: false, follow: false, nocache: true }, alternates: { canonical: "/pro-klienty" } };
-export default function ClientGalleryPage() { return <ClientProofing />; }
+export default function Page() { return <div className="agreements"><header className="ag-header"><Link href="/" className="ag-brand">Hana Brabcová<span>Fotografie · obsah · spolupráce</span></Link><Link href="/">Zpět na web</Link></header><div className="ag-main ag-hub"><p className="ag-eyebrow">Váš soukromý prostor</p><h1>Pro klienty</h1><section className="ag-card"><p className="ag-eyebrow">01 / Vaše fotografie</p><h2>VSTUP DO GALERIE</h2><p>Výběr fotografií z klientské galerie.</p><Link className="ag-button" href="/pro-klienty/galerie">OTEVŘÍT GALERII</Link></section><section className="ag-card"><p className="ag-eyebrow">02 / Naše spolupráce</p><h2>SMLOUVY A DOHODY</h2><p>Přístup k připraveným smlouvám, dohodám a dokumentům ke spolupráci.</p><Link className="ag-button" href="/pro-klienty/dohody">OTEVŘÍT SMLOUVY A DOHODY</Link></section></div></div>; }
