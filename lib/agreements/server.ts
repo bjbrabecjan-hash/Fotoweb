@@ -52,6 +52,11 @@ export async function loginLimit(req: NextRequest, email: string) {
   if (!allowed) throw new ProofError(429, "Zadané přístupové údaje nejsou platné. Zkontrolujte e-mail a heslo nebo požádejte o nové přístupové údaje.");
 }
 export async function sendMail(to: string, subject: string, text: string, key: string) {
+  const gmailPassword = process.env.AGREEMENTS_GMAIL_APP_PASSWORD?.replace(/\s/g, "");
+  if (gmailPassword) {
+    await sendGmail(to, subject, text, key, gmailPassword);
+    return;
+  }
   const from = process.env.RESEND_FROM_EMAIL?.trim() || process.env.PROOFING_EMAIL_FROM?.trim();
   const api = process.env.RESEND_API_KEY;
   if (!from || !api) throw new ProofError(503, "Odesílání e-mailů není nastavené. Dohoda zůstává uložená.");
@@ -70,6 +75,40 @@ export async function sendMail(to: string, subject: string, text: string, key: s
   } catch (error) {
     if (error instanceof ProofError) throw error;
     throw new ProofError(502, "E-mail se nepodařilo odeslat. Dohoda zůstává uložená a odeslání lze zopakovat.");
+  }
+}
+
+async function sendGmail(to: string, subject: string, text: string, key: string, password: string) {
+  const user = "fotohanabrabcova@gmail.com";
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const nodemailer = require("nodemailer") as {
+    createTransport(options: object): {
+      sendMail(message: object): Promise<{ accepted: string[] }>;
+    };
+  };
+  const transport = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user, pass: password },
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 10000
+  });
+  try {
+    const result = await transport.sendMail({
+      from: { name: "Hana Brabcová", address: user },
+      to: [{ address: to }],
+      subject,
+      text,
+      messageId: `<${hash(key)}@gmail.com>`
+    });
+    if (!result.accepted.length) throw new Error("Recipient rejected");
+  } catch (error) {
+    if (error && typeof error === "object" && "code" in error && error.code === "EAUTH") {
+      throw new ProofError(502, "Gmail odmítl přihlášení. Zkontrolujte heslo aplikace v nastavení Vercelu.");
+    }
+    throw new ProofError(502, "Gmail odeslání nepotvrdil. Dohoda zůstává uložená.");
   }
 }
 export async function notify(a: Agreement) {
