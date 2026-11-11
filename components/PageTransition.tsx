@@ -1,8 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const reducedMotion = useReducedMotion();
+  // The opening owns the home transition. A transformed ancestor would also
+  // constrain its fixed overlay to the entire page instead of the viewport.
+  if (pathname === "/" || reducedMotion) return <main>{children}</main>;
   return (
     <motion.main
       initial={{ opacity: 0, y: 18 }}
