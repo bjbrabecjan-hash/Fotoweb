@@ -52,13 +52,25 @@ export async function loginLimit(req: NextRequest, email: string) {
   if (!allowed) throw new ProofError(429, "Zadané přístupové údaje nejsou platné. Zkontrolujte e-mail a heslo nebo požádejte o nové přístupové údaje.");
 }
 export async function sendMail(to: string, subject: string, text: string, key: string) {
-  const from = process.env.PROOFING_EMAIL_FROM || process.env.RESEND_FROM_EMAIL;
+  const from = process.env.RESEND_FROM_EMAIL?.trim() || process.env.PROOFING_EMAIL_FROM?.trim();
   const api = process.env.RESEND_API_KEY;
   if (!from || !api) throw new ProofError(503, "Odesílání e-mailů není nastavené. Dohoda zůstává uložená.");
   try {
     const result = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${api}`, "Content-Type": "application/json", "Idempotency-Key": key }, body: JSON.stringify({ from, to: [to], subject, text }), signal: AbortSignal.timeout(10000) });
-    if (!result.ok) throw new Error();
-  } catch { throw new ProofError(502, "E-mail se nepodařilo odeslat. Dokument je uložený; odeslání lze zopakovat."); }
+    if (!result.ok) {
+      console.warn("Agreement email rejected", { status: result.status });
+      if (result.status === 403 && /@resend\.dev\s*>?$/i.test(from)) {
+        throw new ProofError(502, "Resend používá testovací adresu. Pro pozvánky klientům nastavte odesílatele z vlastní ověřené domény.");
+      }
+      if (result.status === 403) {
+        throw new ProofError(502, "Resend odmítl odeslání. Zkontrolujte ověření domény odesílatele a oprávnění API klíče.");
+      }
+      throw new Error();
+    }
+  } catch (error) {
+    if (error instanceof ProofError) throw error;
+    throw new ProofError(502, "E-mail se nepodařilo odeslat. Dohoda zůstává uložená a odeslání lze zopakovat.");
+  }
 }
 export async function notify(a: Agreement) {
   if (!a.snapshot) throw new ProofError(409, "Dohoda ještě není vyplněná.");
